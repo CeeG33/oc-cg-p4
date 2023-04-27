@@ -1,4 +1,4 @@
-
+import datetime
 
 class Tournament:
     """
@@ -19,4 +19,22 @@ class Tournament:
         ● description pour les remarques générales du directeur du tournoi.
     """
     NUMBER_OF_ROUNDS = 4
+    start_date = []
+    end_date = []
+    current_round_number = []
+    rounds_list = []
+    players_list = []
+
+    def __init__(self, name, location, description):
+        self.name = name
+        self.location = location
+        self.description = description
     pass
+
+tournoi1 = Tournament("Tournoi des rois", "Paris", "Il s'agit d'un tournoi exceptionnel !")
+
+
+"""
+Donne la date et l'heure actuelles >>> datetime.datetime.now().replace(microsecond=0)
+
+"""
