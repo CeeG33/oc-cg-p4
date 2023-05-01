@@ -1,69 +1,4 @@
 
-# MODELES #
-class Tournament:
-    """
-    Le programme utilise les fichiers de données JSON pour la persistance des informations sur
-    les tournois. Les fichiers de données sont généralement situés dans le dossier
-    data/tournaments.
-
-    ● Un tournoi a un nombre de tours défini.
-
-    Chaque tournoi doit contenir au moins les informations suivantes :
-        ● nom ;
-        ● lieu ;
-        ● date de début et de fin ;
-        ● nombre de tours – réglez la valeur par défaut sur 4 ;
-        ● numéro correspondant au tour actuel ;
-        ● une liste des tours ;
-        ● une liste des joueurs enregistrés ;
-        ● description pour les remarques générales du directeur du tournoi.
-    """
-    NUMBER_OF_ROUNDS = 4
-    pass
-
-class Player:
-    """
-    Nous aimerions que l'application hors ligne contienne une base de données des joueurs
-    dans des fichiers JSON. Le programme devrait avoir une section dédiée à l'ajout de joueurs
-    et chaque joueur devrait contenir au moins les données suivantes :
-        ● Nom de famille
-        ● Prénom
-        ● Date de naissance
-    """
-    def __init__(self, name, first_name, date_of_birth):
-        self.name = name
-        self.first_name = first_name
-        self.date_of_birth = date_of_birth
-    pass
-
-
-class Contest:
-    """
-    ○ Chaque match consiste en une paire de joueurs
-
-
-    """
-    pass
-
-class Round:
-    """
-    ● Chaque tour est une liste de matchs.
-
-    Un match unique doit être stocké sous la forme d'un tuple contenant deux listes, chacune
-    contenant deux éléments : un joueur et un score. Les matchs doivent être stockés sous
-    forme de liste dans l'instance du tour auquel ils appartiennent.
-
-    En plus de la liste des matchs, chaque instance du tour doit contenir un nom.
-
-    Actuellement, nous appelons nos tours "Round 1", "Round 2", etc. Elle doit également
-    contenir un champ Date et heure de début et un champ Date et heure de fin, qui doivent
-    tous deux être automatiquement remplis lorsque l'utilisateur crée un tour et le marque
-    comme terminé.
-
-
-    """
-    pass
-
 # VUES #
 """
 Une fois le programme lancé, l'utilisateur utilisera le menu principal pour effectuer des
@@ -142,21 +77,9 @@ class LoadData:
     """
     pass
 
-# CONTROLEURS #
-class PlayerData:
-    pass
 
-class MatchResult:
-    """
-    À la fin du match, les joueurs reçoivent des points selon leurs résultats.
-        ○ Le gagnant reçoit 1 point.
-        ○ Le perdant reçoit 0 point.
-        ○ Chaque joueur reçoit 0,5 point si le match se termine par un match nul.
 
-    """
-    pass
 
-class BeginTournament:
-    pass
+
 
 
