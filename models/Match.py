@@ -1,6 +1,6 @@
 
 
-class Contest:
+class Match:
     """
     ○ Chaque match consiste en une paire de joueurs
 
@@ -10,7 +10,7 @@ class Contest:
         self.player2 = player2
 
 
-match1 = Contest("Bob", "Patrick")
+match1 = Match("Bob", "Patrick")
 
 
 """
