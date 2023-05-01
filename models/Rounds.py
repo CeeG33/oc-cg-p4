@@ -14,7 +14,9 @@ class Round:
     contenir un champ Date et heure de début et un champ Date et heure de fin, qui doivent
     tous deux être automatiquement remplis lorsque l'utilisateur crée un tour et le marque
     comme terminé.
-
-
     """
+
+    def __init__(self, round_name):
+        self.round_name = round_name
+
     pass
