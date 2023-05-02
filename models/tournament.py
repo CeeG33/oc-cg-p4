@@ -19,19 +19,28 @@ class Tournament:
         ● description pour les remarques générales du directeur du tournoi.
     """
     NUMBER_OF_ROUNDS = 4
-    start_date = []
-    end_date = []
-    current_round_number = []
-    rounds_list = []
-    players_list = []
 
     def __init__(self, name, location, description):
         self.name = name
         self.location = location
         self.description = description
+        self.start_date = str
+        self.end_date = str
+        self.current_round_number = []
+        self.rounds_list = []
+        self.players_list = []
     pass
 
+    def set_start_date(self):
+        self.start_date = datetime.datetime.now().replace(microsecond=0)
+
+    def set_end_date(self):
+        self.end_date = datetime.datetime.now().replace(microsecond=0)
+
+
+
 tournoi1 = Tournament("Tournoi des rois", "Paris", "Il s'agit d'un tournoi exceptionnel !")
+
 
 
 """

@@ -1,4 +1,4 @@
-
+import json
 
 class Player:
     """
@@ -9,15 +9,25 @@ class Player:
         ● Prénom
         ● Date de naissance
     """
-    rank = "Non défini"
-    def __init__(self, name, first_name, date_of_birth):
+
+    def __init__(self, name=str, first_name=str, birthdate=str):
         self.name = name
         self.first_name = first_name
-        self.date_of_birth = date_of_birth
+        self.birthdate = birthdate
+        self.rank = 0
     pass
+
+    def add_player_to_database(self):
+        with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
+            json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
+
+
 
 joueur1 = Player("Etoile de mer", "Patrick", "01/02/2000")
 joueur2 = Player("L'Éponge", "Bob", "05/06/2002")
+
+Player.add_player_to_database(joueur1)
+Player.add_player_to_database(joueur2)
 
 """
 print("Le joueur 1 est : ")
