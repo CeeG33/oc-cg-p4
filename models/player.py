@@ -15,12 +15,10 @@ class Player:
         self.first_name = first_name
         self.birthdate = birthdate
         self.rank = 0
-    pass
 
     def add_player_to_database(self):
         with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
             json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
-
 
 
 joueur1 = Player("Etoile de mer", "Patrick", "01/02/2000")

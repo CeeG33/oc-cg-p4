@@ -10,7 +10,6 @@ class Match:
         self.player2 = player2
 
 
-match1 = Match("Bob", "Patrick")
 
 
 """
