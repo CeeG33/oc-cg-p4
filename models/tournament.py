@@ -41,6 +41,7 @@ class Tournament:
         self.player_to_add = player_to_add
         self.players_list.append(self.player_to_add)
 
+#A ranger dans Vues
     def show_players_list(self):
         print("Voici la liste des participants !")
         for player in self.players_list:

@@ -14,6 +14,7 @@ class Match:
         self.pair_list.append(self.player1)
         self.pair_list.append(self.player2)
 
+#Déplacer dans une vue
     def show_match_composition(self):
         print("Ce match se compose de :")
         for player in self.pair_list:

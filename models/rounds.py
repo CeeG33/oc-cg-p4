@@ -18,7 +18,6 @@ class Round:
         self.start_date = "str"
         self.end_date = "str"
         self.round_number = "int"
-
     pass
 
 round_imaginaire = Round(1)
