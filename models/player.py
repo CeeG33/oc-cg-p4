@@ -10,7 +10,7 @@ class Player:
         ● Date de naissance
     """
 
-    def __init__(self, name=str, first_name=str, birthdate=str):
+    def __init__(self, name="str", first_name="str", birthdate="str"):
         self.name = name
         self.first_name = first_name
         self.birthdate = birthdate

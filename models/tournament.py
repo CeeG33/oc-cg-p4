@@ -19,7 +19,6 @@ class Tournament:
         ● une liste des joueurs enregistrés ;
         ● description pour les remarques générales du directeur du tournoi.
     """
-    NUMBER_OF_ROUNDS = 4
 
     def __init__(self, name, location, description):
         self.name = name

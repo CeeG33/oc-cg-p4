@@ -12,14 +12,17 @@ class Round:
     comme terminé.
     """
 
-    match_list = []
-    start_date = []
-    end_date = []
-
-    def __init__(self, round_name):
+    def __init__(self, round_name=int):
         self.round_name = round_name
+        self.match_list = []
+        self.start_date = "str"
+        self.end_date = "str"
+        self.round_number = "int"
 
     pass
+
+round_imaginaire = Round(1)
+print(round_imaginaire.round_number)
 
 """
     ">>> A déplacer dans EndContest : 
