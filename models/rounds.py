@@ -18,7 +18,7 @@ class Round:
                  round_name: str,
                  start_date: str = None,
                  end_date: str = None,
-                 round_number: int = None):
+                 round_number: int = range(1, 5)):
 
         self.round_name = round_name
         self.start_date = start_date

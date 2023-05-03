@@ -17,7 +17,7 @@ class Player:
         self.rank = 0
 
     def __repr__(self):
-        return self.first_name + " " + self.name
+        return f"{self.first_name} {self.name}"
 
     def add_player_as_json(self):
         with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
