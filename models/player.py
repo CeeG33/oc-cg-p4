@@ -16,7 +16,7 @@ class Player:
         self.birthdate = birthdate
         self.rank = 0
 
-    def add_player_to_database(self):
+    def add_player_as_json(self):
         with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
             json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
@@ -24,8 +24,8 @@ class Player:
 joueur1 = Player("Etoile de mer", "Patrick", "01/02/2000")
 joueur2 = Player("L'Éponge", "Bob", "05/06/2002")
 
-Player.add_player_to_database(joueur1)
-Player.add_player_to_database(joueur2)
+Player.add_player_as_json(joueur1)
+Player.add_player_as_json(joueur2)
 
 """
 print("Le joueur 1 est : ")
