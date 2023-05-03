@@ -16,12 +16,15 @@ class Player:
         self.birthdate = birthdate
         self.rank = 0
 
+    def __repr__(self):
+        return self.first_name + " " + self.name
+
     def add_player_as_json(self):
         with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
             json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
 
-joueur1 = Player("Etoile de mer", "Patrick", "01/02/2000")
+joueur1 = Player("Étoile de Mer", "Patrick", "01/02/2000")
 joueur2 = Player("L'Éponge", "Bob", "05/06/2002")
 
 Player.add_player_as_json(joueur1)
