@@ -1,5 +1,5 @@
 import datetime
-import player
+
 
 class Tournament:
     """
@@ -25,39 +25,28 @@ class Tournament:
                  location: str,
                  description: str,
                  start_date: str = None,
-                 end_date: str = None):
+                 end_date: str = None,
+                 current_round_number: int = 0):
         self.name = name
         self.location = location
         self.description = description
         self.start_date = start_date
         self.end_date = end_date
-        self.current_round_number = []
+        self.current_round_number = current_round_number
         self.rounds_list = []
         self.competitors_list = []
 
-
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
+
+    def begin_round(self):
+        self.current_round_number += 1
 
     def set_end_date(self):
         self.end_date = datetime.datetime.now().replace(microsecond=0)
 
     def add_player_to_tournament(self, player_to_add):
-        self.player_to_add = player_to_add
-        self.competitors_list.append(self.player_to_add)
-
-
-
-tournoi1 = Tournament("Tournoi des rois", "Paris", "Il s'agit d'un tournoi exceptionnel !")
-
-
-joueur1 = player.Player("Etoile de mer", "Patrick", "01/02/2000")
-joueur2 = player.Player("L'Éponge", "Bob", "05/06/2002")
-tournoi1.add_player_to_tournament(joueur1)
-tournoi1.add_player_to_tournament(joueur2)
-
-
-
+        self.competitors_list.append(player_to_add)
 
 
 """

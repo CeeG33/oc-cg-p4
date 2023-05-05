@@ -1,5 +1,6 @@
 import json
 
+
 class Player:
     """
     Nous aimerions que l'application hors ligne contienne une base de données des joueurs
@@ -23,12 +24,6 @@ class Player:
         with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
             json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
-
-joueur1 = Player("Étoile de Mer", "Patrick", "01/02/2000")
-joueur2 = Player("L'Éponge", "Bob", "05/06/2002")
-
-Player.add_player_as_json(joueur1)
-Player.add_player_as_json(joueur2)
 
 """
 print("Le joueur 1 est : ")

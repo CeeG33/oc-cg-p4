@@ -1,5 +1,4 @@
 import datetime
-from match import match1
 
 
 class Round:
@@ -26,7 +25,6 @@ class Round:
         self.round_number = round_number
         self.match_list = []
 
-
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
 
@@ -34,14 +32,8 @@ class Round:
         self.end_date = datetime.datetime.now().replace(microsecond=0)
 
     def add_match(self, match_name):
-        self.match_name = match_name
-        self.match_list.append(self.match_name)
+        self.match_list.append(match_name)
 
-
-round1 = Round("Round 1")
-round1.add_match(match1)
-
-print(round1.match_list)
 
 """
     ">>> A déplacer dans EndContest : 

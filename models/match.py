@@ -1,4 +1,4 @@
-from player import joueur1, joueur2
+
 
 class Match:
     """
@@ -28,16 +28,6 @@ class Match:
         self.player2_score += 0.5
         self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
 
-match1 = Match(joueur1, joueur2)
-
-print(match1)
-print(match1.tuple)
-print("Match en cours...")
-match1.draw()
-print(match1.tuple)
-print("Match en cours... Round 2")
-match1.player2_wins()
-print(match1.tuple)
 
 """
 #Déplacer dans une vue
