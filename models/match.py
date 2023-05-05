@@ -15,14 +15,17 @@ class Match:
     def __repr__(self):
         return f"{self.player1} -- VS -- {self.player2}"
 
-    def player1_wins(self, player1):
-        self.player1 = player1
+    def player1_wins(self):
         self.player1_score += 1
         self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
 
-    def player2_wins(self, player2):
-        self.player2 = player2
+    def player2_wins(self):
         self.player2_score += 1
+        self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
+
+    def draw(self):
+        self.player1_score += 0.5
+        self.player2_score += 0.5
         self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
 
 match1 = Match(joueur1, joueur2)
@@ -30,10 +33,10 @@ match1 = Match(joueur1, joueur2)
 print(match1)
 print(match1.tuple)
 print("Match en cours...")
-match1.player1_wins(joueur1)
+match1.draw()
 print(match1.tuple)
 print("Match en cours... Round 2")
-match1.player2_wins(joueur2)
+match1.player2_wins()
 print(match1.tuple)
 
 """
