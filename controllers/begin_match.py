@@ -1,3 +1,0 @@
-
-class BeginTournament:
-    pass
