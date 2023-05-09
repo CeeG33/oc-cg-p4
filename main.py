@@ -1,10 +1,47 @@
 import datetime
 import time
 from models import tournament, player, match, rounds
+from random import sample
+import itertools
+
+bob = player.Player("L'Éponge", "Bob", "02/02/2002")
+patrick = player.Player("Étoile de Mer", "Patrick", "01/01/2004")
+carlo = player.Player("Calamar", "Carlo", "03/03/2003")
+crabs = player.Player("Crabs", "Captain", "02/03/1993")
+sandy = player.Player("Écureuil", "Sandy", "04/05/2000")
+plankton = player.Player("Sheldon", "Plankton", "01/02/1992")
+liste1 = []
+
+liste1.append(bob)
+liste1.append(patrick)
+liste1.append(carlo)
+liste1.append(crabs)
+liste1.append(sandy)
+liste1.append(plankton)
+
+for playa in liste1:
+    playa.update_json_file()
 
 
+tournoi1 = tournament.Tournament("Tournoi Pâté de Crabe", "Bikini Bottom", "Meilleur tournoi des mers !!")
+
+for playa in liste1:
+    tournoi1.add_player_to_tournament(playa)
+
+print(f"Liste joueurs: {tournoi1.players_list}")
+
+tournoi1.shuffle_players()
+tournoi1.create_pairs()
+
+print(f"Liste joueurs mélangée: {tournoi1.pairs_list}")
+
+round1 = rounds.Round("Round 1")
+
+for playa in range(0, len(tournoi1.pairs_list), 2):
+    round1.add_match(match.Match(tournoi1.pairs_list[playa], tournoi1.pairs_list[playa+1]))
 
 
+print(round1.match_list)
 
 
 """

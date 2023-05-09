@@ -1,5 +1,4 @@
 import random
-from player import bob, patrick
 
 class Match:
     """

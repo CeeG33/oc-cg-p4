@@ -24,7 +24,7 @@ class Player:
         return f"{self.first_name} {self.name}"
 
     def update_json_file(self):
-        json_file_name = f"../data/players/{self.first_name}_{self.name}.json"
+        json_file_name = f"data/players/{self.first_name}_{self.name}.json"
         if path.exists(json_file_name):
             with open(json_file_name, "r", encoding="utf-8") as json_file:
                 player_data = json.load(json_file)

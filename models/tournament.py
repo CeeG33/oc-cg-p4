@@ -1,8 +1,7 @@
 import datetime
 import random
 from random import shuffle, sample
-from player import bob, patrick, carlo, sandy, crabs, plankton
-import match
+
 
 class Tournament:
     """
@@ -59,11 +58,9 @@ class Tournament:
         pairings = sample(self.players_list, 6)
         self.pairs_list.extend(pairings)
 
-    def update_player_global_score(self, player):
-        player.global_score += 3
 
 
-
+"""
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")
 tournoi1.add_player_to_tournament(bob)
 tournoi1.add_player_to_tournament(patrick)
@@ -82,7 +79,7 @@ match2 = match.Match(sample(tournoi1.pairs_list, 1), sample(tournoi1.pairs_list,
 print(match1, match2)
 
 
-"""
+
 match1 = match.Match(*random.sample(tournoi1.players_list, 2))
 print(match1)
 
