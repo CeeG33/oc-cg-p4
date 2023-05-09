@@ -1,5 +1,5 @@
 import json
-
+from os import stat
 
 class Player:
     """
@@ -17,16 +17,33 @@ class Player:
         self.birthdate = birthdate
         self.rank = 0
         self.global_score = 0
+        self.json_file_name = f"../data/players/{self.first_name}_{self.name}.json"
 
     def __repr__(self):
         return f"{self.first_name} {self.name}"
 
     def add_player_as_json(self):
-        with open(f"../data/players/{self.first_name}_{self.name}.json", "w", encoding="utf-8") as json_file:
-            json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
+        if stat(self.json_file_name).st_size == 0:
+            with open(self.json_file_name, "w", encoding="utf-8") as json_file:
+                json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
+        else:
+            return "Player already created."
+
+    def update_json_file(self):
+        if stat(self.json_file_name).st_size != 0:
+            with open(self.json_file_name, "r", encoding="utf-8") as json_file:
+                player_data = json.load(json_file)
+                player_data.update(self.__dict__)
+            with open(self.json_file_name, "w", encoding="utf-8") as json_file:
+                json.dump(player_data, json_file, indent=4, ensure_ascii=False)
+        else:
+            return "Player's data already up to date."
+
 
 bob = Player("L'Éponge", "Bob", "02/02/2002")
 patrick = Player("Étoile de Mer", "Patrick", "01/01/2004")
+
+bob.update_json_file()
 
 
 """

@@ -46,6 +46,7 @@ match1.update_player1_global_score()
 match1.update_player2_global_score()
 print(bob.global_score)
 print(patrick.global_score)
+print(match1.tuple)
 
 
 """
