@@ -35,8 +35,14 @@ class Match:
     def update_player2_global_score(self):
         self.player2.global_score += self.player2_score
 
+    def update_player1_tournament_score(self):
+        self.player1.tournament_score += self.player1_score
 
-match1 = Match(bob, patrick)
+    def update_player2_tournament_score(self):
+        self.player2.tournament_score += self.player2_score
+
+
+"""
 print(match1)
 match1.player1_wins()
 match1.draw()
@@ -49,7 +55,7 @@ print(patrick.global_score)
 print(match1.tuple)
 
 
-"""
+
 #Déplacer dans une vue
     def show_match_composition(self):
         print("Ce match se compose de :")

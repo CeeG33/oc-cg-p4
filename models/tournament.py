@@ -1,6 +1,7 @@
 import datetime
 import random
 from random import shuffle, sample
+from player import bob, patrick, carlo, sandy, crabs, plankton
 import match
 
 class Tournament:
@@ -55,22 +56,30 @@ class Tournament:
         shuffle(self.players_list)
 
     def create_pairs(self):
-        pairings = sample(self.players_list, 2)
+        pairings = sample(self.players_list, 6)
         self.pairs_list.extend(pairings)
+
+    def update_player_global_score(self, player):
+        player.global_score += 3
+
 
 
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")
-tournoi1.add_player_to_tournament("Bob")
-tournoi1.add_player_to_tournament("Patrick")
-tournoi1.add_player_to_tournament("Carlo")
-tournoi1.add_player_to_tournament("Sandy")
-tournoi1.add_player_to_tournament("Crabs")
-tournoi1.add_player_to_tournament("Plankton")
+tournoi1.add_player_to_tournament(bob)
+tournoi1.add_player_to_tournament(patrick)
+tournoi1.add_player_to_tournament(carlo)
+tournoi1.add_player_to_tournament(sandy)
+tournoi1.add_player_to_tournament(crabs)
+tournoi1.add_player_to_tournament(plankton)
 print(tournoi1.players_list)
-tournoi1.shuffle_players()
+
 tournoi1.create_pairs()
 print(tournoi1.pairs_list)
+print(tournoi1.players_list)
 
+match1 = match.Match(sample(tournoi1.pairs_list, 1), sample(tournoi1.pairs_list, 1))
+match2 = match.Match(sample(tournoi1.pairs_list, 1), sample(tournoi1.pairs_list, 1))
+print(match1, match2)
 
 
 """
@@ -84,4 +93,5 @@ Donne la date et l'heure actuelles >>> datetime.datetime.now().replace(microseco
         print("Voici la liste des participants !")
         for player in self.players_list:
             print(f"{player.first_name} {player.name}")
+
 """

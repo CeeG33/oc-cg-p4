@@ -3,6 +3,5 @@
     "first_name": "Bob",
     "birthdate": "02/02/2002",
     "rank": 0,
-    "global_score": 0,
-    "json_file_name": "../data/players/Bob_L'Éponge.json"
+    "global_score": 0
 }

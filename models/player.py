@@ -1,5 +1,5 @@
 import json
-from os import stat
+from os import stat, path
 
 class Player:
     """
@@ -15,35 +15,33 @@ class Player:
         self.name = name
         self.first_name = first_name
         self.birthdate = birthdate
-        self.rank = 0
+        self.global_rank = 0
         self.global_score = 0
-        self.json_file_name = f"../data/players/{self.first_name}_{self.name}.json"
+        self.tournament_rank = 0
+        self.tournament_score = 0
 
     def __repr__(self):
         return f"{self.first_name} {self.name}"
 
-    def add_player_as_json(self):
-        if stat(self.json_file_name).st_size == 0:
-            with open(self.json_file_name, "w", encoding="utf-8") as json_file:
-                json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
-        else:
-            return "Player already created."
-
     def update_json_file(self):
-        if stat(self.json_file_name).st_size != 0:
-            with open(self.json_file_name, "r", encoding="utf-8") as json_file:
+        json_file_name = f"../data/players/{self.first_name}_{self.name}.json"
+        if path.exists(json_file_name):
+            with open(json_file_name, "r", encoding="utf-8") as json_file:
                 player_data = json.load(json_file)
                 player_data.update(self.__dict__)
-            with open(self.json_file_name, "w", encoding="utf-8") as json_file:
+            with open(json_file_name, "w", encoding="utf-8") as json_file:
                 json.dump(player_data, json_file, indent=4, ensure_ascii=False)
         else:
-            return "Player's data already up to date."
+            with open(json_file_name, "w", encoding="utf-8") as json_file:
+                json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
 
 bob = Player("L'Éponge", "Bob", "02/02/2002")
 patrick = Player("Étoile de Mer", "Patrick", "01/01/2004")
-
-bob.update_json_file()
+carlo = Player("Calamar", "Carlo", "03/03/2003")
+crabs = Player("Crabs", "Captain", "02/03/1993")
+sandy = Player("Écureuil", "Sandy", "04/05/2000")
+plankton = Player("Sheldon", "Plankton", "01/02/1992")
 
 
 """
