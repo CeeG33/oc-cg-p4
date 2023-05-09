@@ -1,4 +1,5 @@
 import random
+from player import bob, patrick
 
 class Match:
     """
@@ -27,6 +28,24 @@ class Match:
         self.player1_score += 0.5
         self.player2_score += 0.5
         self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
+
+    def update_player1_global_score(self):
+        self.player1.global_score += self.player1_score
+
+    def update_player2_global_score(self):
+        self.player2.global_score += self.player2_score
+
+
+match1 = Match(bob, patrick)
+print(match1)
+match1.player1_wins()
+match1.draw()
+print(f"Score Bob : {match1.player1_score}")
+print(f"Score Patrick : {match1.player2_score}")
+match1.update_player1_global_score()
+match1.update_player2_global_score()
+print(bob.global_score)
+print(patrick.global_score)
 
 
 """
