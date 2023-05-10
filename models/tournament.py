@@ -1,7 +1,8 @@
 import datetime
 import random
 from random import shuffle, sample
-
+from models import rounds
+from models import match
 
 class Tournament:
     """
@@ -55,9 +56,12 @@ class Tournament:
         shuffle(self.players_list)
 
     def create_pairs(self):
-        pairings = sample(self.players_list, 6)
+        pairings = sample(self.players_list, len(self.players_list))
         self.pairs_list.extend(pairings)
 
+    def create_first_round_matches(self, first_round):
+        for player in range(0, len(self.pairs_list), 2):
+            first_round.add_match(match.Match(self.pairs_list[player], self.pairs_list[player + 1]))
 
 
 """
