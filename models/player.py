@@ -23,6 +23,9 @@ class Player:
     def __repr__(self):
         return f"{self.first_name} {self.name}"
 
+    def __lt__(self, other):
+        return self.tournament_score > other.tournament_score
+
     def update_json_file(self):
         json_file_name = f"data/players/{self.first_name}_{self.name}.json"
         if path.exists(json_file_name):
