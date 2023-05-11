@@ -16,14 +16,14 @@ class Round:
     def __init__(self,
                  round_name: str,
                  start_date: str = None,
-                 end_date: str = None,
-                 round_number: int = range(1, 5)):
-
+                 end_date: str = None):
         self.round_name = round_name
         self.start_date = start_date
         self.end_date = end_date
-        self.round_number = round_number
         self.match_list = []
+
+    def __repr__(self):
+        return f"{self.round_name} >> Début : {self.start_date} Fin : {self.end_date}"
 
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)

@@ -40,11 +40,17 @@ class Tournament:
         self.players_list = []
         self.pairs_list = []
 
+    def __repr__(self):
+        return f"Tournoi : {self.name} - Localisation : {self.location}"
+
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
 
     def begin_round(self):
-        self.current_round_number += 1
+        if self.current_round_number <= 4:
+            self.current_round_number += 1
+        else:
+            return "Tournoi terminé."
 
     def set_end_date(self):
         self.end_date = datetime.datetime.now().replace(microsecond=0)
@@ -63,6 +69,20 @@ class Tournament:
         for player in range(0, len(self.pairs_list), 2):
             first_round.add_match(match.Match(self.pairs_list[player], self.pairs_list[player + 1]))
 
+    def create_next_round_matches(self, next_round):
+        for player in range(0, len(self.players_list), 2):
+            next_round.add_match(match.Match(self.players_list[player], self.players_list[player + 1]))
+
+    def sort_players(self):
+        self.players_list.sort()
+
+    def show_players_rank(self):
+        print("Classement actuel des joueurs :")
+        for index, player in enumerate(self.players_list, 1):
+            print(f"{index} >> {player}")
+
+    def end_round(self, round):
+        self.rounds_list.append(round)
 
 """
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")
