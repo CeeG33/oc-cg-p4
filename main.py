@@ -33,6 +33,7 @@ tournoi1.set_start_date()
 
 for playa in liste1:
     tournoi1.add_player_to_tournament(playa)
+    playa.update_json_file()
 
 print(f"Liste joueurs: {tournoi1.players_list}")
 
@@ -68,9 +69,13 @@ for contest in round1.match_list:
     contest.update_player1_tournament_score()
     contest.update_player2_global_score()
     contest.update_player2_tournament_score()
+    contest.update_json_file()
 
 for playa in tournoi1.players_list:
     playa.update_json_file()
+
+print(round1.match_list)
+
 
 tournoi1.sort_players()
 
@@ -78,7 +83,13 @@ print(f"Liste joueurs après Round 1 : {tournoi1.players_list}")
 
 round1.set_end_date()
 tournoi1.end_round(round1)
+round1.update_json_file()
+tournoi1.update_json_file()
 
+
+
+
+____________________________________________
 round2 = rounds.Round("Round 2")
 
 round2.set_start_date()
