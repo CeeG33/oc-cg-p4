@@ -1,4 +1,5 @@
 import json
+import os.path
 from os import stat, path
 
 class Player:
@@ -27,16 +28,30 @@ class Player:
         return self.tournament_score > other.tournament_score
 
     def update_json_file(self):
-        json_file_name = f"data/players/{self.first_name}_{self.name}.json"
-        if path.exists(json_file_name):
-            with open(json_file_name, "r", encoding="utf-8") as json_file:
-                player_data = json.load(json_file)
-                player_data.update(self.__dict__)
-            with open(json_file_name, "w", encoding="utf-8") as json_file:
-                json.dump(player_data, json_file, indent=4, ensure_ascii=False)
+        directory_path = f"data/players/"
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+            json_file_name = f"data/players/{self.first_name}_{self.name}.json"
+            if path.exists(json_file_name):
+                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                    player_data = json.load(json_file)
+                    player_data.update(self.__dict__)
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(player_data, json_file, indent=4, ensure_ascii=False)
+            else:
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
         else:
-            with open(json_file_name, "w", encoding="utf-8") as json_file:
-                json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
+            json_file_name = f"data/players/{self.first_name}_{self.name}.json"
+            if path.exists(json_file_name):
+                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                    player_data = json.load(json_file)
+                    player_data.update(self.__dict__)
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(player_data, json_file, indent=4, ensure_ascii=False)
+            else:
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
 
 bob = Player("L'Éponge", "Bob", "02/02/2002")

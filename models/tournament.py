@@ -1,8 +1,12 @@
 import datetime
 import random
+import json
+import os.path
+from os import path
 from random import shuffle, sample
 from models import rounds
 from models import match
+
 
 class Tournament:
     """
@@ -83,6 +87,54 @@ class Tournament:
 
     def end_round(self, round):
         self.rounds_list.append(round)
+
+    def update_json_file(self):
+        directory_path = f"data/tournaments/"
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+            json_file_name = f"data/tournaments/{self.name}.json"
+            data = {
+                "name": f"{self.name}",
+                "location": f"{self.location}",
+                "description": f"{self.description}",
+                "start_date": f"{self.start_date}",
+                "end_date": f"{self.end_date}",
+                "current_round_number": self.current_round_number,
+                "rounds_list": f"{self.rounds_list}",
+                "players_list": f"{self.players_list}",
+                "pairs_list": f"{self.pairs_list}",
+            }
+            if path.exists(json_file_name):
+                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                    tournament_data = json.load(json_file)
+                    tournament_data.update(data)
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(tournament_data, json_file, indent=4, ensure_ascii=False)
+            else:
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+        else:
+            json_file_name = f"data/tournaments/{self.name}.json"
+            data = {
+                "name": f"{self.name}",
+                "location": f"{self.location}",
+                "description": f"{self.description}",
+                "start_date": f"{self.start_date}",
+                "end_date": f"{self.end_date}",
+                "current_round_number": self.current_round_number,
+                "rounds_list": f"{self.rounds_list}",
+                "players_list": f"{self.players_list}",
+                "pairs_list": f"{self.pairs_list}",
+            }
+            if path.exists(json_file_name):
+                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                    tournament_data = json.load(json_file)
+                    tournament_data.update(data)
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(tournament_data, json_file, indent=4, ensure_ascii=False)
+            else:
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(data, json_file, indent=4, ensure_ascii=False)
 
 """
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")

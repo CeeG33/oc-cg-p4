@@ -1,4 +1,7 @@
+import json
+import os.path
 import random
+from os import path
 
 class Match:
     """
@@ -39,6 +42,47 @@ class Match:
 
     def update_player2_tournament_score(self):
         self.player2.tournament_score += self.player2_score
+
+    def update_json_file(self):
+        directory_path = f"data/matches/"
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+            json_file_name = f"data/matches/{self.player1}_VS_{self.player2}.json"
+            data = {
+                "player1": str(self.player1),
+                "player2": str(self.player2),
+                "player1_score": self.player1_score,
+                "player2_score": self.player2_score,
+                "tuple": f"{self.tuple}"
+            }
+            if path.exists(json_file_name):
+                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                    match_data = json.load(json_file)
+                    match_data.update(data)
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(match_data, json_file, indent=4, ensure_ascii=False)
+            else:
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+        else:
+            json_file_name = f"data/matches/{self.player1}_VS_{self.player2}.json"
+            data = {
+                "player1": str(self.player1),
+                "player2": str(self.player2),
+                "player1_score": self.player1_score,
+                "player2_score": self.player2_score,
+                "tuple": f"{self.tuple}"
+            }
+            if path.exists(json_file_name):
+                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                    match_data = json.load(json_file)
+                    match_data.update(data)
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(match_data, json_file, indent=4, ensure_ascii=False)
+            else:
+                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+
 
 
 """
