@@ -1,0 +1,7 @@
+{
+    "player1": "Captain Crabs",
+    "player2": "Pearl Crabs",
+    "player1_score": 0,
+    "player2_score": 1,
+    "tuple": "([Captain Crabs, 0], [Pearl Crabs, 1])"
+}

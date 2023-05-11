@@ -1,0 +1,11 @@
+{
+    "name": "Tournoi Pâté de Crabe",
+    "location": "Bikini Bottom",
+    "description": "Meilleur tournoi des mers !!",
+    "start_date": "2023-05-11 18:33:31",
+    "end_date": "None",
+    "current_round_number": 1,
+    "rounds_list": "[Round 1 >> Début : 2023-05-11 18:33:31 Fin : 2023-05-11 18:33:31]",
+    "players_list": "[Pearl Crabs, Bob L'Éponge, Gary L'Escargot, Plankton Sheldon, Carlo Calamar, Patrick Étoile de Mer, Sandy Écureuil, Captain Crabs]",
+    "pairs_list": "[Plankton Sheldon, Carlo Calamar, Patrick Étoile de Mer, Gary L'Escargot, Bob L'Éponge, Sandy Écureuil, Captain Crabs, Pearl Crabs]"
+}
