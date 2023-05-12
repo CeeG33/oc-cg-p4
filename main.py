@@ -4,7 +4,7 @@ from models import tournament, player, match, rounds
 from random import sample
 import itertools
 
-player1 = player.Player.create_from_json("L'Éponge", "Bob")
+player1 = player.Player.create_from_json(None, "L'Éponge", "Bob")
 
 print(player1)
 
