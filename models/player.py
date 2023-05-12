@@ -53,14 +53,14 @@ class Player:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
-    def create_from_json(name, first_name):
+    def create_from_json(self, name, first_name):
         name = name
         first_name = first_name
         existing_json_file_path = f"data/players/{first_name}_{name}.json"
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
                 player_data = json.load(json_file)
-                print(player_data)
+                print(player_data.get("name"))
         else:
             return "Ce joueur n'existe pas"
 
