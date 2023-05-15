@@ -43,6 +43,9 @@ class Tournament:
         self.rounds_list = []
         self.players_list = []
         self.pairs_list = []
+        self.winners_list = []
+        self.draw_list = []
+        self.players_scores = None
 
     def __repr__(self):
         return f"Tournoi : {self.name} - Localisation : {self.location}"
@@ -74,15 +77,17 @@ class Tournament:
             first_round.add_match(match.Match(self.pairs_list[player], self.pairs_list[player + 1]))
 
     def create_next_round_matches(self, next_round):
-        for player in range(0, len(self.players_list), 2):
-            next_round.add_match(match.Match(self.players_list[player], self.players_list[player + 1]))
+        sorted_players = sorted(self.players_scores, key=self.players_scores.get, reverse=True)
+        for player in range(0, len(sorted_players), 2):
+            next_round.add_match(match.Match(sorted_players[player], sorted_players[player+1]))
 
     def sort_players(self):
-        self.players_list.sort()
+        self.players_scores = dict(sorted(self.players_scores.items(), key=lambda x: x[1], reverse=True))
 
     def show_players_rank(self):
+        sorted_players = sorted(self.players_scores, key=self.players_scores.get, reverse=True)
         print("Classement actuel des joueurs :")
-        for index, player in enumerate(self.players_list, 1):
+        for index, player in enumerate(sorted_players, 1):
             print(f"{index} >> {player}")
 
     def end_round(self, round):
@@ -103,6 +108,9 @@ class Tournament:
                 "rounds_list": f"{self.rounds_list}",
                 "players_list": f"{self.players_list}",
                 "pairs_list": f"{self.pairs_list}",
+                "winners_list": f"{self.winners_list}",
+                "draw_list": f"{self.draw_list}",
+                "players_scores": f"{self.players_scores}",
             }
             if path.exists(json_file_name):
                 with open(json_file_name, "r", encoding="utf-8") as json_file:
@@ -125,6 +133,9 @@ class Tournament:
                 "rounds_list": f"{self.rounds_list}",
                 "players_list": f"{self.players_list}",
                 "pairs_list": f"{self.pairs_list}",
+                "winners_list": f"{self.winners_list}",
+                "draw_list": f"{self.draw_list}",
+                "players_scores": f"{self.players_scores}",
             }
             if path.exists(json_file_name):
                 with open(json_file_name, "r", encoding="utf-8") as json_file:
@@ -151,8 +162,31 @@ class Tournament:
                 self.rounds_list = tournament_data.get("rounds_list")
                 self.players_list = tournament_data.get("players_list")
                 self.pairs_list = tournament_data.get("pairs_list")
+                self.winners_list = tournament_data.get("winners_list")
+                self.draw_list = tournament_data.get("draw_list")
+                self.players_scores = tournament_data.get("players_scores")
         else:
             return "Ce tournoi n'existe pas"
+
+    def get_scores(self):
+        default_value = 0
+        self.players_scores = dict.fromkeys(self.players_list, default_value)
+
+    def add_one_point_to(self, player):
+        player = player
+        self.players_scores[player] += 1
+        player.global_score += 1
+
+    def add_half_point_to(self, player):
+        player = player
+        self.players_scores[player] += 0.5
+        player.global_score += 0.5
+
+    def reinitialise_winners_list(self):
+        self.winners_list = []
+
+    def reinitialise_draw_list(self):
+        self.draw_list = []
 
 """
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")

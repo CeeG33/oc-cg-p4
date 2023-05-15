@@ -11,37 +11,18 @@ class Match:
     def __init__(self, player1: str, player2: str):
         self.player1 = player1
         self.player2 = player2
-        self.player1_score = 0
-        self.player2_score = 0
-        self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
+        self.winner = None
+        self.draw = None
+
 
     def __repr__(self):
         return f"{self.player1} -- VS -- {self.player2}"
 
-    def player1_wins(self):
-        self.player1_score += 1
-        self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
+    def chose_winner(self, player):
+        self.winner = player
 
-    def player2_wins(self):
-        self.player2_score += 1
-        self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
-
-    def draw(self):
-        self.player1_score += 0.5
-        self.player2_score += 0.5
-        self.tuple = ([self.player1, self.player1_score], [self.player2, self.player2_score])
-
-    def update_player1_global_score(self):
-        self.player1.global_score += self.player1_score
-
-    def update_player2_global_score(self):
-        self.player2.global_score += self.player2_score
-
-    def update_player1_tournament_score(self):
-        self.player1.tournament_score += self.player1_score
-
-    def update_player2_tournament_score(self):
-        self.player2.tournament_score += self.player2_score
+    def is_draw(self):
+        self.draw = self.player1, self.player2
 
     def update_json_file(self):
         directory_path = f"data/matches/"

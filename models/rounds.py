@@ -87,6 +87,9 @@ class Round:
         else:
             return "Ce round n'existe pas"
 
+    def get_matches(self):
+        return self.match_list
+
 """
     ">>> A déplacer dans EndContest : 
     Un match unique doit être stocké sous la forme d'un tuple contenant deux 
