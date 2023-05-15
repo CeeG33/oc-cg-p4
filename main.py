@@ -4,15 +4,7 @@ from models import tournament, player, match, rounds
 from random import sample
 import itertools
 
-tournoi1 = tournament.Tournament(None, None, None)
 
-tournoi1.create_from_json("Tournoi Pâté de Crabe")
-
-print(tournoi1.__dict__)
-
-
-
-"""
 bob = player.Player("L'Éponge", "Bob", "02/02/2002")
 patrick = player.Player("Étoile de Mer", "Patrick", "01/01/2004")
 carlo = player.Player("Calamar", "Carlo", "03/03/2003")
@@ -61,126 +53,100 @@ print(f"Liste matches Round 1 après création : {round1.match_list}")
 
 print(f"Résultats du Round 1 :")
 
-round1.match_list[0].draw()
-round1.match_list[1].draw()
-round1.match_list[2].player1_wins()
-round1.match_list[3].player2_wins()
-print(round1.match_list[0].tuple)
-print(round1.match_list[1].tuple)
-print(round1.match_list[2].tuple)
-print(round1.match_list[3].tuple)
+round1.match_list[0].chose_winner(round1.match_list[0].player1)
+round1.match_list[1].chose_winner(round1.match_list[1].player2)
+round1.match_list[2].is_draw()
+round1.match_list[3].is_draw()
 
-for contest in round1.match_list:
-    contest.update_player1_global_score()
-    contest.update_player1_tournament_score()
-    contest.update_player2_global_score()
-    contest.update_player2_tournament_score()
-    contest.update_json_file()
-
-for playa in tournoi1.players_list:
-    playa.update_json_file()
-
-print(round1.match_list)
-
-
-tournoi1.sort_players()
-
-print(f"Liste joueurs après Round 1 : {tournoi1.players_list}")
+print(round1.match_list[0].winner)
+print(round1.match_list[1].winner)
+print(round1.match_list[2].draw)
+print(round1.match_list[3].draw)
 
 round1.set_end_date()
 tournoi1.end_round(round1)
-round1.update_json_file()
-tournoi1.update_json_file()
+
+print(tournoi1.rounds_list)
+tournoi1.get_scores()
+
+for r in tournoi1.rounds_list:
+    for m in r.get_matches():
+        if m.winner:
+            tournoi1.winners_list.append(m.winner)
+        if m.draw:
+            tournoi1.draw_list.extend(m.draw)
+
+for p in tournoi1.winners_list:
+    tournoi1.add_one_point_to(p)
+
+for p in tournoi1.draw_list:
+    tournoi1.add_half_point_to(p)
+
+print(tournoi1.players_scores)
+tournoi1.sort_players()
+print(tournoi1.players_scores)
+tournoi1.reinitialise_winners_list()
+tournoi1.reinitialise_draw_list()
 
 
 
-
-____________________________________________
 round2 = rounds.Round("Round 2")
 
 round2.set_start_date()
 tournoi1.begin_round()
 
+print(f"Liste matches Round 2 avant création : {round2.match_list}")
+
 tournoi1.create_next_round_matches(round2)
+
 
 print(f"Liste matches Round 2 après création : {round2.match_list}")
 
+
 print(f"Résultats du Round 2 :")
 
-round2.match_list[0].player2_wins()
-round2.match_list[1].player1_wins()
-round2.match_list[2].draw()
-round2.match_list[3].player2_wins()
-print(round2.match_list[0].tuple)
-print(round2.match_list[1].tuple)
-print(round2.match_list[2].tuple)
-print(round2.match_list[3].tuple)
+round2.match_list[0].chose_winner(round2.match_list[0].player2)
+round2.match_list[1].chose_winner(round2.match_list[1].player2)
+round2.match_list[2].chose_winner(round2.match_list[2].player2)
+round2.match_list[3].is_draw()
 
-for contest in round2.match_list:
-    contest.update_player1_global_score()
-    contest.update_player1_tournament_score()
-    contest.update_player2_global_score()
-    contest.update_player2_tournament_score()
-
-for playa in tournoi1.players_list:
-    playa.update_json_file()
-
-tournoi1.sort_players()
-
-print(f"Liste joueurs après Round 2 : {tournoi1.players_list}")
+print(round2.match_list[0].winner)
+print(round2.match_list[1].winner)
+print(round2.match_list[2].winner)
+print(round2.match_list[3].draw)
 
 round2.set_end_date()
 tournoi1.end_round(round2)
 
-round3 = rounds.Round("Round 3")
+print(tournoi1.rounds_list)
+tournoi1.get_scores()
 
-round3.set_start_date()
-tournoi1.begin_round()
+for r in tournoi1.rounds_list:
+    for m in r.get_matches():
+        if m.winner:
+            tournoi1.winners_list.append(m.winner)
+        if m.draw:
+            tournoi1.draw_list.extend(m.draw)
 
-tournoi1.create_next_round_matches(round3)
+for p in tournoi1.winners_list:
+    tournoi1.add_one_point_to(p)
 
-print(f"Liste matches Round 3 après création : {round3.match_list}")
+for p in tournoi1.draw_list:
+    tournoi1.add_half_point_to(p)
 
-print(f"Résultats du Round 3 :")
+print(tournoi1.players_scores)
+tournoi1.sort_players()
+print(tournoi1.players_scores)
 
-round3.match_list[0].player2_wins()
-round3.match_list[1].player1_wins()
-round3.match_list[2].draw()
-round3.match_list[3].player2_wins()
-print(round3.match_list[0].tuple)
-print(round3.match_list[1].tuple)
-print(round3.match_list[2].tuple)
-print(round3.match_list[3].tuple)
+tournoi1.show_players_rank()
+tournoi1.update_json_file()
 
-for contest in round3.match_list:
-    contest.update_player1_global_score()
-    contest.update_player1_tournament_score()
-    contest.update_player2_global_score()
-    contest.update_player2_tournament_score()
+print(tournoi1.players_list)
 
 for playa in tournoi1.players_list:
     playa.update_json_file()
 
-tournoi1.sort_players()
-
-print(f"Liste joueurs après Round 3 : {tournoi1.players_list}")
-
-round3.set_end_date()
-tournoi1.end_round(round3)
-
-tournoi1.show_players_rank()
-
-print("Voici la liste des rounds :")
-print(tournoi1.rounds_list)
-
-print("Voici la liste des tournois :")
-print(tournoi1)
-
-
-
-
-
-
+"""
 for playa in range(0, len(tournoi1.pairs_list), 2):
     round1.add_match(match.Match(tournoi1.pairs_list[playa], tournoi1.pairs_list[playa+1]))
     
