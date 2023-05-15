@@ -4,9 +4,9 @@ from models import tournament, player, match, rounds
 from random import sample
 import itertools
 
-player1 = player.Player.create_from_json(None, "L'Éponge", "Bob")
+player1 = player.Player()
 
-print(player1)
+
 
 """
 bob = player.Player("L'Éponge", "Bob", "02/02/2002")
