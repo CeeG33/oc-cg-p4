@@ -2,10 +2,13 @@
     "name": "Tournoi Pâté de Crabe",
     "location": "Bikini Bottom",
     "description": "Meilleur tournoi des mers !!",
-    "start_date": "2023-05-11 18:33:31",
+    "start_date": "2023-05-15 18:00:57",
     "end_date": "None",
-    "current_round_number": 1,
-    "rounds_list": "[Round 1 >> Début : 2023-05-11 18:33:31 Fin : 2023-05-11 18:33:31]",
-    "players_list": "[Pearl Crabs, Bob L'Éponge, Gary L'Escargot, Plankton Sheldon, Carlo Calamar, Patrick Étoile de Mer, Sandy Écureuil, Captain Crabs]",
-    "pairs_list": "[Plankton Sheldon, Carlo Calamar, Patrick Étoile de Mer, Gary L'Escargot, Bob L'Éponge, Sandy Écureuil, Captain Crabs, Pearl Crabs]"
+    "current_round_number": 2,
+    "rounds_list": "[Round 1 >> Début : 2023-05-15 18:00:57 Fin : 2023-05-15 18:00:57, Round 2 >> Début : 2023-05-15 18:00:57 Fin : 2023-05-15 18:00:57]",
+    "players_list": "[Captain Crabs, Carlo Calamar, Plankton Sheldon, Sandy Écureuil, Pearl Crabs, Gary L'Escargot, Bob L'Éponge, Patrick Étoile de Mer]",
+    "pairs_list": "[Bob L'Éponge, Pearl Crabs, Gary L'Escargot, Captain Crabs, Patrick Étoile de Mer, Sandy Écureuil, Carlo Calamar, Plankton Sheldon]",
+    "winners_list": "[Bob L'Éponge, Captain Crabs, Bob L'Éponge, Plankton Sheldon, Patrick Étoile de Mer]",
+    "draw_list": "[Patrick Étoile de Mer, Sandy Écureuil, Carlo Calamar, Plankton Sheldon, Pearl Crabs, Gary L'Escargot]",
+    "players_scores": "{Bob L'Éponge: 2, Plankton Sheldon: 1.5, Patrick Étoile de Mer: 1.5, Captain Crabs: 1, Carlo Calamar: 0.5, Sandy Écureuil: 0.5, Pearl Crabs: 0.5, Gary L'Escargot: 0.5}"
 }
