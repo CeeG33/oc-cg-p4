@@ -8,7 +8,7 @@ class Match:
     ○ Chaque match consiste en une paire de joueurs
 
     """
-    def __init__(self, player1, player2):
+    def __init__(self, player1: str, player2: str):
         self.player1 = player1
         self.player2 = player2
         self.player1_score = 0
@@ -83,6 +83,20 @@ class Match:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
+    def create_from_json(self, player1, player2):
+        player1 = player1
+        player2 = player2
+        existing_json_file_path = f"data/matches/{player1}_VS_{player2}.json"
+        if path.exists(existing_json_file_path):
+            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
+                match_data = json.load(json_file)
+                self.player1 = match_data.get("player1")
+                self.player2 = match_data.get("player2")
+                self.player1_score = match_data.get("player1_score")
+                self.player2_score = match_data.get("player2_score")
+                self.tuple = match_data.get("tuple")
+        else:
+            return "Ce match n'existe pas"
 
 
 """

@@ -74,6 +74,19 @@ class Round:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
+    def create_from_json(self, round_name):
+        round_name = round_name
+        existing_json_file_path = f"data/rounds/{round_name}.json"
+        if path.exists(existing_json_file_path):
+            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
+                round_data = json.load(json_file)
+                self.round_name = round_data.get("round_name")
+                self.start_date = round_data.get("start_date")
+                self.end_date = round_data.get("end_date")
+                self.match_list = round_data.get("match_list")
+        else:
+            return "Ce round n'existe pas"
+
 """
     ">>> A déplacer dans EndContest : 
     Un match unique doit être stocké sous la forme d'un tuple contenant deux 

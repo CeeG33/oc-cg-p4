@@ -136,6 +136,24 @@ class Tournament:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
+    def create_from_json(self, name):
+        name = name
+        existing_json_file_path = f"data/tournaments/{name}.json"
+        if path.exists(existing_json_file_path):
+            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
+                tournament_data = json.load(json_file)
+                self.name = tournament_data.get("name")
+                self.location = tournament_data.get("location")
+                self.description = tournament_data.get("description")
+                self.start_date = tournament_data.get("start_date")
+                self.end_date = tournament_data.get("end_date")
+                self.current_round_number = tournament_data.get("current_round_number")
+                self.rounds_list = tournament_data.get("rounds_list")
+                self.players_list = tournament_data.get("players_list")
+                self.pairs_list = tournament_data.get("pairs_list")
+        else:
+            return "Ce tournoi n'existe pas"
+
 """
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")
 tournoi1.add_player_to_tournament(bob)
