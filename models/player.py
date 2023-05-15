@@ -60,7 +60,13 @@ class Player:
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
                 player_data = json.load(json_file)
-                print(player_data.get("name"))
+                self.name = player_data.get("name")
+                self.first_name = player_data.get("first_name")
+                self.birthdate = player_data.get("birthdate")
+                self.global_rank = player_data.get("global_rank")
+                self.global_score = player_data.get("global_score")
+                self.tournament_rank = player_data.get("tournament_rank")
+                self.tournament_score = player_data.get("tournament_score")
         else:
             return "Ce joueur n'existe pas"
 
