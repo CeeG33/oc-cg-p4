@@ -4,7 +4,14 @@ from models import tournament, player, match, rounds
 from random import sample
 import itertools
 
+random_tournament = tournament.Tournament.create_from_json("Tournoi Pâté de Crabe")
 
+print(random_tournament)
+print(random_tournament.__dict__)
+
+
+
+"""
 bob = player.Player("L'Éponge", "Bob", "02/02/2002")
 patrick = player.Player("Étoile de Mer", "Patrick", "01/01/2004")
 carlo = player.Player("Calamar", "Carlo", "03/03/2003")
@@ -146,7 +153,7 @@ print(tournoi1.players_list)
 for playa in tournoi1.players_list:
     playa.update_json_file()
 
-"""
+
 for playa in range(0, len(tournoi1.pairs_list), 2):
     round1.add_match(match.Match(tournoi1.pairs_list[playa], tournoi1.pairs_list[playa+1]))
     
