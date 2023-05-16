@@ -15,13 +15,10 @@ class Round:
     comme terminé.
     """
 
-    def __init__(self,
-                 round_name: str,
-                 start_date: str = None,
-                 end_date: str = None):
+    def __init__(self,round_name: str):
         self.round_name = round_name
-        self.start_date = start_date
-        self.end_date = end_date
+        self.start_date = None
+        self.end_date = None
         self.match_list = []
 
     def __repr__(self):
