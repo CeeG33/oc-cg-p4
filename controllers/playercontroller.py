@@ -1,5 +1,6 @@
 from models import player
 
+
 class PlayerController:
     def __init__(self):
         self.players_list = []
