@@ -18,6 +18,7 @@ class Player:
         self.birthdate = birthdate
         self.global_rank = 0
         self.global_score = 0
+        self.national_chess_id = None
 
     def __repr__(self):
         return f"{self.first_name} {self.name}"
@@ -67,3 +68,6 @@ class Player:
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
+
+    def add_national_chess_id(self, national_chess_id):
+        self.national_chess_id = national_chess_id

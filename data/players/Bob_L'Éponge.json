@@ -3,7 +3,8 @@
     "first_name": "Bob",
     "birthdate": "02/02/2002",
     "global_rank": 0,
-    "global_score": 3,
+    "global_score": 0,
     "tournament_rank": 0,
-    "tournament_score": 0
+    "tournament_score": 0,
+    "national_chess_id": "AA43234"
 }
