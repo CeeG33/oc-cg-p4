@@ -27,6 +27,21 @@ class Round:
     def __repr__(self):
         return f"{self.round_name} >> Début : {self.start_date} Fin : {self.end_date}"
 
+    @classmethod
+    def create_from_json(cls, round_name):
+        round_name = round_name
+        existing_json_file_path = f"data/rounds/{round_name}.json"
+        if path.exists(existing_json_file_path):
+            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
+                round_data = json.load(json_file)
+                temporary_round = cls(round_data["round_name"])
+                temporary_round.start_date = round_data.get("start_date")
+                temporary_round.end_date = round_data.get("end_date")
+                temporary_round.match_list = round_data.get("match_list")
+                return temporary_round
+        else:
+            return "Ce round n'existe pas"
+
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
 
@@ -73,19 +88,6 @@ class Round:
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
-
-    def create_from_json(self, round_name):
-        round_name = round_name
-        existing_json_file_path = f"data/rounds/{round_name}.json"
-        if path.exists(existing_json_file_path):
-            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
-                round_data = json.load(json_file)
-                self.round_name = round_data.get("round_name")
-                self.start_date = round_data.get("start_date")
-                self.end_date = round_data.get("end_date")
-                self.match_list = round_data.get("match_list")
-        else:
-            return "Ce round n'existe pas"
 
     def get_matches(self):
         return self.match_list

@@ -18,14 +18,29 @@ class Player:
         self.birthdate = birthdate
         self.global_rank = 0
         self.global_score = 0
-        self.tournament_rank = 0
-        self.tournament_score = 0
 
     def __repr__(self):
         return f"{self.first_name} {self.name}"
 
     def __lt__(self, other):
-        return self.tournament_score > other.tournament_score
+        return self.global_score > other.global_score
+
+    @classmethod
+    def create_from_json(cls, name, first_name):
+        name = name
+        first_name = first_name
+        existing_json_file_path = f"data/players/{first_name}_{name}.json"
+        if path.exists(existing_json_file_path):
+            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
+                player_data = json.load(json_file)
+                player = cls(player_data["name"],
+                             player_data["first_name"],
+                             player_data["birthdate"])
+                player.global_rank = player_data.get("global_rank")
+                player.global_score = player_data.get("global_score")
+                return player
+        else:
+            return "Ce joueur n'existe pas"
 
     def update_json_file(self):
         directory_path = f"data/players/"
@@ -53,22 +68,7 @@ class Player:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
 
-    def create_from_json(self, name, first_name):
-        name = name
-        first_name = first_name
-        existing_json_file_path = f"data/players/{first_name}_{name}.json"
-        if path.exists(existing_json_file_path):
-            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
-                player_data = json.load(json_file)
-                self.name = player_data.get("name")
-                self.first_name = player_data.get("first_name")
-                self.birthdate = player_data.get("birthdate")
-                self.global_rank = player_data.get("global_rank")
-                self.global_score = player_data.get("global_score")
-                self.tournament_rank = player_data.get("tournament_rank")
-                self.tournament_score = player_data.get("tournament_score")
-        else:
-            return "Ce joueur n'existe pas"
+
 
 
 

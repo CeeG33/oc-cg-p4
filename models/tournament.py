@@ -50,6 +50,29 @@ class Tournament:
     def __repr__(self):
         return f"Tournoi : {self.name} - Localisation : {self.location}"
 
+    @classmethod
+    def create_from_json(cls, name):
+        name = name
+        existing_json_file_path = f"data/tournaments/{name}.json"
+        if path.exists(existing_json_file_path):
+            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
+                tournament_data = json.load(json_file)
+                temporary_tournament = cls(tournament_data["name"],
+                                           tournament_data["location"],
+                                           tournament_data["description"],
+                                           tournament_data["start_date"],
+                                           tournament_data["end_date"],
+                                           tournament_data["current_round_number"])
+                temporary_tournament.rounds_list = tournament_data.get("rounds_list")
+                temporary_tournament.players_list = tournament_data.get("players_list")
+                temporary_tournament.pairs_list = tournament_data.get("pairs_list")
+                temporary_tournament.winners_list = tournament_data.get("winners_list")
+                temporary_tournament.draw_list = tournament_data.get("draw_list")
+                temporary_tournament.players_scores = tournament_data.get("players_scores")
+                return temporary_tournament
+        else:
+            return "Ce tournoi n'existe pas"
+
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
 
@@ -147,38 +170,15 @@ class Tournament:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
-    def create_from_json(self, name):
-        name = name
-        existing_json_file_path = f"data/tournaments/{name}.json"
-        if path.exists(existing_json_file_path):
-            with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
-                tournament_data = json.load(json_file)
-                self.name = tournament_data.get("name")
-                self.location = tournament_data.get("location")
-                self.description = tournament_data.get("description")
-                self.start_date = tournament_data.get("start_date")
-                self.end_date = tournament_data.get("end_date")
-                self.current_round_number = tournament_data.get("current_round_number")
-                self.rounds_list = tournament_data.get("rounds_list")
-                self.players_list = tournament_data.get("players_list")
-                self.pairs_list = tournament_data.get("pairs_list")
-                self.winners_list = tournament_data.get("winners_list")
-                self.draw_list = tournament_data.get("draw_list")
-                self.players_scores = tournament_data.get("players_scores")
-        else:
-            return "Ce tournoi n'existe pas"
-
     def get_scores(self):
         default_value = 0
         self.players_scores = dict.fromkeys(self.players_list, default_value)
 
     def add_one_point_to(self, player):
-        player = player
         self.players_scores[player] += 1
         player.global_score += 1
 
     def add_half_point_to(self, player):
-        player = player
         self.players_scores[player] += 0.5
         player.global_score += 0.5
 
