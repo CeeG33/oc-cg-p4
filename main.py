@@ -1,8 +1,15 @@
 import datetime
 import time
 from models import tournament, player, match, rounds
+from controllers import playercontroller
 from random import sample
 import itertools
+
+controller = playercontroller.PlayerController()
+
+controller.load_existing_player("L'Éponge", "Bob")
+
+print(controller.players_list)
 
 
 
