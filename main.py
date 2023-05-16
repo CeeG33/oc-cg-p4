@@ -4,11 +4,6 @@ from models import tournament, player, match, rounds
 from random import sample
 import itertools
 
-random_tournament = tournament.Tournament.create_from_json("Tournoi Pâté de Crabe")
-
-print(random_tournament)
-print(random_tournament.__dict__)
-
 
 
 """

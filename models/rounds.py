@@ -1,7 +1,7 @@
 import datetime
 import json
-import os.path
-from os import path
+from os import path, makedirs
+
 
 class Round:
     """
@@ -53,8 +53,8 @@ class Round:
 
     def update_json_file(self):
         directory_path = f"data/rounds/"
-        if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
+        if not path.exists(directory_path):
+            makedirs(directory_path)
             json_file_name = f"data/rounds/{self.round_name}.json"
             data = {
                 "round_name": f"{self.round_name}",
@@ -91,6 +91,7 @@ class Round:
 
     def get_matches(self):
         return self.match_list
+
 
 """
     ">>> A déplacer dans EndContest : 

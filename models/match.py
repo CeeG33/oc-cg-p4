@@ -1,7 +1,6 @@
 import json
-import os.path
-import random
-from os import path
+from os import path, makedirs
+
 
 class Match:
     """
@@ -41,8 +40,8 @@ class Match:
 
     def update_json_file(self):
         directory_path = f"data/matches/"
-        if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
+        if not path.exists(directory_path):
+            makedirs(directory_path)
             json_file_name = f"data/matches/{self.player1}_VS_{self.player2}.json"
             data = {
                 "player1": str(self.player1),
@@ -78,22 +77,7 @@ class Match:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
 
-
-
 """
-print(match1)
-match1.player1_wins()
-match1.draw()
-print(f"Score Bob : {match1.player1_score}")
-print(f"Score Patrick : {match1.player2_score}")
-match1.update_player1_global_score()
-match1.update_player2_global_score()
-print(bob.global_score)
-print(patrick.global_score)
-print(match1.tuple)
-
-
-
 #Déplacer dans une vue
     def show_match_composition(self):
         print("Ce match se compose de :")

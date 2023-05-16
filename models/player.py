@@ -1,6 +1,6 @@
 import json
-import os.path
-from os import stat, path
+from os import path, makedirs
+
 
 class Player:
     """
@@ -44,8 +44,8 @@ class Player:
 
     def update_json_file(self):
         directory_path = f"data/players/"
-        if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
+        if not path.exists(directory_path):
+            makedirs(directory_path)
             json_file_name = f"data/players/{self.first_name}_{self.name}.json"
             if path.exists(json_file_name):
                 with open(json_file_name, "r", encoding="utf-8") as json_file:
@@ -67,30 +67,3 @@ class Player:
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
-
-
-
-
-
-
-bob = Player("L'Éponge", "Bob", "02/02/2002")
-patrick = Player("Étoile de Mer", "Patrick", "01/01/2004")
-carlo = Player("Calamar", "Carlo", "03/03/2003")
-crabs = Player("Crabs", "Captain", "02/03/1993")
-sandy = Player("Écureuil", "Sandy", "04/05/2000")
-plankton = Player("Sheldon", "Plankton", "01/02/1992")
-
-
-"""
-print("Le joueur 1 est : ")
-print(f"Nom : {joueur1.name}")
-print(f"Prénom : {joueur1.first_name}")
-print(f"Date de naissance : {joueur1.date_of_birth}")
-print(f"Rang : {joueur1.rank}")
-print()
-print("Le joueur 2 est : ")
-print(f"Nom : {joueur2.name}")
-print(f"Prénom : {joueur2.first_name}")
-print(f"Date de naissance : {joueur2.date_of_birth}")
-print(f"Rang : {joueur2.rank}")
-"""

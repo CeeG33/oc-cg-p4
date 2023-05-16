@@ -1,10 +1,7 @@
 import datetime
-import random
 import json
-import os.path
-from os import path
+from os import path, makedirs
 from random import shuffle, sample
-from models import rounds
 from models import match
 
 
@@ -113,13 +110,13 @@ class Tournament:
         for index, player in enumerate(sorted_players, 1):
             print(f"{index} >> {player}")
 
-    def end_round(self, round):
-        self.rounds_list.append(round)
+    def end_round(self, round_to_end):
+        self.rounds_list.append(round_to_end)
 
     def update_json_file(self):
         directory_path = f"data/tournaments/"
-        if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
+        if not path.exists(directory_path):
+            makedirs(directory_path)
             json_file_name = f"data/tournaments/{self.name}.json"
             data = {
                 "name": f"{self.name}",
@@ -187,6 +184,7 @@ class Tournament:
 
     def reinitialise_draw_list(self):
         self.draw_list = []
+
 
 """
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")
