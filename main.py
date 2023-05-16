@@ -14,6 +14,14 @@ print(controller.match_list)
 
 
 
+print(controller.save_matches())
+
+print(controller.select_winner(0, "Patrick Étoile de Mer"))
+
+controller.declare_draw_match(0)
+
+controller.restore_match_result(0)
+
 """
 bob = player.Player("L'Éponge", "Bob", "02/02/2002")
 patrick = player.Player("Étoile de Mer", "Patrick", "01/01/2004")
