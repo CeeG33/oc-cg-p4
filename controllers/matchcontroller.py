@@ -3,15 +3,16 @@ from models import match
 
 class MatchController:
     def __init__(self):
+        self.model = match.Match
         self.match_list = []
 
     def create_new_match(self, player1, player2):
-        new_match = match.Match(player1, player2)
-        self.match_list.append(new_match)
+        new_match = self.model(player1, player2)
         new_match.update_json_file()
+        self.match_list.append(new_match)
 
     def load_existing_match(self, player1, player2):
-        existing_match = match.Match.create_from_json(player1, player2)
+        existing_match = self.model.create_from_json(player1, player2)
         self.match_list.append(existing_match)
 
     def save_matches(self):

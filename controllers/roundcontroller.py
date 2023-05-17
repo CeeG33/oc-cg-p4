@@ -4,16 +4,17 @@ from models import rounds
 class RoundController:
 
     def __init__(self):
+        self.model = rounds.Round
         self.round_list = []
 
     def create_new_round(self, round_name):
-        new_round = rounds.Round(round_name)
+        new_round = self.model(round_name)
         new_round.set_start_date()
-        self.round_list.append(new_round)
         new_round.update_json_file()
+        self.round_list.append(new_round)
 
     def load_existing_round(self, round_name):
-        existing_round = rounds.Round.create_from_json(round_name)
+        existing_round = self.model.create_from_json(round_name)
         self.round_list.append(existing_round)
 
     def save_rounds(self):
