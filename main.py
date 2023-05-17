@@ -5,22 +5,12 @@ from controllers import playercontroller, matchcontroller
 from random import sample
 import itertools
 
-controller = matchcontroller.MatchController()
-print(controller.match_list)
+controller = playercontroller.PlayerController()
 
-controller.load_existing_match("Bob L'Éponge", "Patrick Étoile de Mer")
+controller.load_existing_player("L'Éponge", "Bob")
+controller.load_existing_player("Kaka", "Boudin")
 
-print(controller.match_list)
-
-
-
-print(controller.save_matches())
-
-print(controller.select_winner(0, "Patrick Étoile de Mer"))
-
-controller.declare_draw_match(0)
-
-controller.restore_match_result(0)
+print(controller.players_list)
 
 """
 bob = player.Player("L'Éponge", "Bob", "02/02/2002")
