@@ -26,7 +26,6 @@ class Round:
 
     @classmethod
     def create_from_json(cls, round_name):
-        round_name = round_name
         existing_json_file_path = f"data/rounds/{round_name}.json"
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:

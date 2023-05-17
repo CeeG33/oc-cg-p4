@@ -28,8 +28,6 @@ class Player:
 
     @classmethod
     def create_from_json(cls, name, first_name):
-        name = name
-        first_name = first_name
         existing_json_file_path = f"data/players/{first_name}_{name}.json"
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:

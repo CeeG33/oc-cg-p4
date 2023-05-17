@@ -18,8 +18,6 @@ class Match:
 
     @classmethod
     def create_from_json(cls, player1, player2):
-        player1 = player1
-        player2 = player2
         existing_json_file_path = f"data/matches/{player1}_VS_{player2}.json"
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
