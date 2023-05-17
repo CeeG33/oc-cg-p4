@@ -72,7 +72,7 @@ class Tournament:
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
 
-    def begin_round(self):
+    def set_round_number(self):
         if self.current_round_number <= 4:
             self.current_round_number += 1
         else:
@@ -108,9 +108,6 @@ class Tournament:
         print("Classement actuel des joueurs :")
         for index, player in enumerate(sorted_players, 1):
             print(f"{index} >> {player}")
-
-    def end_round(self, round_to_end):
-        self.rounds_list.append(round_to_end)
 
     def update_json_file(self):
         directory_path = f"data/tournaments/"
