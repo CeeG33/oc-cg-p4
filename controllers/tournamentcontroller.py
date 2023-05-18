@@ -20,13 +20,13 @@ class TournamentController:
         self.tournaments_list.append(new_tournament)
 
     def add_players(self):
-        player_controller_list = self.player_controller.waiting_room
+        player_controller_waiting_room = self.player_controller.waiting_room
 
-        if player_controller_list != 0:
+        if player_controller_waiting_room != 0:
 
-            for player in player_controller_list:
+            for player in player_controller_waiting_room:
                 self.tournament.add_player_to_tournament(player)
-                player_controller_list.remove(player)
+                player_controller_waiting_room.remove(player)
 
             self.tournament.update_json_file()
 
@@ -36,13 +36,19 @@ class TournamentController:
     def get_match_result(self, result: int = 0):
         for contest in self.current_round:
             if result == 1:
-                contest.chose_winner(contest.player1)
+                winner = contest.player1
+                contest.chose_winner(winner)
+                self.tournament.add_one_point_to(winner)
                 contest.update_json_file()
             elif result == 2:
-                contest.chose_winner(contest.player2)
+                winner = contest.player2
+                contest.chose_winner(winner.player2)
+                self.tournament.add_one_point_to(winner)
                 contest.update_json_file()
             elif result == 3:
                 contest.is_draw()
+                for participant in contest.draw:
+                    self.tournament.add_half_point_to(participant)
                 contest.update_json_file()
 
     def load_existing_tournament(self, tournament_name):
