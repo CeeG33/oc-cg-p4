@@ -36,7 +36,7 @@ class Round:
                 temporary_round.match_list = round_data.get("match_list")
                 return temporary_round
         else:
-            return "Ce round n'existe pas"
+            return
 
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)

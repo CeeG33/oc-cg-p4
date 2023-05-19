@@ -39,7 +39,7 @@ class Player:
                 player.global_score = player_data.get("global_score")
                 return player
         else:
-            return "Ce joueur n'existe pas"
+            return
 
     def update_json_file(self):
         directory_path = f"data/players/"

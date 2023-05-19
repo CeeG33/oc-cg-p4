@@ -163,7 +163,7 @@ class Tournament:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
-    def get_scores(self):
+    def initialize_players_scores(self):
         default_value = 0
         self.players_scores = dict.fromkeys(self.players_list, default_value)
 
@@ -174,6 +174,10 @@ class Tournament:
     def add_half_point_to(self, player):
         self.players_scores[player] += 0.5
         player.global_score += 0.5
+
+    def save_players_score(self):
+        for player in self.players_list:
+            player.update_json_file()
 
     def reinitialise_winners_list(self):
         self.winners_list = []

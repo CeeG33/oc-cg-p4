@@ -28,13 +28,13 @@ class Match:
                 match.draw = match_data.get("draw")
                 return match
         else:
-            return "Ce match n'existe pas"
+            return
 
     def chose_winner(self, player):
         self.winner = player
 
     def is_draw(self):
-        self.draw = self.player1, self.player2
+        self.draw = [self.player1, self.player2]
 
     def update_json_file(self):
         directory_path = f"data/matches/"
@@ -44,8 +44,8 @@ class Match:
             data = {
                 "player1": str(self.player1),
                 "player2": str(self.player2),
-                "winner": self.winner,
-                "draw": self.draw,
+                "winner": str(self.winner),
+                "draw": str(self.draw),
             }
             if path.exists(json_file_name):
                 with open(json_file_name, "r", encoding="utf-8") as json_file:
@@ -61,8 +61,8 @@ class Match:
             data = {
                 "player1": str(self.player1),
                 "player2": str(self.player2),
-                "winner": self.winner,
-                "draw": self.draw,
+                "winner": str(self.winner),
+                "draw": str(self.draw),
             }
             if path.exists(json_file_name):
                 with open(json_file_name, "r", encoding="utf-8") as json_file:
