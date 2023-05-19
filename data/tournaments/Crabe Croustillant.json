@@ -1,0 +1,14 @@
+{
+    "name": "Crabe Croustillant",
+    "location": "Océan Atlantique",
+    "description": "Meilleur tournoi de la planète !!",
+    "start_date": "None",
+    "end_date": "None",
+    "current_round_number": 2,
+    "rounds_list": "[Round 1 >> Début : 2023-05-19 14:46:09 Fin : 2023-05-19 14:46:09, Round 2 >> Début : 2023-05-19 14:46:09 Fin : None]",
+    "players_list": "[Emmett Brown, Sandy Écureuil, Paco Rabanne, Boudin Kaka, Bob L'Éponge, Carlo Calamar, Marty McFly, Jean-Paul Gaultier]",
+    "pairs_list": "[Marty McFly, Boudin Kaka, Emmett Brown, Jean-Paul Gaultier, Paco Rabanne, Carlo Calamar, Bob L'Éponge, Sandy Écureuil]",
+    "winners_list": "[]",
+    "draw_list": "[]",
+    "players_scores": "{Emmett Brown: 0.5, Sandy Écureuil: 0.5, Paco Rabanne: 0.5, Boudin Kaka: 0.5, Bob L'Éponge: 0.5, Carlo Calamar: 0.5, Marty McFly: 0.5, Jean-Paul Gaultier: 0.5}"
+}
