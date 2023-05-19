@@ -1,5 +1,6 @@
 from models import tournament, rounds, match
 from controllers import playercontroller
+from views import playerview
 
 
 class TournamentController:
@@ -9,32 +10,37 @@ class TournamentController:
         self.round_model = rounds.Round
         self.match_model = match.Match
         self.player_controller = playercontroller.PlayerController()
+        self.player_view = playerview.PlayerView(self.player_controller)
         self.tournaments_list = []
         self.selected_tournament_index = 0
-        self.tournament = self.tournaments_list[self.selected_tournament_index]
-        self.current_round = self.tournament.rounds_list[-1]
+
+        self.tournament = None
+        self.current_round = None
 
     def create_new_tournament(self, name, location, description):
         new_tournament = self.tournament_model(name, location, description)
         new_tournament.update_json_file()
         self.tournaments_list.append(new_tournament)
+        self.tournament = self.tournaments_list[self.selected_tournament_index]
 
     def add_players(self):
         player_controller_waiting_room = self.player_controller.waiting_room
 
-        if player_controller_waiting_room != 0:
+        if len(player_controller_waiting_room) > 0:
+            while len(player_controller_waiting_room) > 0:
 
-            for player in player_controller_waiting_room:
-                self.tournament.add_player_to_tournament(player)
-                player_controller_waiting_room.remove(player)
+                for player in player_controller_waiting_room:
+                    self.tournament.add_player_to_tournament(player)
+                    player_controller_waiting_room.remove(player)
 
-            self.tournament.update_json_file()
+                self.tournament.update_json_file()
 
         else:
             return
 
-    def get_match_result(self, result: int = 0):
-        for contest in self.current_round:
+    def get_match_result(self, result: int = 3):
+        self.tournament.initialize_players_scores()
+        for contest in self.current_round.match_list:
             if result == 1:
                 winner = contest.player1
                 contest.chose_winner(winner)
@@ -70,6 +76,7 @@ class TournamentController:
         first_round = self.round_model("Round 1")
         first_round.update_json_file()
         self.tournament.rounds_list.append(first_round)
+        self.current_round = self.tournament.rounds_list[-1]
         self.tournament.update_json_file()
 
     def begin_first_round(self):
@@ -84,6 +91,7 @@ class TournamentController:
         self.current_round.set_end_date()
         self.current_round.update_json_file()
         self.get_match_result()
+        self.tournament.save_players_score()
         self.tournament.update_json_file()
 
     def create_next_round(self):
@@ -95,7 +103,7 @@ class TournamentController:
         self.tournament.update_json_file()
 
     def begin_next_round(self):
-        next_round_index = len(self.tournament.rounds_list)
+        next_round_index = len(self.tournament.rounds_list) - 1
         next_round = self.tournament.rounds_list[next_round_index]
         self.tournament.create_next_round_matches(next_round)
         next_round.set_start_date()
@@ -106,4 +114,10 @@ class TournamentController:
         self.tournament.set_end_date()
         self.tournament.update_json_file()
 
+    def launch_view(self):
+        self.player_view.show_menu()
 
+
+"""
+        self.current_round = self.tournament.rounds_list[-1]
+"""
