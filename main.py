@@ -1,18 +1,63 @@
-import datetime
-import time
-from models import tournament, player, match, rounds
-from controllers import playercontroller, matchcontroller
-from random import sample
-import itertools
+from controllers import tournamentcontroller
 
-controller = playercontroller.PlayerController()
+tournament_controller = tournamentcontroller.TournamentController()
+player_controller = tournament_controller.player_controller
+player_view = tournament_controller.player_view
 
-controller.load_existing_player("L'Éponge", "Bob")
-controller.load_existing_player("Kaka", "Boudin")
+tournament_controller.launch_view()
 
-print(controller.players_list)
 
 """
+
+
+player_controller.load_existing_player("L'Éponge", "Bob")
+player_controller.load_existing_player("Kaka", "Boudin")
+player_controller.create_new_player("Gaultier", "Jean-Paul", "02/12/1980", "AB34323")
+player_controller.create_new_player("Rabanne", "Paco", "02/08/1980", "AB35452")
+player_controller.create_new_player("McFly", "Marty", "05/02/1960", "MC00003")
+player_controller.create_new_player("Brown", "Emmett", "25/12/1942", "EB99999")
+player_controller.load_existing_player("Calamar", "Carlo")
+player_controller.load_existing_player("Écureuil", "Sandy")
+
+print(f"Salle d'attente :  {player_controller.waiting_room}")
+
+tournament_controller.create_new_tournament("Crabe Croustillant", "Océan Atlantique", "Meilleur tournoi de la "
+                                                                                      "planète !!")
+
+tournament_controller.add_players()
+
+print(f"Salle d'attente :  {player_controller.waiting_room}")
+
+print(f"Salle tournoi :  {tournament_controller.tournament.players_list}")
+
+tournament_controller.begin_tournament()
+tournament_controller.create_first_round()
+
+print(f"Liste round :  {tournament_controller.tournament.rounds_list}")
+
+tournament_controller.begin_first_round()
+
+print(f"Liste round :  {tournament_controller.tournament.rounds_list}")
+
+print(f"Liste matchs :  {tournament_controller.current_round.match_list}")
+
+tournament_controller.end_round()
+
+print(f"Liste round :  {tournament_controller.tournament.rounds_list}")
+
+tournament_controller.create_next_round()
+
+print(f"Liste round :  {tournament_controller.tournament.rounds_list}")
+
+tournament_controller.begin_next_round()
+print(f"Liste round :  {tournament_controller.tournament.rounds_list}")
+print(f"Liste matchs :  {tournament_controller.current_round.match_list}")
+
+
+
+
+___________________
+
 bob = player.Player("L'Éponge", "Bob", "02/02/2002")
 patrick = player.Player("Étoile de Mer", "Patrick", "01/01/2004")
 carlo = player.Player("Calamar", "Carlo", "03/03/2003")
