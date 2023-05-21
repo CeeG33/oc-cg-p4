@@ -1,4 +1,5 @@
 import json
+import os
 from os import path, makedirs
 
 
@@ -69,3 +70,17 @@ class Player:
 
     def add_national_chess_id(self, national_chess_id):
         self.national_chess_id = national_chess_id
+
+    @staticmethod
+    def list_existing_players():
+        existing_players = []
+        directory_path = "data/players/"
+
+        for player in os.listdir(directory_path):
+            file_names = os.path.join(directory_path, player)
+
+            if player.endswith(".json") and os.path.isfile(file_names):
+                existing_players.append(player.replace("_", " ").replace(".json", ""))
+
+        return sorted(existing_players)
+

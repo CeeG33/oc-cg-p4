@@ -17,6 +17,9 @@ class PlayerController:
         existing_player = self.model.create_from_json(name, first_name)
         self.waiting_room.append(existing_player)
 
+    def get_existing_players(self):
+        return self.model.list_existing_players()
+
 
 """
 class PlayerController:

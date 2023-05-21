@@ -1,14 +1,17 @@
 from controllers import tournamentcontroller
+import os
 
 tournament_controller = tournamentcontroller.TournamentController()
 player_controller = tournament_controller.player_controller
 player_view = tournament_controller.player_view
 
-tournament_controller.launch_view()
+player_controller.get_existing_players()
+print(player_controller.get_existing_players())
+
 
 
 """
-
+tournament_controller.launch_view()
 
 player_controller.load_existing_player("L'Éponge", "Bob")
 player_controller.load_existing_player("Kaka", "Boudin")
