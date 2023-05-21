@@ -5,8 +5,7 @@ tournament_controller = tournamentcontroller.TournamentController()
 player_controller = tournament_controller.player_controller
 player_view = tournament_controller.player_view
 
-player_controller.get_existing_players()
-print(player_controller.get_existing_players())
+player_view.show_menu()
 
 
 
