@@ -1,6 +1,7 @@
 import datetime
 import json
-from os import path, makedirs
+import os
+from os import path, makedirs, listdir
 from random import shuffle, sample
 from models import match
 
@@ -45,7 +46,7 @@ class Tournament:
         self.players_scores = None
 
     def __repr__(self):
-        return f"Tournoi : {self.name} - Localisation : {self.location}"
+        return f"{self.name}"
 
     @classmethod
     def create_from_json(cls, name):
@@ -102,12 +103,6 @@ class Tournament:
 
     def sort_players(self):
         self.players_scores = dict(sorted(self.players_scores.items(), key=lambda x: x[1], reverse=True))
-
-    def show_players_rank(self):
-        sorted_players = sorted(self.players_scores, key=self.players_scores.get, reverse=True)
-        print("Classement actuel des joueurs :")
-        for index, player in enumerate(sorted_players, 1):
-            print(f"{index} >> {player}")
 
     def update_json_file(self):
         directory_path = f"data/tournaments/"
@@ -179,11 +174,18 @@ class Tournament:
         for player in self.players_list:
             player.update_json_file()
 
-    def reinitialise_winners_list(self):
-        self.winners_list = []
+    @staticmethod
+    def list_existing_tournaments():
+        existing_tournaments = []
+        directory_path = "data/tournaments/"
 
-    def reinitialise_draw_list(self):
-        self.draw_list = []
+        for tournament in os.listdir(directory_path):
+            file_names = os.path.join(directory_path, tournament)
+
+            if tournament.endswith(".json") and os.path.isfile(file_names):
+                existing_tournaments.append(tournament.replace("_", " ").replace(".json", ""))
+
+        return sorted(existing_tournaments)
 
 
 """
