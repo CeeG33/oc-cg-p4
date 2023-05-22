@@ -23,6 +23,7 @@ class PlayerView:
         self.prompt_user()
 
     def show_menu_list(self):
+        """Affiche le menu selon la liste définie dans l'init."""
         for choice in self.menu_list:
             print(choice)
 
@@ -39,10 +40,10 @@ class PlayerView:
         print("Que souhaitez-vous faire ?")
         self.user_choice = input("Numéro : ")
         if self.user_choice == "1":
-            name = self.get_new_player_name()
-            first_name = self.get_new_player_first_name()
-            birthdate = self.get_new_player_birthdate()
-            national_chess_id = self.get_new_player_national_chess_id()
+            name = self.get_player_name()
+            first_name = self.get_player_first_name()
+            birthdate = self.get_player_birthdate()
+            national_chess_id = self.get_player_national_chess_id()
             self.player_controller.create_new_player(name, first_name, birthdate, national_chess_id)
             self.show_menu()
         elif self.user_choice == "2":
@@ -63,66 +64,66 @@ class PlayerView:
             self.show_menu_list()
             self.prompt_user()
 
-    def get_new_player_name(self):
-        """Récupère le nom du nouveau joueur à créer auprès de l'utilisateur."""
+    def get_player_name(self):
+        """Récupère le nom du joueur auprès de l'utilisateur."""
         name = input("Nom du joueur (Respectez les accents. Exemple : L'éponge) : ").capitalize()
         if not name.isalpha():
             print()
             print("Mauvais caractères, veuillez écrire un nom en lettres.")
             print()
-            self.get_new_player_name()
+            self.get_player_name()
         elif len(name) <= 1:
             print()
             print("Nom trop court. Il doit au moins contenir deux caractères.")
             print()
-            self.get_new_player_name()
+            self.get_player_name()
         else:
             return name
 
-    def get_new_player_first_name(self):
-        """Récupère le prénom du nouveau joueur à créer auprès de l'utilisateur."""
+    def get_player_first_name(self):
+        """Récupère le prénom du joueur auprès de l'utilisateur."""
         first_name = input("Prénom du joueur (Respectez les accents. Exemple : Jean-édouard) : ").capitalize()
         if not first_name.isalpha():
             print()
             print("Mauvais caractères, veuillez écrire un prénom en lettres.")
             print()
-            self.get_new_player_first_name()
+            self.get_player_first_name()
         elif len(first_name) <= 1:
             print()
             print("Prénom trop court. Il doit au moins contenir deux caractères.")
             print()
-            self.get_new_player_first_name()
+            self.get_player_first_name()
         else:
             return first_name
 
-    def get_new_player_birthdate(self):
-        """Récupère la date de naissance du nouveau joueur à créer auprès de l'utilisateur."""
+    def get_player_birthdate(self):
+        """Récupère la date de naissance du joueur auprès de l'utilisateur."""
         birthdate = input("Date de naissance (Format JJ/MM/AAAA. Exemple : 01/02/1960) : ")
         pattern = r"^\d{2}/\d{2}/\d{4}$"
         if not re.match(pattern, birthdate):
             print()
             print("Mauvais format, veuillez suivre le format JJ/MM/AAAA.")
             print()
-            self.get_new_player_birthdate()
+            self.get_player_birthdate()
         else:
             return birthdate
 
-    def get_new_player_national_chess_id(self):
-        """Récupère l'identifiant national d'échec du nouveau joueur à créer auprès de l'utilisateur."""
+    def get_player_national_chess_id(self):
+        """Récupère l'identifiant national d'échec du joueur auprès de l'utilisateur."""
         national_chess_id = input("Identifiant national d'échec (Exemple : AA12345) : ").upper()
         pattern = r"[A-Z]{2}\d{5}$"
         if not re.match(pattern, national_chess_id):
             print()
             print("Mauvais format, veuillez suivre le format AA11111.")
             print()
-            self.get_new_player_national_chess_id()
+            self.get_player_national_chess_id()
         else:
             return national_chess_id
 
     def get_existing_player_info_manually(self):
         """Charge un joueur dans le salon selon le nom et prénom renseigné par l'utilisateur manuellement."""
-        name = input("Nom du joueur (Respectez les accents et majuscules. Exemple : L'Éponge) : ")
-        first_name = input("Prénom du joueur (Respectez les accents et majuscules. Exemple : Jean-Édouard) : ")
+        name = self.get_player_name()
+        first_name = self.get_player_first_name()
 
         self.player_controller.load_existing_player(name, first_name)
         self.show_menu()
