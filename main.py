@@ -4,9 +4,9 @@ import os
 tournament_controller = tournamentcontroller.TournamentController()
 player_controller = tournament_controller.player_controller
 player_view = tournament_controller.player_view
+tournament_view = tournament_controller.tournament_view
 
-player_view.show_menu()
-
+print(tournament_view.tournament_controller)
 
 
 """
