@@ -1,12 +1,37 @@
-from controllers import tournamentcontroller
+from controllers import tournamentcontroller, playercontroller
 import os
 
-tournament_controller = tournamentcontroller.TournamentController()
-player_controller = tournament_controller.player_controller
-player_view = tournament_controller.player_view
-tournament_view = tournament_controller.tournament_view
+main_menu_list = ["[1] > Gérer les joueurs",
+                  "[2] > Gérer les tournois.",
+                  "[3] > Générer des rapports.",
+                  "[4] > Quitter le programme."]
 
-player_view.show_menu()
+tournament_controller = tournamentcontroller.TournamentController()
+tournament_view = tournament_controller.tournament_view
+player_controller = playercontroller.PlayerController()
+player_view = player_controller.player_view
+
+running = True
+while running:
+    print("--- MENU PRINCIPAL ---")
+    print()
+    for choice in main_menu_list:
+        print(choice)
+    print()
+    print("Que souhaitez-vous faire ?")
+    user_choice = input("Numéro : ")
+    if user_choice == "1":
+        player_view.show_menu()
+    elif user_choice == "2":
+        tournament_view.show_menu()
+    elif user_choice == "3":
+        pass
+    elif user_choice == "4":
+        print("Fermeture du programme !")
+        quit()
+    else:
+        print("Erreur. Sélectionnez une option valide.")
+
 
 
 """
