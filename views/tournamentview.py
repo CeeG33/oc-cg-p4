@@ -14,7 +14,9 @@ class TournamentView:
         self.menu_list = ["[1] > Créer un nouveau tournoi.",
                           "[2] > Charger un tournoi existant en entrant son nom manuellement.",
                           "[3] > Charger un tournoi existant en parcourant la base de données.",
-                          "[4] > Afficher les tournois présents dans la base de données."]
+                          "[4] > Afficher les tournois présents dans la base de données.",
+                          "[5] > Commencer / continuer le tournoi sélectionné.",
+                          "[6] > Revenir au menu principal."]
 
     def show_menu(self):
         """Affiche le menu principal de la vue TournamentController à l'utilisateur."""
