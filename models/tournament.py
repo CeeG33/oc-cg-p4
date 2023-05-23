@@ -68,7 +68,7 @@ class Tournament:
                 temporary_tournament.players_scores = tournament_data.get("players_scores")
                 return temporary_tournament
         else:
-            return "Ce tournoi n'existe pas"
+            return
 
     def set_start_date(self):
         self.start_date = datetime.datetime.now().replace(microsecond=0)
@@ -124,10 +124,10 @@ class Tournament:
                 "players_scores": f"{self.players_scores}",
             }
             if path.exists(json_file_name):
-                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     tournament_data = json.load(json_file)
                     tournament_data.update(data)
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json_file.seek(0)
                     json.dump(tournament_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
@@ -149,10 +149,10 @@ class Tournament:
                 "players_scores": f"{self.players_scores}",
             }
             if path.exists(json_file_name):
-                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     tournament_data = json.load(json_file)
                     tournament_data.update(data)
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
+                    json_file.seek(0)
                     json.dump(tournament_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:

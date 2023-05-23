@@ -6,10 +6,11 @@ player_controller = tournament_controller.player_controller
 player_view = tournament_controller.player_view
 tournament_view = tournament_controller.tournament_view
 
-print(tournament_view.tournament_controller)
+player_view.show_menu()
 
 
 """
+
 tournament_controller.launch_view()
 
 player_controller.load_existing_player("L'Éponge", "Bob")
