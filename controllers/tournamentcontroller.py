@@ -9,8 +9,6 @@ class TournamentController:
         self.tournament_model = tournament.Tournament
         self.round_model = rounds.Round
         self.match_model = match.Match
-        self.player_controller = playercontroller.PlayerController()
-        self.player_view = playerview.PlayerView(self.player_controller)
         self.tournament_view = tournamentview.TournamentView(self)
         self.current_tournament = None
         self.current_round = None
@@ -129,7 +127,14 @@ class TournamentController:
         """Retourne une liste des tournois qui sont sous forme de fichier JSON dans la base de données."""
         return self.tournament_model.list_existing_tournaments()
 
+    def show_main_menu_view(self):
+        self.main_menu_view.show_menu()
 
+    def show_tournament_view(self):
+        self.tournament_view.show_menu()
+
+    def show_player_view(self):
+        self.player_view.show_menu()
 
 """
     def show_tournaments_list(self):
