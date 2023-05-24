@@ -48,17 +48,13 @@ class PlayerView:
                 birthdate = self.get_player_birthdate()
                 national_chess_id = self.get_player_national_chess_id()
                 self.player_controller.create_new_player(name, first_name, birthdate, national_chess_id)
-                self.show_menu()
             elif self.user_choice == "2":
                 self.get_existing_player_info_manually()
-                self.show_menu()
             elif self.user_choice == "3":
                 self.show_players_in_database()
                 self.select_player_in_database()
             elif self.user_choice == "4":
                 self.show_players_in_database()
-                self.show_menu_list()
-                self.prompt_user()
             elif self.user_choice == "5":
                 break
             elif int(self.user_choice) not in range(1, len(self.menu_list)):
@@ -66,8 +62,6 @@ class PlayerView:
                 print("Vous avez choisi un mauvais numéro.")
                 print(f"Veuillez choisir un numéro entre 1 et {len(self.menu_list)}.")
                 print()
-                self.show_menu_list()
-                self.prompt_user()
 
     def get_player_name(self):
         """Récupère le nom du joueur auprès de l'utilisateur."""
