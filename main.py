@@ -7,6 +7,7 @@ tournament_view = tournament_controller.tournament_view
 player_controller = tournament_controller.player_controller
 player_view = player_controller.player_view
 
+
 running = True
 while running:
     print("--- MENU PRINCIPAL ---")

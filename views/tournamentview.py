@@ -59,19 +59,23 @@ class TournamentView:
             elif self.user_choice == "5":
                 self.show_selected_tournament()
                 if not self.tournament_controller.current_round:
-                    print()
-                    print("Le tournoi peut commencer !")
-                    self.tournament_controller.begin_tournament()
-                    self.tournament_controller.create_first_round()
-                    user_choice = self.prompt_user_to_start_round()
-                    while user_choice not in ["1", "2"]:
-                        print("Erreur. Veuillez sélectionner 1 ou 2.")
+                    while True:
+                        print()
+                        print("Le tournoi peut commencer !")
+                        self.tournament_controller.begin_tournament()
+                        self.tournament_controller.create_first_round()
                         user_choice = self.prompt_user_to_start_round()
                         if user_choice == "1":
-                            pass #continuer tournoi
+                            try:
+                                self.tournament_controller.begin_first_round()
+                            except IndexError:
+                                print("Vous n'avez pas le nombre de joueurs suffisant ! (8)")
+                                break
+                            self.tournament_controller.end_round()
+                            break
+                            #continuer tournoi
                         elif user_choice == "2":
                             break
-
                 else:
                     pass #continuer
 

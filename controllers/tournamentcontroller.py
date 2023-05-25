@@ -38,24 +38,27 @@ class TournamentController:
 
     def get_match_result(self):
         """Cherche le résultat des matchs."""
-        self.current_tournament.initialize_players_scores()
         for contest in self.current_round.match_list:
+            print(f"Match >>> Joueur 1 : {contest.player1} -- VS -- Joueur 2 : {contest.player2}")
             result = self.tournament_view.get_match_result()
-            if result == 1:
+            if result == "1":
                 winner = contest.player1
                 contest.chose_winner(winner)
                 self.current_tournament.add_one_point_to(winner)
                 contest.update_json_file()
-            elif result == 2:
+                self.current_tournament.update_json_file()
+            elif result == "2":
                 winner = contest.player2
                 contest.chose_winner(winner.player2)
                 self.current_tournament.add_one_point_to(winner)
                 contest.update_json_file()
-            elif result == 3:
+                self.current_tournament.update_json_file()
+            elif result == "3":
                 contest.is_draw()
                 for participant in contest.draw:
                     self.current_tournament.add_half_point_to(participant)
                 contest.update_json_file()
+                self.current_tournament.update_json_file()
 
     def load_existing_tournament(self, tournament_name):
         """Charge un tournoi existant."""
@@ -68,6 +71,7 @@ class TournamentController:
         self.current_tournament.set_round_number()
         self.current_tournament.shuffle_players()
         self.current_tournament.create_pairs()
+        self.current_tournament.set_start_date()
         self.current_tournament.update_json_file()
 
     def create_first_round(self):
@@ -83,6 +87,7 @@ class TournamentController:
         first_round_index = 0
         first_round = self.current_tournament.rounds_list[first_round_index]
         self.current_tournament.create_first_round_matches(first_round)
+        self.current_tournament.initialize_players_scores()
         first_round.set_start_date()
         first_round.update_json_file()
         self.current_tournament.update_json_file()

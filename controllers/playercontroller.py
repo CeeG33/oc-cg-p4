@@ -22,5 +22,3 @@ class PlayerController:
 
     def get_existing_players(self):
         return self.model.list_existing_players()
-
-

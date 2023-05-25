@@ -15,17 +15,19 @@ class Round:
     comme terminé.
     """
 
-    def __init__(self,round_name: str):
+    def __init__(self, round_name: str):
         self.round_name = round_name
         self.start_date = None
         self.end_date = None
         self.match_list = []
 
     def __repr__(self):
-        return f"{self.round_name} >> Début : {self.start_date} Fin : {self.end_date}"
+        """Définit le nom du round en tant que représentation de l'objet Round."""
+        return f"{self.round_name}"
 
     @classmethod
     def create_from_json(cls, round_name):
+        """Charge un round à partir d'un fichier JSON."""
         existing_json_file_path = f"data/rounds/{round_name}.json"
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
@@ -39,53 +41,58 @@ class Round:
             return
 
     def set_start_date(self):
-        self.start_date = datetime.datetime.now().replace(microsecond=0)
+        """Initialise la date et l'heure de début du round."""
+        self.start_date = str(datetime.datetime.now().replace(microsecond=0))
 
     def set_end_date(self):
-        self.end_date = datetime.datetime.now().replace(microsecond=0)
+        """Initialise la date et l'heure de fin du tournoi."""
+        self.end_date = str(datetime.datetime.now().replace(microsecond=0))
 
     def add_match(self, match_name):
+        """Ajoute le match sélectionné dans la liste de matchs du round."""
         self.match_list.append(match_name)
 
     def update_json_file(self):
+        """
+        Crée les dossiers ci-dessous s'ils n'existent pas.
+        Ensuite, crée ou met à jour le fichier JSON.
+        """
         directory_path = f"data/rounds/"
+        json_file_name = f"data/rounds/{self.round_name}.json"
         if not path.exists(directory_path):
             makedirs(directory_path)
-            json_file_name = f"data/rounds/{self.round_name}.json"
-            data = {
-                "round_name": f"{self.round_name}",
-                "start_date": f"{self.start_date}",
-                "end_date": f"{self.end_date}",
-                "match_list": f"{self.match_list}"
-            }
             if path.exists(json_file_name):
-                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     round_data = json.load(json_file)
-                    round_data.update(data)
+                    round_data.update(self.to_dict())
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(round_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
         else:
-            json_file_name = f"data/rounds/{self.round_name}.json"
-            data = {
-                "round_name": f"{self.round_name}",
-                "start_date": f"{self.start_date}",
-                "end_date": f"{self.end_date}",
-                "match_list": f"{self.match_list}"
-            }
             if path.exists(json_file_name):
-                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     round_data = json.load(json_file)
-                    round_data.update(data)
+                    round_data.update(self.to_dict())
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(round_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
+
+    def to_dict(self):
+        """Renvoie le dictionnaire du round."""
+        data = {
+            "round_name": self.round_name,
+            "start_date": str(self.start_date) if self.start_date else None,
+            "end_date": str(self.end_date) if self.end_date else None,
+            "match_list": [match.to_dict() for match in self.match_list],
+        }
+        return data
 
     def get_matches(self):
+        """Retourne la liste des matchs."""
         return self.match_list
 
 

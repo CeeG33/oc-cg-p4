@@ -156,9 +156,6 @@ class PlayerView:
         try:
             self.user_choice = input("Numéro : ")
             selected_player = self.existing_players[int(self.user_choice) - 1]
-            selected_player_split = selected_player.split()
-            selected_player_first_name = selected_player_split[0]
-            selected_player_name = selected_player_split[1]
         except IndexError:
             print()
             print("Vous avez choisi un mauvais numéro. Veuillez réessayer.")
@@ -174,7 +171,7 @@ class PlayerView:
             self.select_player_in_database()
             return
 
-        if selected_player in str(self.player_controller.waiting_room):
+        if selected_player in self.player_controller.waiting_room:
             print()
             print("Attention, ce joueur est déjà dans la salle d'attente !")
             print()
@@ -185,7 +182,7 @@ class PlayerView:
             self.show_players_in_database()
             self.select_player_in_database()
         else:
-            self.player_controller.load_existing_player(selected_player_name,selected_player_first_name)
+            self.player_controller.waiting_room.append(selected_player)
             print()
             self.show_waiting_room()
             self.show_menu_list()

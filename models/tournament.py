@@ -3,7 +3,7 @@ import json
 import os
 from os import path, makedirs, listdir
 from random import shuffle, sample
-from models import match
+from models import match, player
 
 
 class Tournament:
@@ -46,10 +46,12 @@ class Tournament:
         self.players_scores = None
 
     def __repr__(self):
+        """Définit le nom du tournoi en tant que représentation de l'objet Tournoi."""
         return f"{self.name}"
 
     @classmethod
     def create_from_json(cls, name):
+        """Charge un tournoi à partir d'un fichier JSON."""
         existing_json_file_path = f"data/tournaments/{name}.json"
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
@@ -71,111 +73,109 @@ class Tournament:
             return
 
     def set_start_date(self):
+        """Initialise la date et l'heure de début du tournoi."""
         self.start_date = datetime.datetime.now().replace(microsecond=0)
 
     def set_round_number(self):
+        """Règle le numéro du round actuel."""
         if self.current_round_number <= 4:
             self.current_round_number += 1
         else:
-            return "Tournoi terminé."
+            return
 
     def set_end_date(self):
+        """Initialise la date et l'heure de fin du tournoi."""
         self.end_date = datetime.datetime.now().replace(microsecond=0)
 
     def add_player_to_tournament(self, player_to_add):
+        """Ajoute le joueur sélectionné dans la liste des joueurs participants au tournoi."""
         self.players_list.append(player_to_add)
 
     def shuffle_players(self):
+        """Mélange les joueurs participants."""
         shuffle(self.players_list)
 
     def create_pairs(self):
+        """Crée les paires de matchs dans la liste des paires."""
         pairings = sample(self.players_list, len(self.players_list))
         self.pairs_list.extend(pairings)
 
     def create_first_round_matches(self, first_round):
+        """Crée les matchs du premier round selon la liste des paires."""
         for player in range(0, len(self.pairs_list), 2):
-            first_round.add_match(match.Match(self.pairs_list[player], self.pairs_list[player + 1]))
+            try:
+                first_round.add_match(match.Match(self.pairs_list[player], self.pairs_list[player + 1]))
+            except IndexError:
+                return
 
     def create_next_round_matches(self, next_round):
+        """
+        Crée les matchs du round suivant selon la liste des paires.
+        Les joueurs auront préalablement été triés dans la liste de scores de façon décroissante.
+        """
         sorted_players = sorted(self.players_scores, key=self.players_scores.get, reverse=True)
         for player in range(0, len(sorted_players), 2):
             next_round.add_match(match.Match(sorted_players[player], sorted_players[player+1]))
 
     def sort_players(self):
+        """Trie la liste des scores de façon décroissante."""
         self.players_scores = dict(sorted(self.players_scores.items(), key=lambda x: x[1], reverse=True))
 
     def update_json_file(self):
+        """
+        Crée les dossiers ci-dessous s'ils n'existent pas.
+        Ensuite, crée ou met à jour le fichier JSON.
+        """
         directory_path = f"data/tournaments/"
+        json_file_name = f"data/tournaments/{self.name}.json"
+
         if not path.exists(directory_path):
             makedirs(directory_path)
-            json_file_name = f"data/tournaments/{self.name}.json"
-            data = {
-                "name": f"{self.name}",
-                "location": f"{self.location}",
-                "description": f"{self.description}",
-                "start_date": f"{self.start_date}",
-                "end_date": f"{self.end_date}",
-                "current_round_number": self.current_round_number,
-                "rounds_list": f"{self.rounds_list}",
-                "players_list": f"{self.players_list}",
-                "pairs_list": f"{self.pairs_list}",
-                "winners_list": f"{self.winners_list}",
-                "draw_list": f"{self.draw_list}",
-                "players_scores": f"{self.players_scores}",
-            }
             if path.exists(json_file_name):
                 with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     tournament_data = json.load(json_file)
-                    tournament_data.update(data)
-                    json_file.seek(0)
-                    json.dump(tournament_data, json_file, indent=4, ensure_ascii=False)
+                    tournament_data.update(self.to_dict())
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
         else:
-            json_file_name = f"data/tournaments/{self.name}.json"
-            data = {
-                "name": f"{self.name}",
-                "location": f"{self.location}",
-                "description": f"{self.description}",
-                "start_date": f"{self.start_date}",
-                "end_date": f"{self.end_date}",
-                "current_round_number": self.current_round_number,
-                "rounds_list": f"{self.rounds_list}",
-                "players_list": f"{self.players_list}",
-                "pairs_list": f"{self.pairs_list}",
-                "winners_list": f"{self.winners_list}",
-                "draw_list": f"{self.draw_list}",
-                "players_scores": f"{self.players_scores}",
-            }
             if path.exists(json_file_name):
                 with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     tournament_data = json.load(json_file)
-                    tournament_data.update(data)
-                    json_file.seek(0)
-                    json.dump(tournament_data, json_file, indent=4, ensure_ascii=False)
+                    tournament_data.update(self.to_dict())
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(data, json_file, indent=4, ensure_ascii=False)
+                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
 
     def initialize_players_scores(self):
+        """Initialise le score des joueurs à zéro dans le cadre du tournoi."""
         default_value = 0
         self.players_scores = dict.fromkeys(self.players_list, default_value)
 
     def add_one_point_to(self, player):
+        """
+        Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
+        Ajoute également cette même valeur au score global du joueur (elo).
+        """
         self.players_scores[player] += 1
         player.global_score += 1
 
     def add_half_point_to(self, player):
+        """
+        Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
+        Ajoute également cette même valeur au score global du joueur (elo).
+        """
         self.players_scores[player] += 0.5
         player.global_score += 0.5
 
     def save_players_score(self):
+        """Sauvegarde les données des joueurs."""
         for player in self.players_list:
             player.update_json_file()
 
     @staticmethod
     def list_existing_tournaments():
+        """Liste les tournois présents dans la base de données."""
         existing_tournaments = []
         directory_path = "data/tournaments/"
 
@@ -187,6 +187,23 @@ class Tournament:
 
         return sorted(existing_tournaments)
 
+    def to_dict(self):
+        """Renvoie le dictionnaire du tournoi."""
+        data = {
+            "name": self.name,
+            "location": self.location,
+            "description": self.description,
+            "start_date": str(self.start_date) if self.start_date else None,
+            "end_date": str(self.end_date) if self.end_date else None,
+            "current_round_number": self.current_round_number,
+            "rounds_list": [round.to_dict() for round in self.rounds_list],
+            "players_list": [player.to_dict() for player in self.players_list],
+            "pairs_list": [player.to_dict() for player in self.pairs_list],
+            "winners_list": [player.to_dict() for player in self.winners_list],
+            "draw_list": [player.to_dict() for player in self.draw_list],
+            "players_scores": [player.to_dict() for player in self.players_scores] if self.players_scores else [],
+        }
+        return data
 
 """
 tournoi1 = Tournament("Pâté de crabe", "Bikini Bottom", "Meilleur tournoi des mers")

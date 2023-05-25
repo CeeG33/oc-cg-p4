@@ -44,11 +44,11 @@ class Player:
 
     def update_json_file(self):
         directory_path = f"data/players/"
+        json_file_name = f"data/players/{self.first_name}_{self.name}.json"
         if not path.exists(directory_path):
             makedirs(directory_path)
-            json_file_name = f"data/players/{self.first_name}_{self.name}.json"
             if path.exists(json_file_name):
-                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     player_data = json.load(json_file)
                     player_data.update(self.__dict__)
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
@@ -57,9 +57,8 @@ class Player:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
         else:
-            json_file_name = f"data/players/{self.first_name}_{self.name}.json"
             if path.exists(json_file_name):
-                with open(json_file_name, "r", encoding="utf-8") as json_file:
+                with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     player_data = json.load(json_file)
                     player_data.update(self.__dict__)
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
@@ -76,11 +75,53 @@ class Player:
         existing_players = []
         directory_path = "data/players/"
 
-        for player in os.listdir(directory_path):
-            file_names = os.path.join(directory_path, player)
+        for file in os.listdir(directory_path):
+            file_name = os.path.join(directory_path, file)
 
-            if player.endswith(".json") and os.path.isfile(file_names):
-                existing_players.append(player.replace("_", " ").replace(".json", ""))
+            if file.endswith(".json") and os.path.isfile(file_name):
+                player_name = file.replace("_", " ").replace(".json", "")
+                splitted_player_name = player_name.split()
+                created_player = Player.create_from_json(splitted_player_name[1], splitted_player_name[0])
+                existing_players.append(created_player)
 
-        return sorted(existing_players)
+        return sorted(existing_players, key=lambda x: x.first_name)
 
+    def to_dict(self):
+        return self.__dict__
+
+"""
+player1 = Player("Test1", "Test1NDF", "02/04/2003")
+player2 = Player("Test2", "Test2NDF", "02/04/2002")
+player3 = Player("Test3", "Test3NDF", "02/04/2003")
+player4 = Player("Test4", "Test4NDF", "02/04/2004")
+
+players_list = [player1, player2, player3, player4]
+
+print(players_list)
+
+directory_path = f"data/tournaments/"
+json_file_name = f"data/tournaments/test2.json"
+data = {
+    "players_list": [player.to_dict() for player in players_list],
+
+}
+if not path.exists(directory_path):
+    makedirs(directory_path)
+    if path.exists(json_file_name):
+        with open(json_file_name, "r+", encoding="utf-8") as json_file:
+            tournament_data = json.load(json_file)
+            tournament_data.update(data)
+    else:
+        with open(json_file_name, "w", encoding="utf-8") as json_file:
+            json.dump(data, json_file, indent=4, ensure_ascii=False)
+else:
+    if path.exists(json_file_name):
+        with open(json_file_name, "r+", encoding="utf-8") as json_file:
+            tournament_data = json.load(json_file)
+            tournament_data.update(data)
+    else:
+        with open(json_file_name, "w", encoding="utf-8") as json_file:
+            json.dump(data, json_file, indent=4, ensure_ascii=False)
+
+
+"""
