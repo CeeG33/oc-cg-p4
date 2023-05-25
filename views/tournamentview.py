@@ -43,10 +43,10 @@ class TournamentView:
 
     def prompt_user(self):
         """Affiche l'option sélectionnée par l'utilisateur."""
-        print("")
-        print("Que souhaitez-vous faire ?")
-        self.user_choice = input("Numéro : ")
         while True:
+            print("")
+            print("Que souhaitez-vous faire ?")
+            self.user_choice = input("Numéro : ")
             if self.user_choice == "1":
                 self.create_tournament()
             elif self.user_choice == "2":
@@ -57,7 +57,29 @@ class TournamentView:
             elif self.user_choice == "4":
                 self.show_tournaments_in_database()
             elif self.user_choice == "5":
-                pass
+                self.show_selected_tournament()
+                if not self.tournament_controller.current_round:
+                    print()
+                    print("Le tournoi peut commencer !")
+                    self.tournament_controller.begin_tournament()
+                    self.tournament_controller.create_first_round()
+                    user_choice = self.prompt_user_to_start_round()
+                    while user_choice not in ["1", "2"]:
+                        print("Erreur. Veuillez sélectionner 1 ou 2.")
+                        user_choice = self.prompt_user_to_start_round()
+                        if user_choice == "1":
+                            pass #continuer tournoi
+                        elif user_choice == "2":
+                            break
+
+                else:
+                    pass #continuer
+
+                # continuer ici
+                # continuer ici
+                # continuer ici
+                # continuer ici
+
             elif self.user_choice == "6":
                 break
             elif int(self.user_choice) not in range(1, len(self.menu_list)):
@@ -66,11 +88,16 @@ class TournamentView:
                 print(f"Veuillez choisir un numéro entre 1 et {len(self.menu_list)}.")
                 print()
 
+
+
     def create_tournament(self):
         name = self.get_tournament_name()
         location = self.get_tournament_location()
         description = self.get_tournament_description()
         self.tournament_controller.create_new_tournament(name, location, description)
+        print()
+        self.show_selected_tournament()
+        self.show_menu_list()
 
     @staticmethod
     def get_tournament_name():
@@ -122,6 +149,8 @@ class TournamentView:
         """Charge un tournoi selon le nom et prénom renseigné par l'utilisateur manuellement."""
         name = self.get_tournament_name()
         self.tournament_controller.load_existing_tournament(name)
+        self.show_selected_tournament()
+        self.show_menu_list()
 
     def show_tournaments_in_database(self):
         """Affiche la liste des tournois enregistrés dans la base de données."""
@@ -154,5 +183,33 @@ class TournamentView:
             print()
             self.show_tournaments_in_database()
         self.tournament_controller.load_existing_tournament(self.selected_tournament)
-        self.show_menu()
+        print()
+        self.show_selected_tournament()
+        self.show_menu_list()
 
+    @staticmethod
+    def get_match_result():
+        """Demande le résultat du match à l'utilisateur."""
+        print("Qui est le vainqueur ?")
+        print("1 >> Joueur 1")
+        print("2 >> Joueur 2")
+        print("3 >> Match nul")
+        user_choice = input("(1/2/3) : ")
+        while user_choice not in ["1", "2", "3"]:
+            print("Erreur. Veuillez sélectionner 1, 2 ou 3.")
+            user_choice = input("(1/2/3) : ")
+        else:
+            return user_choice
+
+    def prompt_user_to_start_round(self):
+        """Demande à l'utilisateur s'il veut démarrer le round."""
+        print(f"Round actuel : {self.tournament_controller.current_round}")
+        print("Souhaitez-vous démarrer le round ?")
+        print("1 >> Oui.")
+        print("2 >> Revenir au menu du tournoi.")
+        user_choice = input("(1/2) : ")
+        while user_choice not in ["1", "2"]:
+            print("Erreur. Veuillez sélectionner 1 ou 2.")
+            user_choice = input("(1/2) : ")
+        else:
+            return user_choice

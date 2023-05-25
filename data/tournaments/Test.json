@@ -1,0 +1,14 @@
+{
+    "name": "Test",
+    "location": "Test",
+    "description": "Test",
+    "start_date": "None",
+    "end_date": "None",
+    "current_round_number": 0,
+    "rounds_list": "[]",
+    "players_list": "[]",
+    "pairs_list": "[]",
+    "winners_list": "[]",
+    "draw_list": "[]",
+    "players_scores": "None"
+}

@@ -1,20 +1,23 @@
 from controllers import tournamentcontroller, playercontroller
 import os
 
-main_menu_list = ["[1] > Gérer les joueurs",
-                  "[2] > Gérer les tournois.",
-                  "[3] > Générer des rapports.",
-                  "[4] > Quitter le programme."]
-
+NUMBER_OF_PLAYERS_IN_TOURNAMENT = 8
 tournament_controller = tournamentcontroller.TournamentController()
 tournament_view = tournament_controller.tournament_view
-player_controller = playercontroller.PlayerController()
+player_controller = tournament_controller.player_controller
 player_view = player_controller.player_view
 
 running = True
 while running:
     print("--- MENU PRINCIPAL ---")
     print()
+
+    main_menu_list = [f"[1] > Ajouter un joueur - Salle d'attente : "
+                      f"{len(player_controller.waiting_room)} / {NUMBER_OF_PLAYERS_IN_TOURNAMENT} joueurs",
+                      "[2] > Démarrer / continuer un tournoi.",
+                      "[3] > Générer des rapports.",
+                      "[4] > Quitter le programme."]
+
     for choice in main_menu_list:
         print(choice)
     print()
@@ -35,6 +38,7 @@ while running:
 
 
 """
+______________
 
 tournament_controller.launch_view()
 

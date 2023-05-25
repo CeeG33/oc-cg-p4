@@ -1,9 +1,10 @@
 {
-    "name": "Étoile de Mer",
+    "name": "Étoile",
     "first_name": "Patrick",
     "birthdate": "01/01/2004",
     "global_rank": 0,
     "global_score": 2.0,
     "tournament_rank": 0,
-    "tournament_score": 0
+    "tournament_score": 0,
+    "national_chess_id": null
 }

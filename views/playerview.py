@@ -37,11 +37,10 @@ class PlayerView:
 
     def prompt_user(self):
         """Affiche l'option sélectionnée par l'utilisateur."""
-
-        print("")
-        print("Que souhaitez-vous faire ?")
-        self.user_choice = input("Numéro : ")
         while True:
+            print("")
+            print("Que souhaitez-vous faire ?")
+            self.user_choice = input("Numéro : ")
             if self.user_choice == "1":
                 name = self.get_player_name()
                 first_name = self.get_player_first_name()
@@ -125,7 +124,9 @@ class PlayerView:
         first_name = self.get_player_first_name()
 
         self.player_controller.load_existing_player(name, first_name)
-        self.show_menu()
+        print()
+        self.show_waiting_room()
+        self.show_menu_list()
 
     def show_players_in_database(self):
         """Affiche la liste des joueurs enregistrés dans la base de données."""
@@ -139,18 +140,14 @@ class PlayerView:
         print("")
 
     def update_remaining_seats(self):
-        """
-        Affiche le nombre de joueurs manquant pour commencer un tournoi.
-        Si tous les sièges sont occupés, bascule dans la vue TournamentController.
-        """
+        """Affiche le nombre de joueurs manquant pour commencer un tournoi."""
         current_seats = self.SEATS_NUMBER - len(self.player_controller.waiting_room)
         if current_seats > 0:
             print(f"Il manque encore {current_seats} joueurs pour démarrer un tournoi !")
         elif current_seats == 0:
             print(f"Les joueurs sont au complet. Le tournoi peut commencer !")
-            pass #self.player_controller.tournament_view
         else:
-            self.show_menu()
+            self.show_menu_list()
 
     def select_player_in_database(self):
         """Sélectionne le joueur existant et l'ajoute à la salle d'attente."""
@@ -189,7 +186,9 @@ class PlayerView:
             self.select_player_in_database()
         else:
             self.player_controller.load_existing_player(selected_player_name,selected_player_first_name)
-            self.show_menu()
+            print()
+            self.show_waiting_room()
+            self.show_menu_list()
 
 
 

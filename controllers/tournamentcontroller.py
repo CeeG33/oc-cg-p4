@@ -10,11 +10,12 @@ class TournamentController:
         self.round_model = rounds.Round
         self.match_model = match.Match
         self.tournament_view = tournamentview.TournamentView(self)
+        self.player_controller = playercontroller.PlayerController()
         self.current_tournament = None
         self.current_round = None
 
     def create_new_tournament(self, name, location, description):
-        """Crée un nouveau tournoi et le stocke dans la liste des tournois du contrôleur."""
+        """Crée un nouveau tournoi et le sélectionne comme tournoi par défaut."""
         new_tournament = self.tournament_model(name, location, description)
         new_tournament.update_json_file()
         self.current_tournament = new_tournament
@@ -35,10 +36,11 @@ class TournamentController:
         else:
             return
 
-    def get_match_result(self, result: int = 3):
+    def get_match_result(self):
         """Cherche le résultat des matchs."""
         self.current_tournament.initialize_players_scores()
         for contest in self.current_round.match_list:
+            result = self.tournament_view.get_match_result()
             if result == 1:
                 winner = contest.player1
                 contest.chose_winner(winner)
@@ -57,15 +59,12 @@ class TournamentController:
 
     def load_existing_tournament(self, tournament_name):
         """Charge un tournoi existant."""
-        if self.current_tournament == None:
-            pass
-        else:
-            self.current_tournament.update_json_file()
         existing_tournament = self.tournament_model.create_from_json(tournament_name)
         self.current_tournament = existing_tournament
 
     def begin_tournament(self):
         """Commence le tournoi. Initialise le numéro de round, mélange les joueurs et crée les paires."""
+        self.add_players()
         self.current_tournament.set_round_number()
         self.current_tournament.shuffle_players()
         self.current_tournament.create_pairs()
@@ -119,22 +118,14 @@ class TournamentController:
         self.current_tournament.set_end_date()
         self.current_tournament.update_json_file()
 
-    def launch_view(self):
-        """Lance la vue PlayerView."""
-        self.player_view.show_menu()
-
     def get_existing_tournaments(self):
         """Retourne une liste des tournois qui sont sous forme de fichier JSON dans la base de données."""
         return self.tournament_model.list_existing_tournaments()
 
-    def show_main_menu_view(self):
-        self.main_menu_view.show_menu()
-
     def show_tournament_view(self):
         self.tournament_view.show_menu()
 
-    def show_player_view(self):
-        self.player_view.show_menu()
+
 
 """
     def show_tournaments_list(self):
