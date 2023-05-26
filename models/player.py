@@ -51,8 +51,6 @@ class Player:
                 with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     player_data = json.load(json_file)
                     player_data.update(self.__dict__)
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(player_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)
@@ -61,8 +59,6 @@ class Player:
                 with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     player_data = json.load(json_file)
                     player_data.update(self.__dict__)
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(player_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.__dict__, json_file, indent=4, ensure_ascii=False)

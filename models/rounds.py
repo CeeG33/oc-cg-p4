@@ -65,8 +65,6 @@ class Round:
                 with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     round_data = json.load(json_file)
                     round_data.update(self.to_dict())
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(round_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
@@ -75,8 +73,6 @@ class Round:
                 with open(json_file_name, "r+", encoding="utf-8") as json_file:
                     round_data = json.load(json_file)
                     round_data.update(self.to_dict())
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(round_data, json_file, indent=4, ensure_ascii=False)
             else:
                 with open(json_file_name, "w", encoding="utf-8") as json_file:
                     json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
