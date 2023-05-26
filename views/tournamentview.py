@@ -195,9 +195,9 @@ class TournamentView:
     def get_match_result():
         """Demande le résultat du match à l'utilisateur."""
         print("Qui est le vainqueur ?")
-        print("1 >> Joueur 1")
-        print("2 >> Joueur 2")
-        print("3 >> Match nul")
+        print("[1] > Joueur 1")
+        print("[2] > Joueur 2")
+        print("[3] > Match nul")
         user_choice = input("(1/2/3) : ")
         while user_choice not in ["1", "2", "3"]:
             print("Erreur. Veuillez sélectionner 1, 2 ou 3.")
@@ -207,10 +207,12 @@ class TournamentView:
 
     def prompt_user_to_start_round(self):
         """Demande à l'utilisateur s'il veut démarrer le round."""
+        print(f"Tournoi actuel : {self.tournament_controller.current_tournament}")
         print(f"Round actuel : {self.tournament_controller.current_round}")
+        print(f"Liste des matchs : {self.tournament_controller.current_round.match_list}")
         print("Souhaitez-vous démarrer le round ?")
-        print("1 >> Oui.")
-        print("2 >> Revenir au menu du tournoi.")
+        print("[1] > Oui.")
+        print("[2] > Non.")
         user_choice = input("(1/2) : ")
         while user_choice not in ["1", "2"]:
             print("Erreur. Veuillez sélectionner 1 ou 2.")
