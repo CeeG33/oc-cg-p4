@@ -1,4 +1,5 @@
 from controllers import tournamentcontroller, playercontroller
+from models import rounds
 import os
 
 NUMBER_OF_PLAYERS_IN_TOURNAMENT = 8
@@ -6,7 +7,6 @@ tournament_controller = tournamentcontroller.TournamentController()
 tournament_view = tournament_controller.tournament_view
 player_controller = tournament_controller.player_controller
 player_view = player_controller.player_view
-
 
 running = True
 while running:

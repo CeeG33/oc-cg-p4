@@ -1,0 +1,37 @@
+{
+    "player1": {
+        "name": "Crabs",
+        "first_name": "Pearl",
+        "birthdate": "01/02/2005",
+        "global_rank": 0,
+        "global_score": 1.0,
+        "national_chess_id": null
+    },
+    "player2": {
+        "name": "Hendrix",
+        "first_name": "Jimi",
+        "birthdate": "23/12/1945",
+        "global_rank": 0,
+        "global_score": 0.5,
+        "national_chess_id": null
+    },
+    "winner": null,
+    "draw": [
+        {
+            "name": "Crabs",
+            "first_name": "Pearl",
+            "birthdate": "01/02/2005",
+            "global_rank": 0,
+            "global_score": 1.0,
+            "national_chess_id": null
+        },
+        {
+            "name": "Hendrix",
+            "first_name": "Jimi",
+            "birthdate": "23/12/1945",
+            "global_rank": 0,
+            "global_score": 0.5,
+            "national_chess_id": null
+        }
+    ]
+}

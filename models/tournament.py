@@ -3,7 +3,7 @@ import json
 import os
 from os import path, makedirs, listdir
 from random import shuffle, sample
-from models import match, player
+from models import match, rounds, player
 
 
 class Tournament:
@@ -28,16 +28,13 @@ class Tournament:
     def __init__(self,
                  name: str,
                  location: str,
-                 description: str,
-                 start_date: str = None,
-                 end_date: str = None,
-                 current_round_number: int = 0):
+                 description: str,):
         self.name = name
         self.location = location
         self.description = description
-        self.start_date = start_date
-        self.end_date = end_date
-        self.current_round_number = current_round_number
+        self.start_date = None
+        self.end_date = None
+        self.current_round_number = 0
         self.rounds_list = []
         self.players_list = []
         self.pairs_list = []
@@ -58,23 +55,48 @@ class Tournament:
                 tournament_data = json.load(json_file)
                 temporary_tournament = cls(tournament_data["name"],
                                            tournament_data["location"],
-                                           tournament_data["description"],
-                                           tournament_data["start_date"],
-                                           tournament_data["end_date"],
-                                           tournament_data["current_round_number"])
-                temporary_tournament.rounds_list = tournament_data.get("rounds_list")
-                temporary_tournament.players_list = tournament_data.get("players_list")
-                temporary_tournament.pairs_list = tournament_data.get("pairs_list")
-                temporary_tournament.winners_list = tournament_data.get("winners_list")
-                temporary_tournament.draw_list = tournament_data.get("draw_list")
+                                           tournament_data["description"])
+                temporary_tournament.start_date = tournament_data.get("start_date")
+                temporary_tournament.end_date = tournament_data.get("end_date")
+                temporary_tournament.current_round_number = tournament_data.get("current_round_number")
+                temporary_tournament.rounds_list = []
+                for round_data in tournament_data.get("rounds_list", []):
+                    round_name = round_data["round_name"]
+                    round_object = rounds.Round(round_name)
+                    temporary_tournament.rounds_list.append(round_object)
+                temporary_tournament.players_list = []
+                for participant in tournament_data.get("players_list", []):
+                    participant_name = participant["name"]
+                    participant_first_name = participant["first_name"]
+                    participant_object = player.Player.create_from_json(participant_name, participant_first_name)
+                    temporary_tournament.players_list.append(participant_object)
+                temporary_tournament.pairs_list = []
+                for participant in tournament_data.get("pairs_list", []):
+                    participant_name = participant["name"]
+                    participant_first_name = participant["first_name"]
+                    participant_object = player.Player.create_from_json(participant_name, participant_first_name)
+                    temporary_tournament.pairs_list.append(participant_object)
+                temporary_tournament.winners_list = []
+                for participant in tournament_data.get("winners_list", []):
+                    participant_name = participant["name"]
+                    participant_first_name = participant["first_name"]
+                    participant_object = player.Player.create_from_json(participant_name, participant_first_name)
+                    temporary_tournament.winners_list.append(participant_object)
+                temporary_tournament.draw_list = []
+                for participant in tournament_data.get("draw_list", []):
+                    participant_name = participant["name"]
+                    participant_first_name = participant["first_name"]
+                    participant_object = player.Player.create_from_json(participant_name, participant_first_name)
+                    temporary_tournament.draw_list.append(participant_object)
                 temporary_tournament.players_scores = tournament_data.get("players_scores")
+
                 return temporary_tournament
         else:
             return
 
     def set_start_date(self):
         """Initialise la date et l'heure de début du tournoi."""
-        self.start_date = datetime.datetime.now().replace(microsecond=0)
+        self.start_date = str(datetime.datetime.now().replace(microsecond=0))
 
     def set_round_number(self):
         """Règle le numéro du round actuel."""
@@ -85,7 +107,7 @@ class Tournament:
 
     def set_end_date(self):
         """Initialise la date et l'heure de fin du tournoi."""
-        self.end_date = datetime.datetime.now().replace(microsecond=0)
+        self.end_date = str(datetime.datetime.now().replace(microsecond=0))
 
     def add_player_to_tournament(self, player_to_add):
         """Ajoute le joueur sélectionné dans la liste des joueurs participants au tournoi."""
@@ -102,9 +124,9 @@ class Tournament:
 
     def create_first_round_matches(self, first_round):
         """Crée les matchs du premier round selon la liste des paires."""
-        for player in range(0, len(self.pairs_list), 2):
+        for participant in range(0, len(self.pairs_list), 2):
             try:
-                first_round.add_match(match.Match(self.pairs_list[player], self.pairs_list[player + 1]))
+                first_round.add_match(match.Match(self.pairs_list[participant], self.pairs_list[participant + 1]))
             except IndexError:
                 return
 
@@ -121,7 +143,7 @@ class Tournament:
         """Trie la liste des scores de façon décroissante."""
         self.players_scores = dict(sorted(self.players_scores.items(), key=lambda x: x[1], reverse=True))
 
-    def update_json_file(self):
+    def save_json_file(self):
         """
         Crée les dossiers ci-dessous s'ils n'existent pas.
         Ensuite, crée ou met à jour le fichier JSON.
@@ -131,47 +153,35 @@ class Tournament:
 
         if not path.exists(directory_path):
             makedirs(directory_path)
-            if path.exists(json_file_name):
-                with open(json_file_name, "r+", encoding="utf-8") as json_file:
-                    tournament_data = json.load(json_file)
-                    tournament_data.update(self.to_dict())
-            else:
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
-        else:
-            if path.exists(json_file_name):
-                with open(json_file_name, "r+", encoding="utf-8") as json_file:
-                    tournament_data = json.load(json_file)
-                    tournament_data.update(self.to_dict())
-            else:
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
+
+        with open(json_file_name, "w", encoding="utf-8") as json_file:
+            json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
 
     def initialize_players_scores(self):
         """Initialise le score des joueurs à zéro dans le cadre du tournoi."""
         default_value = 0
         self.players_scores = dict.fromkeys(self.players_list, default_value)
 
-    def add_one_point_to(self, player):
+    def add_one_point_to(self, participant):
         """
         Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
         Ajoute également cette même valeur au score global du joueur (elo).
         """
-        self.players_scores[player] += 1
-        player.global_score += 1
+        self.players_scores[participant] += 1
+        participant.global_score += 1
 
-    def add_half_point_to(self, player):
+    def add_half_point_to(self, participant):
         """
         Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
         Ajoute également cette même valeur au score global du joueur (elo).
         """
-        self.players_scores[player] += 0.5
-        player.global_score += 0.5
+        self.players_scores[participant] += 0.5
+        participant.global_score += 0.5
 
     def save_players_score(self):
         """Sauvegarde les données des joueurs."""
-        for player in self.players_list:
-            player.update_json_file()
+        for participant in self.players_list:
+            participant.update_json_file()
 
     @staticmethod
     def list_existing_tournaments():
@@ -193,15 +203,15 @@ class Tournament:
             "name": self.name,
             "location": self.location,
             "description": self.description,
-            "start_date": str(self.start_date) if self.start_date else None,
-            "end_date": str(self.end_date) if self.end_date else None,
+            "start_date": self.start_date if self.start_date else None,
+            "end_date": self.end_date if self.end_date else None,
             "current_round_number": self.current_round_number,
-            "rounds_list": [round.to_dict() for round in self.rounds_list],
-            "players_list": [player.to_dict() for player in self.players_list],
-            "pairs_list": [player.to_dict() for player in self.pairs_list],
-            "winners_list": [player.to_dict() for player in self.winners_list],
-            "draw_list": [player.to_dict() for player in self.draw_list],
-            "players_scores": [player.to_dict() for player in self.players_scores] if self.players_scores else [],
+            "rounds_list": [r.to_dict() for r in self.rounds_list] if self.rounds_list else [],
+            "players_list": [participant.to_dict() for participant in self.players_list] if self.players_list else [],
+            "pairs_list": [participant.to_dict() for participant in self.pairs_list] if self.pairs_list else [],
+            "winners_list": [participant.to_dict() for participant in self.winners_list] if self.winners_list else [],
+            "draw_list": [participant.to_dict() for participant in self.draw_list] if self.draw_list else [],
+            "players_scores": [participant.to_dict() for participant in self.players_scores] if self.players_scores else [],
         }
         return data
 

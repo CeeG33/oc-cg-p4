@@ -1,0 +1,27 @@
+{
+    "player1": {
+        "name": "McFly",
+        "first_name": "Marty",
+        "birthdate": "05/02/1960",
+        "global_rank": 0,
+        "global_score": 1.5,
+        "national_chess_id": null
+    },
+    "player2": {
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "01/02/1992",
+        "global_rank": 0,
+        "global_score": 2.0,
+        "national_chess_id": null
+    },
+    "winner": {
+        "name": "McFly",
+        "first_name": "Marty",
+        "birthdate": "05/02/1960",
+        "global_rank": 0,
+        "global_score": 1.5,
+        "national_chess_id": null
+    },
+    "draw": []
+}

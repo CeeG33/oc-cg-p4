@@ -59,25 +59,96 @@ class TournamentView:
             elif self.user_choice == "5":
                 self.show_selected_tournament()
                 if not self.tournament_controller.current_round:
-                    while True:
-                        print()
-                        print("Le tournoi peut commencer !")
-                        self.tournament_controller.begin_tournament()
-                        self.tournament_controller.create_first_round()
+                    print()
+                    print("Le tournoi peut commencer !")
+                    self.tournament_controller.begin_tournament()
+                    self.tournament_controller.create_first_round()
+                    user_choice = self.prompt_user_to_start_round()
+                    if user_choice == "1":
+                        try:
+                            self.tournament_controller.begin_first_round()
+                        except IndexError:
+                            print("Vous n'avez pas le nombre de joueurs suffisant !")
+                            print("Il faut 8 joueurs pour démarrer un tournoi.")
+                            print("Retour au menu principal")
+                            running = False
+                        self.tournament_controller.end_round()
+                        self.tournament_controller.create_next_round()
+                    elif user_choice == "2":
+                        self.tournament_controller.save_tournament()
+                        break
+                    while self.tournament_controller.current_tournament.current_round_number <= 3:
                         user_choice = self.prompt_user_to_start_round()
                         if user_choice == "1":
                             try:
-                                self.tournament_controller.begin_first_round()
+                                self.tournament_controller.begin_next_round()
                             except IndexError:
-                                print("Vous n'avez pas le nombre de joueurs suffisant ! (8)")
-                                break
-                            self.tournament_controller.end_round()
-                            break
-                            #continuer tournoi
+                                print("Vous n'avez pas le nombre de joueurs suffisant !")
+                                print("Il faut 8 joueurs pour démarrer un tournoi.")
+                                print("Retour au menu principal")
+                                running = False
                         elif user_choice == "2":
+                            self.tournament_controller.save_tournament()
                             break
+                        self.tournament_controller.end_round()
+                        self.tournament_controller.create_next_round()
+                        if self.tournament_controller.current_tournament.current_round_number == 4:
+                            user_choice = self.prompt_user_to_start_round()
+                            if user_choice == "1":
+                                try:
+                                    self.tournament_controller.begin_next_round()
+                                except IndexError:
+                                    print("Vous n'avez pas le nombre de joueurs suffisant !")
+                                    print("Il faut 8 joueurs pour démarrer un tournoi.")
+                                    print("Retour au menu principal")
+                                    running = False
+                            self.tournament_controller.end_round()
+                            print("Le tournoi est désormais terminé !")
+                            self.tournament_controller.end_tournament()
+                            print()
+                            print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
+                            self.show_scores()
+                            print()
+                            print("Félicitations à tous les participants !")
+                            print()
+                            print("Retour au menu principal.")
+                            running = False
+                    break
+
                 else:
-                    pass #continuer
+                    while self.tournament_controller.current_tournament.current_round_number <= 3:
+                        user_choice = self.prompt_user_to_start_round()
+                        if user_choice == "1":
+                            try:
+                                self.tournament_controller.begin_next_round()
+                            except IndexError:
+                                print("Vous n'avez pas le nombre de joueurs suffisant !")
+                                print("Il faut 8 joueurs pour démarrer un tournoi.")
+                                print("Retour au menu principal")
+                                running = False
+                        self.tournament_controller.end_round()
+                        self.tournament_controller.create_next_round()
+                        if self.tournament_controller.current_tournament.current_round_number == 4:
+                            user_choice = self.prompt_user_to_start_round()
+                            if user_choice == "1":
+                                try:
+                                    self.tournament_controller.begin_next_round()
+                                except IndexError:
+                                    print("Vous n'avez pas le nombre de joueurs suffisant !")
+                                    print("Il faut 8 joueurs pour démarrer un tournoi.")
+                                    print("Retour au menu principal")
+                                    running = False
+                            self.tournament_controller.end_round()
+                            print("Le tournoi est désormais terminé !")
+                            self.tournament_controller.end_tournament()
+                            print()
+                            print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
+                            self.show_scores()
+                            print()
+                            print("Félicitations à tous les participants !")
+                            print()
+                            print("Retour au menu principal.")
+                            running = False
 
                 # continuer ici
                 # continuer ici
@@ -210,12 +281,18 @@ class TournamentView:
         print(f"Tournoi actuel : {self.tournament_controller.current_tournament}")
         print(f"Round actuel : {self.tournament_controller.current_round}")
         print(f"Liste des matchs : {self.tournament_controller.current_round.match_list}")
+        print()
         print("Souhaitez-vous démarrer le round ?")
         print("[1] > Oui.")
-        print("[2] > Non.")
+        print("[2] > Arrêter le tournoi.")
         user_choice = input("(1/2) : ")
         while user_choice not in ["1", "2"]:
             print("Erreur. Veuillez sélectionner 1 ou 2.")
             user_choice = input("(1/2) : ")
         else:
             return user_choice
+
+    def show_scores(self):
+        scores_list = self.tournament_controller.get_players_scores
+        for index, player in enumerate(scores_list, 1):
+            print(f"{index} >>> {player}")

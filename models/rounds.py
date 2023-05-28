@@ -1,6 +1,7 @@
 import datetime
 import json
 from os import path, makedirs
+from models import match
 
 
 class Round:
@@ -32,11 +33,16 @@ class Round:
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
                 round_data = json.load(json_file)
-                temporary_round = cls(round_data["round_name"])
-                temporary_round.start_date = round_data.get("start_date")
-                temporary_round.end_date = round_data.get("end_date")
-                temporary_round.match_list = round_data.get("match_list")
-                return temporary_round
+                created_round = cls(round_data["round_name"])
+                created_round.start_date = round_data.get("start_date")
+                created_round.end_date = round_data.get("end_date")
+                created_round.match_list = []
+                for match_data in round_data.get("match_list", []):
+                    match_player1 = match_data["player1"]
+                    match_player2 = match_data["player2"]
+                    match_object = match.Match(match_player1, match_player2)
+                    created_round.match_list.append(match_object)
+                return created_round
         else:
             return
 

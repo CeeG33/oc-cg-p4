@@ -1,6 +1,6 @@
 import json
 from os import path, makedirs
-
+from models import player
 
 class Match:
 
@@ -26,8 +26,13 @@ class Match:
                 match_data = json.load(json_file)
                 match = cls(match_data["player1"],
                             match_data["player2"])
-                match.winner = match_data.get("winner")
-                match.draw = match_data.get("draw")
+                match.winner = match_data.get("winner") if match.winner else None
+                match.draw = []
+                for player_data in match_data.get("draw", []):
+                    player_name = player_data["name"]
+                    player_first_name = player_data["first_name"]
+                    player_object = player.Player.create_from_json(player_name, player_first_name)
+                    match.draw.append(player_object)
                 return match
         else:
             return

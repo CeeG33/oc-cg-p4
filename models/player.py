@@ -83,7 +83,15 @@ class Player:
         return sorted(existing_players, key=lambda x: x.first_name)
 
     def to_dict(self):
-        return self.__dict__
+        data = {
+            "name": self.name,
+            "first_name": self.first_name,
+            "birthdate": self.birthdate,
+            "global_rank": self.global_rank,
+            "global_score": self.global_score,
+            "national_chess_id": self.national_chess_id
+        }
+        return data
 
 """
 player1 = Player("Test1", "Test1NDF", "02/04/2003")
