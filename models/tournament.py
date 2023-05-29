@@ -211,7 +211,9 @@ class Tournament:
             "pairs_list": [participant.to_dict() for participant in self.pairs_list] if self.pairs_list else [],
             "winners_list": [participant.to_dict() for participant in self.winners_list] if self.winners_list else [],
             "draw_list": [participant.to_dict() for participant in self.draw_list] if self.draw_list else [],
-            "players_scores": [participant.to_dict() for participant in self.players_scores] if self.players_scores else [],
+            "players_scores": self.players_scores if isinstance(self.players_scores, list) else
+            [(participant.to_dict(), score) for participant, score in self.players_scores.items()]
+            if self.players_scores else [],
         }
         return data
 

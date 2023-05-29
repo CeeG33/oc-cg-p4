@@ -8,6 +8,7 @@ tournament_view = tournament_controller.tournament_view
 player_controller = tournament_controller.player_controller
 player_view = player_controller.player_view
 
+
 running = True
 while running:
     print("--- MENU PRINCIPAL ---")
@@ -40,6 +41,12 @@ while running:
 
 """
 ______________
+
+tournoi_test = tournament_controller.tournament_model.create_from_json("Test")
+print(tournoi_test.players_scores)
+tournoi_test.initialize_players_scores()
+print(tournoi_test.players_scores)
+
 
 tournament_controller.launch_view()
 

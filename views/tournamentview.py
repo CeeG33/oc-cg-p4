@@ -172,6 +172,7 @@ class TournamentView:
         self.tournament_controller.create_new_tournament(name, location, description)
         print()
         self.show_selected_tournament()
+        print()
         self.show_menu_list()
 
     @staticmethod

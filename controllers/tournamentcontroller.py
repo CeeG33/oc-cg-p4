@@ -104,6 +104,7 @@ class TournamentController:
         new_round = rounds.Round(f"Round {round_number}")
         new_round.update_json_file()
         self.current_tournament.rounds_list.append(new_round)
+        self.current_tournament.current_round = new_round
         self.current_tournament.save_json_file()
 
     def begin_next_round(self):

@@ -161,6 +161,9 @@ class PlayerView:
             print("Vous avez choisi un mauvais numéro. Veuillez réessayer.")
             print()
             self.show_players_in_database()
+            print()
+            self.update_remaining_seats()
+            print()
             self.select_player_in_database()
             return
         except ValueError:
@@ -168,6 +171,9 @@ class PlayerView:
             print("Vous devez renseigner un chiffre. Veuillez réessayer")
             print()
             self.show_players_in_database()
+            print()
+            self.update_remaining_seats()
+            print()
             self.select_player_in_database()
             return
 
@@ -180,11 +186,17 @@ class PlayerView:
             print("Veuillez sélectionner un autre joueur.")
             print()
             self.show_players_in_database()
+            print()
+            self.update_remaining_seats()
+            print()
             self.select_player_in_database()
         else:
             self.player_controller.waiting_room.append(selected_player)
             print()
             self.show_waiting_room()
+            print()
+            self.update_remaining_seats()
+            print()
             self.show_menu_list()
 
 
