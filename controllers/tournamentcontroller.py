@@ -62,6 +62,7 @@ class TournamentController:
         """Charge un tournoi existant."""
         existing_tournament = self.tournament_model.create_from_json(tournament_name)
         self.current_tournament = existing_tournament
+        self.current_round = self.current_tournament.rounds_list[-1] if self.current_tournament.rounds_list else None
 
     def begin_tournament(self):
         """Commence le tournoi. Initialise le numéro de round, mélange les joueurs et crée les paires."""
@@ -76,16 +77,12 @@ class TournamentController:
     def create_first_round(self):
         """Crée le premier round du tournoi. Sélectionne automatiquement le round."""
         first_round = self.round_model("Round 1")
-        first_round.update_json_file()
         self.current_tournament.rounds_list.append(first_round)
         self.current_round = self.current_tournament.rounds_list[-1]
         self.current_tournament.create_first_round_matches(self.current_round)
         self.current_tournament.initialize_players_scores()
-        self.current_tournament.save_json_file()
-
-    def begin_first_round(self):
-        """Démarre le premier round du tournoi."""
-        self.current_round.set_start_date()
+        for contest in self.current_round.match_list:
+            contest.update_json_file()
         self.current_round.update_json_file()
         self.current_tournament.save_json_file()
 
@@ -95,6 +92,7 @@ class TournamentController:
         self.current_tournament.save_json_file()
         self.get_match_result()
         self.current_tournament.save_players_score()
+        self.current_round.update_json_file()
         self.current_tournament.save_json_file()
 
     def create_next_round(self):
@@ -102,18 +100,17 @@ class TournamentController:
         self.current_tournament.set_round_number()
         round_number = self.current_tournament.current_round_number
         new_round = rounds.Round(f"Round {round_number}")
-        new_round.update_json_file()
         self.current_tournament.rounds_list.append(new_round)
-        self.current_tournament.current_round = new_round
+        self.select_current_round()
+        self.current_tournament.create_next_round_matches(new_round)
+        self.current_round.update_json_file()
         self.current_tournament.save_json_file()
 
-    def begin_next_round(self):
+    def begin_round(self):
         """Commence le prochain round."""
-        next_round_index = len(self.current_tournament.rounds_list) - 1
-        next_round = self.current_tournament.rounds_list[next_round_index]
-        self.current_tournament.create_next_round_matches(next_round)
-        next_round.set_start_date()
-        next_round.update_json_file()
+        self.current_round = self.current_tournament.rounds_list[-1]
+        self.current_round.set_start_date()
+        self.current_round.update_json_file()
         self.current_tournament.save_json_file()
 
     def end_tournament(self):
@@ -133,7 +130,16 @@ class TournamentController:
         return scores_list
 
     def save_tournament(self):
+        for contest in self.current_round.match_list:
+            contest.update_json_file()
+        self.current_round.update_json_file()
         self.current_tournament.save_json_file()
+
+    def select_current_round(self):
+        self.current_round = self.current_tournament.rounds_list[-1] if self.current_tournament.rounds_list else None
+
+    def select_current_match_list(self):
+        return self.current_round.match_list
 
 """
     def show_tournaments_list(self):

@@ -24,9 +24,21 @@ class Match:
         if path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
                 match_data = json.load(json_file)
-                match = cls(match_data["player1"],
-                            match_data["player2"])
-                match.winner = match_data.get("winner") if match.winner else None
+                player1_data = match_data["player1"]
+                player1_name = player1_data["name"]
+                player1_first_name = player1_data["first_name"]
+                player1_object = player.Player.create_from_json(player1_name, player1_first_name)
+                player2_data = match_data["player2"]
+                player2_name = player2_data["name"]
+                player2_first_name = player2_data["first_name"]
+                player2_object = player.Player.create_from_json(player2_name, player2_first_name)
+                winner_data = match_data["winner"]
+                winner_name = winner_data["name"] if winner_data else None
+                winner_first_name = winner_data["first_name"] if winner_data else None
+                winner_object = player.Player.create_from_json(winner_name, winner_first_name) if winner_data else None
+                match = cls(player1_object,
+                            player2_object)
+                match.winner = winner_object if match.winner else None
                 match.draw = []
                 for player_data in match_data.get("draw", []):
                     player_name = player_data["name"]

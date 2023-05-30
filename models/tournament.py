@@ -40,7 +40,7 @@ class Tournament:
         self.pairs_list = []
         self.winners_list = []
         self.draw_list = []
-        self.players_scores = None
+        self.players_scores = {}
 
     def __repr__(self):
         """Définit le nom du tournoi en tant que représentation de l'objet Tournoi."""
@@ -62,7 +62,7 @@ class Tournament:
                 temporary_tournament.rounds_list = []
                 for round_data in tournament_data.get("rounds_list", []):
                     round_name = round_data["round_name"]
-                    round_object = rounds.Round(round_name)
+                    round_object = rounds.Round.create_from_json(round_name)
                     temporary_tournament.rounds_list.append(round_object)
                 temporary_tournament.players_list = []
                 for participant in tournament_data.get("players_list", []):
@@ -88,7 +88,12 @@ class Tournament:
                     participant_first_name = participant["first_name"]
                     participant_object = player.Player.create_from_json(participant_name, participant_first_name)
                     temporary_tournament.draw_list.append(participant_object)
-                temporary_tournament.players_scores = tournament_data.get("players_scores")
+                temporary_tournament.players_scores = {}
+                for participant, score in tournament_data.get("players_scores", []):
+                    participant_name = participant["name"]
+                    participant_first_name = participant["first_name"]
+                    participant_object = player.Player.create_from_json(participant_name, participant_first_name)
+                    temporary_tournament.players_scores[participant_object] = score
 
                 return temporary_tournament
         else:
@@ -120,7 +125,7 @@ class Tournament:
     def create_pairs(self):
         """Crée les paires de matchs dans la liste des paires."""
         pairings = sample(self.players_list, len(self.players_list))
-        self.pairs_list.extend(pairings)
+        self.pairs_list.extend(pairings) if (len(self.pairs_list)) == 0 else None
 
     def create_first_round_matches(self, first_round):
         """Crée les matchs du premier round selon la liste des paires."""
@@ -167,7 +172,8 @@ class Tournament:
         Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
         Ajoute également cette même valeur au score global du joueur (elo).
         """
-        self.players_scores[participant] += 1
+        participant_object = self.players_scores[participant]
+        participant_object += 1
         participant.global_score += 1
 
     def add_half_point_to(self, participant):
@@ -211,9 +217,10 @@ class Tournament:
             "pairs_list": [participant.to_dict() for participant in self.pairs_list] if self.pairs_list else [],
             "winners_list": [participant.to_dict() for participant in self.winners_list] if self.winners_list else [],
             "draw_list": [participant.to_dict() for participant in self.draw_list] if self.draw_list else [],
-            "players_scores": self.players_scores if isinstance(self.players_scores, list) else
-            [(participant.to_dict(), score) for participant, score in self.players_scores.items()]
-            if self.players_scores else [],
+            "players_scores": [
+                [participant.to_dict(), score]
+                for participant, score in self.players_scores.items()
+            ] if self.players_scores else [],
         }
         return data
 

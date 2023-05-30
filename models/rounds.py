@@ -38,9 +38,14 @@ class Round:
                 created_round.end_date = round_data.get("end_date")
                 created_round.match_list = []
                 for match_data in round_data.get("match_list", []):
-                    match_player1 = match_data["player1"]
-                    match_player2 = match_data["player2"]
-                    match_object = match.Match(match_player1, match_player2)
+                    player1_data = match_data["player1"]
+                    player1_name = player1_data["name"]
+                    player1_first_name = player1_data["first_name"]
+                    player2_data = match_data["player2"]
+                    player2_name = player2_data["name"]
+                    player2_first_name = player2_data["first_name"]
+                    match_object = match.Match.create_from_json(f"{player1_first_name} {player1_name}",
+                                                                f"{player2_first_name} {player2_name}")
                     created_round.match_list.append(match_object)
                 return created_round
         else:

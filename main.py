@@ -1,5 +1,5 @@
 from controllers import tournamentcontroller, playercontroller
-from models import rounds
+from models import rounds, player
 import os
 
 NUMBER_OF_PLAYERS_IN_TOURNAMENT = 8
@@ -8,7 +8,17 @@ tournament_view = tournament_controller.tournament_view
 player_controller = tournament_controller.player_controller
 player_view = player_controller.player_view
 
+print(tournament_controller.load_existing_tournament("Test"))
 
+tournoi = tournament_controller.current_tournament
+dictionnaire = tournoi.players_scores
+obj = player.Player.create_from_json("Brown", "Emmett")
+print(dictionnaire[obj])
+print(dictionnaire.keys())
+
+
+
+"""
 running = True
 while running:
     print("--- MENU PRINCIPAL ---")
@@ -39,7 +49,7 @@ while running:
 
 
 
-"""
+
 ______________
 
 tournoi_test = tournament_controller.tournament_model.create_from_json("Test")

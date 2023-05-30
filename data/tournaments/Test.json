@@ -2,80 +2,68 @@
     "name": "Test",
     "location": "Test",
     "description": "Test",
-    "start_date": "2023-05-29 11:00:03",
+    "start_date": "2023-05-30 19:16:15",
     "end_date": null,
-    "current_round_number": 3,
+    "current_round_number": 1,
     "rounds_list": [
         {
             "round_name": "Round 1",
-            "start_date": null,
-            "end_date": null,
-            "match_list": []
-        },
-        {
-            "round_name": "Round 2",
-            "start_date": null,
-            "end_date": null,
-            "match_list": []
-        },
-        {
-            "round_name": "Round 1",
-            "start_date": null,
-            "end_date": null,
+            "start_date": "2023-05-30 19:17:10",
+            "end_date": "2023-05-30 19:17:10",
             "match_list": [
                 {
                     "player1": {
-                        "name": "Étoile",
-                        "first_name": "Patrick",
-                        "birthdate": "01/01/2004",
-                        "global_rank": 0,
-                        "global_score": 2.0,
-                        "national_chess_id": null
-                    },
-                    "player2": {
-                        "name": "Sheldon",
-                        "first_name": "Plankton",
-                        "birthdate": "01/02/1992",
-                        "global_rank": 0,
-                        "global_score": 2.0,
-                        "national_chess_id": null
-                    },
-                    "winner": null,
-                    "draw": []
-                },
-                {
-                    "player1": {
-                        "name": "McFly",
-                        "first_name": "Marty",
-                        "birthdate": "05/02/1960",
+                        "name": "Brown",
+                        "first_name": "Emmett",
+                        "birthdate": "25/12/1942",
                         "global_rank": 0,
                         "global_score": 0.5,
-                        "national_chess_id": null
-                    },
-                    "player2": {
-                        "name": "Rabanne",
-                        "first_name": "Paco",
-                        "birthdate": "02/08/1980",
-                        "global_rank": 0,
-                        "global_score": 0.5,
-                        "national_chess_id": null
-                    },
-                    "winner": null,
-                    "draw": []
-                },
-                {
-                    "player1": {
-                        "name": "Écureuil",
-                        "first_name": "Sandy",
-                        "birthdate": "04/05/2000",
-                        "global_rank": 0,
-                        "global_score": 2.0,
                         "national_chess_id": null
                     },
                     "player2": {
                         "name": "Crabs",
-                        "first_name": "Pearl",
-                        "birthdate": "01/02/2005",
+                        "first_name": "Captain",
+                        "birthdate": "02/03/1993",
+                        "global_rank": 0,
+                        "global_score": 2,
+                        "national_chess_id": null
+                    },
+                    "winner": null,
+                    "draw": []
+                },
+                {
+                    "player1": {
+                        "name": "Gaultier",
+                        "first_name": "Jean-Paul",
+                        "birthdate": "02/12/1980",
+                        "global_rank": 0,
+                        "global_score": 0.5,
+                        "national_chess_id": null
+                    },
+                    "player2": {
+                        "name": "L'Escargot",
+                        "first_name": "Gary",
+                        "birthdate": "05/02/2008",
+                        "global_rank": 0,
+                        "global_score": 0.5,
+                        "national_chess_id": null
+                    },
+                    "winner": null,
+                    "draw": []
+                },
+                {
+                    "player1": {
+                        "name": "L'éponge",
+                        "first_name": "Bob",
+                        "birthdate": "02/02/2002",
+                        "global_rank": 0,
+                        "global_score": 1.0,
+                        "national_chess_id": null
+                    },
+                    "player2": {
+                        "name": "McFly",
+                        "first_name": "Marty",
+                        "birthdate": "05/02/1960",
                         "global_rank": 0,
                         "global_score": 0.5,
                         "national_chess_id": null
@@ -93,91 +81,11 @@
                         "national_chess_id": null
                     },
                     "player2": {
-                        "name": "Random",
-                        "first_name": "Poisson",
-                        "birthdate": "10/12/2004",
-                        "global_rank": 0,
-                        "global_score": 0,
-                        "national_chess_id": null
-                    },
-                    "winner": null,
-                    "draw": []
-                },
-                {
-                    "player1": {
-                        "name": "Sheldon",
-                        "first_name": "Plankton",
-                        "birthdate": "01/02/1992",
+                        "name": "Calamar",
+                        "first_name": "Carlo",
+                        "birthdate": "03/03/2003",
                         "global_rank": 0,
                         "global_score": 2.0,
-                        "national_chess_id": null
-                    },
-                    "player2": {
-                        "name": "Écureuil",
-                        "first_name": "Sandy",
-                        "birthdate": "04/05/2000",
-                        "global_rank": 0,
-                        "global_score": 2.0,
-                        "national_chess_id": null
-                    },
-                    "winner": null,
-                    "draw": []
-                },
-                {
-                    "player1": {
-                        "name": "Random",
-                        "first_name": "Poisson",
-                        "birthdate": "10/12/2004",
-                        "global_rank": 0,
-                        "global_score": 0,
-                        "national_chess_id": null
-                    },
-                    "player2": {
-                        "name": "Crabs",
-                        "first_name": "Pearl",
-                        "birthdate": "01/02/2005",
-                        "global_rank": 0,
-                        "global_score": 0.5,
-                        "national_chess_id": null
-                    },
-                    "winner": null,
-                    "draw": []
-                },
-                {
-                    "player1": {
-                        "name": "Étoile",
-                        "first_name": "Patrick",
-                        "birthdate": "01/01/2004",
-                        "global_rank": 0,
-                        "global_score": 2.0,
-                        "national_chess_id": null
-                    },
-                    "player2": {
-                        "name": "McFly",
-                        "first_name": "Marty",
-                        "birthdate": "05/02/1960",
-                        "global_rank": 0,
-                        "global_score": 0.5,
-                        "national_chess_id": null
-                    },
-                    "winner": null,
-                    "draw": []
-                },
-                {
-                    "player1": {
-                        "name": "Rabanne",
-                        "first_name": "Paco",
-                        "birthdate": "02/08/1980",
-                        "global_rank": 0,
-                        "global_score": 0.5,
-                        "national_chess_id": null
-                    },
-                    "player2": {
-                        "name": "Hendrix",
-                        "first_name": "Jimi",
-                        "birthdate": "23/12/1945",
-                        "global_rank": 0,
-                        "global_score": 0,
                         "national_chess_id": null
                     },
                     "winner": null,
@@ -188,19 +96,43 @@
     ],
     "players_list": [
         {
-            "name": "Sheldon",
-            "first_name": "Plankton",
-            "birthdate": "01/02/1992",
+            "name": "Brown",
+            "first_name": "Emmett",
+            "birthdate": "25/12/1942",
             "global_rank": 0,
-            "global_score": 2.0,
+            "global_score": 0.5,
             "national_chess_id": null
         },
         {
-            "name": "McFly",
-            "first_name": "Marty",
-            "birthdate": "05/02/1960",
+            "name": "Crabs",
+            "first_name": "Captain",
+            "birthdate": "02/03/1993",
+            "global_rank": 0,
+            "global_score": 2,
+            "national_chess_id": null
+        },
+        {
+            "name": "Gaultier",
+            "first_name": "Jean-Paul",
+            "birthdate": "02/12/1980",
             "global_rank": 0,
             "global_score": 0.5,
+            "national_chess_id": null
+        },
+        {
+            "name": "L'Escargot",
+            "first_name": "Gary",
+            "birthdate": "05/02/2008",
+            "global_rank": 0,
+            "global_score": 0.5,
+            "national_chess_id": null
+        },
+        {
+            "name": "L'éponge",
+            "first_name": "Bob",
+            "birthdate": "02/02/2002",
+            "global_rank": 0,
+            "global_score": 1.0,
             "national_chess_id": null
         },
         {
@@ -212,41 +144,17 @@
             "national_chess_id": null
         },
         {
-            "name": "Random",
-            "first_name": "Poisson",
-            "birthdate": "10/12/2004",
-            "global_rank": 0,
-            "global_score": 0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Étoile",
-            "first_name": "Patrick",
-            "birthdate": "01/01/2004",
+            "name": "Calamar",
+            "first_name": "Carlo",
+            "birthdate": "03/03/2003",
             "global_rank": 0,
             "global_score": 2.0,
             "national_chess_id": null
         },
         {
-            "name": "Écureuil",
-            "first_name": "Sandy",
-            "birthdate": "04/05/2000",
-            "global_rank": 0,
-            "global_score": 2.0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Rabanne",
-            "first_name": "Paco",
-            "birthdate": "02/08/1980",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": null
-        },
-        {
-            "name": "Crabs",
-            "first_name": "Pearl",
-            "birthdate": "01/02/2005",
+            "name": "McFly",
+            "first_name": "Marty",
+            "birthdate": "05/02/1960",
             "global_rank": 0,
             "global_score": 0.5,
             "national_chess_id": null
@@ -254,49 +162,49 @@
     ],
     "pairs_list": [
         {
-            "name": "Étoile",
-            "first_name": "Patrick",
-            "birthdate": "01/01/2004",
+            "name": "Brown",
+            "first_name": "Emmett",
+            "birthdate": "25/12/1942",
             "global_rank": 0,
-            "global_score": 2.0,
+            "global_score": 0.5,
             "national_chess_id": null
         },
         {
-            "name": "Sheldon",
-            "first_name": "Plankton",
-            "birthdate": "01/02/1992",
+            "name": "Crabs",
+            "first_name": "Captain",
+            "birthdate": "02/03/1993",
             "global_rank": 0,
-            "global_score": 2.0,
+            "global_score": 2,
+            "national_chess_id": null
+        },
+        {
+            "name": "Gaultier",
+            "first_name": "Jean-Paul",
+            "birthdate": "02/12/1980",
+            "global_rank": 0,
+            "global_score": 0.5,
+            "national_chess_id": null
+        },
+        {
+            "name": "L'Escargot",
+            "first_name": "Gary",
+            "birthdate": "05/02/2008",
+            "global_rank": 0,
+            "global_score": 0.5,
+            "national_chess_id": null
+        },
+        {
+            "name": "L'éponge",
+            "first_name": "Bob",
+            "birthdate": "02/02/2002",
+            "global_rank": 0,
+            "global_score": 1.0,
             "national_chess_id": null
         },
         {
             "name": "McFly",
             "first_name": "Marty",
             "birthdate": "05/02/1960",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": null
-        },
-        {
-            "name": "Rabanne",
-            "first_name": "Paco",
-            "birthdate": "02/08/1980",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": null
-        },
-        {
-            "name": "Écureuil",
-            "first_name": "Sandy",
-            "birthdate": "04/05/2000",
-            "global_rank": 0,
-            "global_score": 2.0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Crabs",
-            "first_name": "Pearl",
-            "birthdate": "01/02/2005",
             "global_rank": 0,
             "global_score": 0.5,
             "national_chess_id": null
@@ -310,75 +218,11 @@
             "national_chess_id": null
         },
         {
-            "name": "Random",
-            "first_name": "Poisson",
-            "birthdate": "10/12/2004",
-            "global_rank": 0,
-            "global_score": 0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Sheldon",
-            "first_name": "Plankton",
-            "birthdate": "01/02/1992",
+            "name": "Calamar",
+            "first_name": "Carlo",
+            "birthdate": "03/03/2003",
             "global_rank": 0,
             "global_score": 2.0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Écureuil",
-            "first_name": "Sandy",
-            "birthdate": "04/05/2000",
-            "global_rank": 0,
-            "global_score": 2.0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Random",
-            "first_name": "Poisson",
-            "birthdate": "10/12/2004",
-            "global_rank": 0,
-            "global_score": 0,
-            "national_chess_id": null
-        },
-        {
-            "name": "Crabs",
-            "first_name": "Pearl",
-            "birthdate": "01/02/2005",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": null
-        },
-        {
-            "name": "Étoile",
-            "first_name": "Patrick",
-            "birthdate": "01/01/2004",
-            "global_rank": 0,
-            "global_score": 2.0,
-            "national_chess_id": null
-        },
-        {
-            "name": "McFly",
-            "first_name": "Marty",
-            "birthdate": "05/02/1960",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": null
-        },
-        {
-            "name": "Rabanne",
-            "first_name": "Paco",
-            "birthdate": "02/08/1980",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": null
-        },
-        {
-            "name": "Hendrix",
-            "first_name": "Jimi",
-            "birthdate": "23/12/1945",
-            "global_rank": 0,
-            "global_score": 0,
             "national_chess_id": null
         }
     ],
@@ -387,22 +231,55 @@
     "players_scores": [
         [
             {
-                "name": "Sheldon",
-                "first_name": "Plankton",
-                "birthdate": "01/02/1992",
+                "name": "Brown",
+                "first_name": "Emmett",
+                "birthdate": "25/12/1942",
                 "global_rank": 0,
-                "global_score": 2.0,
+                "global_score": 0.5,
                 "national_chess_id": null
             },
             0
         ],
         [
             {
-                "name": "McFly",
-                "first_name": "Marty",
-                "birthdate": "05/02/1960",
+                "name": "Crabs",
+                "first_name": "Captain",
+                "birthdate": "02/03/1993",
+                "global_rank": 0,
+                "global_score": 2,
+                "national_chess_id": null
+            },
+            0
+        ],
+        [
+            {
+                "name": "Gaultier",
+                "first_name": "Jean-Paul",
+                "birthdate": "02/12/1980",
                 "global_rank": 0,
                 "global_score": 0.5,
+                "national_chess_id": null
+            },
+            0
+        ],
+        [
+            {
+                "name": "L'Escargot",
+                "first_name": "Gary",
+                "birthdate": "05/02/2008",
+                "global_rank": 0,
+                "global_score": 0.5,
+                "national_chess_id": null
+            },
+            0
+        ],
+        [
+            {
+                "name": "L'éponge",
+                "first_name": "Bob",
+                "birthdate": "02/02/2002",
+                "global_rank": 0,
+                "global_score": 1.0,
                 "national_chess_id": null
             },
             0
@@ -420,20 +297,9 @@
         ],
         [
             {
-                "name": "Random",
-                "first_name": "Poisson",
-                "birthdate": "10/12/2004",
-                "global_rank": 0,
-                "global_score": 0,
-                "national_chess_id": null
-            },
-            0
-        ],
-        [
-            {
-                "name": "Étoile",
-                "first_name": "Patrick",
-                "birthdate": "01/01/2004",
+                "name": "Calamar",
+                "first_name": "Carlo",
+                "birthdate": "03/03/2003",
                 "global_rank": 0,
                 "global_score": 2.0,
                 "national_chess_id": null
@@ -442,31 +308,9 @@
         ],
         [
             {
-                "name": "Écureuil",
-                "first_name": "Sandy",
-                "birthdate": "04/05/2000",
-                "global_rank": 0,
-                "global_score": 2.0,
-                "national_chess_id": null
-            },
-            0
-        ],
-        [
-            {
-                "name": "Rabanne",
-                "first_name": "Paco",
-                "birthdate": "02/08/1980",
-                "global_rank": 0,
-                "global_score": 0.5,
-                "national_chess_id": null
-            },
-            0
-        ],
-        [
-            {
-                "name": "Crabs",
-                "first_name": "Pearl",
-                "birthdate": "01/02/2005",
+                "name": "McFly",
+                "first_name": "Marty",
+                "birthdate": "05/02/1960",
                 "global_rank": 0,
                 "global_score": 0.5,
                 "national_chess_id": null
