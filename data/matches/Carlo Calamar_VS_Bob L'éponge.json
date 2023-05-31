@@ -1,0 +1,20 @@
+{
+    "player1": {
+        "name": "Calamar",
+        "first_name": "Carlo",
+        "birthdate": "04/11/2343",
+        "global_rank": 0,
+        "global_score": 0.5,
+        "national_chess_id": "CC23423"
+    },
+    "player2": {
+        "name": "L'éponge",
+        "first_name": "Bob",
+        "birthdate": "02/03/4233",
+        "global_rank": 0,
+        "global_score": 0.5,
+        "national_chess_id": "BE02325"
+    },
+    "winner": null,
+    "draw": []
+}

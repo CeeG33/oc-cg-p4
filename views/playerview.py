@@ -8,10 +8,9 @@ class PlayerView:
         self.user_choice = 0
         self.existing_players = self.player_controller.get_existing_players()
         self.menu_list = ["[1] > Créer un nouveau joueur.",
-                          "[2] > Charger un joueur existant en entrant son nom et prénom manuellement.",
-                          "[3] > Charger un joueur existant en parcourant la base de données.",
-                          "[4] > Afficher les joueurs présents dans la base de données.",
-                          "[5] > Revenir au menu principal."]
+                          "[2] > Charger un joueur existant en parcourant la base de données.",
+                          "[3] > Afficher les joueurs présents dans la base de données.",
+                          "[4] > Revenir au menu principal."]
 
     def show_menu(self):
         """Affiche le menu principal de la vue PlayerController à l'utilisateur."""
@@ -47,14 +46,23 @@ class PlayerView:
                 birthdate = self.get_player_birthdate()
                 national_chess_id = self.get_player_national_chess_id()
                 self.player_controller.create_new_player(name, first_name, birthdate, national_chess_id)
+                print()
+                self.show_waiting_room()
+                print()
+                self.update_remaining_seats()
+                print()
+                self.show_menu_list()
             elif self.user_choice == "2":
-                self.get_existing_player_info_manually()
-            elif self.user_choice == "3":
                 self.show_players_in_database()
                 self.select_player_in_database()
-            elif self.user_choice == "4":
+            elif self.user_choice == "3":
                 self.show_players_in_database()
-            elif self.user_choice == "5":
+                self.show_waiting_room()
+                print()
+                self.update_remaining_seats()
+                print()
+                self.show_menu_list()
+            elif self.user_choice == "4":
                 break
             elif int(self.user_choice) not in range(1, len(self.menu_list)):
                 print()
@@ -65,9 +73,10 @@ class PlayerView:
     def get_player_name(self):
         """Récupère le nom du joueur auprès de l'utilisateur."""
         name = input("Nom du joueur (Respectez les accents. Exemple : L'éponge) : ").capitalize()
-        if not name.isalpha():
+        pattern = "^[A-Za-zÀ-ÿ'-]+$"
+        if not re.match(pattern, name):
             print()
-            print("Mauvais caractères, veuillez écrire un nom en lettres.")
+            print("Mauvais caractères, veuillez écrire un nom en lettres sans les apostrophes.")
             print()
             self.get_player_name()
         elif len(name) <= 1:
@@ -81,11 +90,12 @@ class PlayerView:
     def get_player_first_name(self):
         """Récupère le prénom du joueur auprès de l'utilisateur."""
         first_name = input("Prénom du joueur (Respectez les accents. Exemple : Jean-édouard) : ").capitalize()
-        if not first_name.isalpha():
+        pattern = "^[A-Za-zÀ-ÿ'-]+$"
+        if not re.match(pattern, first_name):
             print()
-            print("Mauvais caractères, veuillez écrire un prénom en lettres.")
+            print("Mauvais caractères, veuillez écrire un nom en lettres.")
             print()
-            self.get_player_first_name()
+            self.get_player_name()
         elif len(first_name) <= 1:
             print()
             print("Prénom trop court. Il doit au moins contenir deux caractères.")
@@ -117,16 +127,6 @@ class PlayerView:
             self.get_player_national_chess_id()
         else:
             return national_chess_id
-
-    def get_existing_player_info_manually(self):
-        """Charge un joueur dans le salon selon le nom et prénom renseigné par l'utilisateur manuellement."""
-        name = self.get_player_name()
-        first_name = self.get_player_first_name()
-
-        self.player_controller.load_existing_player(name, first_name)
-        print()
-        self.show_waiting_room()
-        self.show_menu_list()
 
     def show_players_in_database(self):
         """Affiche la liste des joueurs enregistrés dans la base de données."""

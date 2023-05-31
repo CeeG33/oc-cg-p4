@@ -8,13 +8,34 @@ tournament_view = tournament_controller.tournament_view
 player_controller = tournament_controller.player_controller
 player_view = player_controller.player_view
 
-print(tournament_controller.load_existing_tournament("Test"))
+tournament_controller.load_existing_tournament("Test")
 
 tournoi = tournament_controller.current_tournament
+
+print(tournoi)
+
+round_actuel = tournoi.rounds_list[0]
 dictionnaire = tournoi.players_scores
-obj = player.Player.create_from_json("Brown", "Emmett")
-print(dictionnaire[obj])
-print(dictionnaire.keys())
+liste_joueurs = tournoi.players_list
+
+print(dictionnaire)
+
+sorted_dictionnaire = dict(sorted(dictionnaire.items(), key=lambda item: item[1], reverse=True))
+print(sorted_dictionnaire)
+print(liste_joueurs)
+
+
+dictionnaire_classe = sorted_dictionnaire.items()
+
+print(dictionnaire_classe)
+
+classement = [(participant, dictionnaire[
+    participant.national_chess_id]) for participant in liste_joueurs]
+
+classement_trie = sorted(classement, key=lambda x: x[1], reverse=True)
+
+for index, (participant, score) in enumerate(classement_trie, 1):
+    print(f"{index} >> {participant} avec un score de {score}")
 
 
 
@@ -48,9 +69,26 @@ while running:
         print("Erreur. Sélectionnez une option valide.")
 
 
-
-
 ______________
+
+tournament_controller.load_existing_tournament("Test")
+
+tournoi = tournament_controller.current_tournament
+
+print(tournoi)
+
+round_actuel = tournoi.rounds_list[0]
+dictionnaire = tournoi.players_scores
+print(dictionnaire)
+
+print(tournament_controller.load_existing_tournament("Test"))
+
+tournoi = tournament_controller.current_tournament
+round_actuel = tournoi.rounds_list[0]
+dictionnaire = tournoi.players_scores
+
+print(round_actuel)
+
 
 tournoi_test = tournament_controller.tournament_model.create_from_json("Test")
 print(tournoi_test.players_scores)

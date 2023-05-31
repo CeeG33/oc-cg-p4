@@ -1,10 +1,8 @@
 {
     "name": "Écureuil",
     "first_name": "Sandy",
-    "birthdate": "04/05/2000",
+    "birthdate": "23/07/1990",
     "global_rank": 0,
-    "global_score": 2.0,
-    "tournament_rank": 0,
-    "tournament_score": 0,
-    "national_chess_id": null
+    "global_score": 0,
+    "national_chess_id": "SE19823"
 }

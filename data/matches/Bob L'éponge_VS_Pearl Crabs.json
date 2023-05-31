@@ -1,0 +1,27 @@
+{
+    "player1": {
+        "name": "L'éponge",
+        "first_name": "Bob",
+        "birthdate": "02/03/4233",
+        "global_rank": 0,
+        "global_score": 0,
+        "national_chess_id": "BE02325"
+    },
+    "player2": {
+        "name": "Crabs",
+        "first_name": "Pearl",
+        "birthdate": "05/04/2003",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "PC02343"
+    },
+    "winner": {
+        "name": "Crabs",
+        "first_name": "Pearl",
+        "birthdate": "05/04/2003",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "PC02343"
+    },
+    "draw": []
+}

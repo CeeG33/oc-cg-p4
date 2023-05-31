@@ -38,6 +38,7 @@ class Player:
                              player_data["birthdate"])
                 player.global_rank = player_data.get("global_rank")
                 player.global_score = player_data.get("global_score")
+                player.national_chess_id = player_data.get("national_chess_id")
                 return player
         else:
             return

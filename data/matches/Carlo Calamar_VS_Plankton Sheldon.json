@@ -1,0 +1,27 @@
+{
+    "player1": {
+        "name": "Calamar",
+        "first_name": "Carlo",
+        "birthdate": "04/11/2343",
+        "global_rank": 0,
+        "global_score": 0,
+        "national_chess_id": "CC23423"
+    },
+    "player2": {
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "06/08/1950",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "PS24098"
+    },
+    "winner": {
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "06/08/1950",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "PS24098"
+    },
+    "draw": []
+}

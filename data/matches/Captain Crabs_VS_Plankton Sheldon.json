@@ -1,0 +1,20 @@
+{
+    "player1": {
+        "name": "Crabs",
+        "first_name": "Captain",
+        "birthdate": "01/01/1966",
+        "global_rank": 0,
+        "global_score": 0,
+        "national_chess_id": "CC19664"
+    },
+    "player2": {
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "06/08/1950",
+        "global_rank": 0,
+        "global_score": 0,
+        "national_chess_id": "PS24098"
+    },
+    "winner": null,
+    "draw": []
+}

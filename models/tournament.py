@@ -89,11 +89,8 @@ class Tournament:
                     participant_object = player.Player.create_from_json(participant_name, participant_first_name)
                     temporary_tournament.draw_list.append(participant_object)
                 temporary_tournament.players_scores = {}
-                for participant, score in tournament_data.get("players_scores", []):
-                    participant_name = participant["name"]
-                    participant_first_name = participant["first_name"]
-                    participant_object = player.Player.create_from_json(participant_name, participant_first_name)
-                    temporary_tournament.players_scores[participant_object] = score
+                for national_chess_id, score in tournament_data.get("players_scores", []):
+                    temporary_tournament.players_scores[national_chess_id] = score
 
                 return temporary_tournament
         else:
@@ -140,7 +137,8 @@ class Tournament:
         Crée les matchs du round suivant selon la liste des paires.
         Les joueurs auront préalablement été triés dans la liste de scores de façon décroissante.
         """
-        sorted_players = sorted(self.players_scores, key=self.players_scores.get, reverse=True)
+        sorted_players = sorted(self.players_list, key=lambda player: self.players_scores[player.national_chess_id],
+                                reverse=True)
         for player in range(0, len(sorted_players), 2):
             next_round.add_match(match.Match(sorted_players[player], sorted_players[player+1]))
 
@@ -164,16 +162,20 @@ class Tournament:
 
     def initialize_players_scores(self):
         """Initialise le score des joueurs à zéro dans le cadre du tournoi."""
+        players_id = []
+        for participant in self.players_list:
+            players_id.append(participant.national_chess_id)
         default_value = 0
-        self.players_scores = dict.fromkeys(self.players_list, default_value)
+
+        self.players_scores = dict.fromkeys(players_id, default_value)
 
     def add_one_point_to(self, participant):
         """
         Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
         Ajoute également cette même valeur au score global du joueur (elo).
         """
-        participant_object = self.players_scores[participant]
-        participant_object += 1
+        participant_id = participant.national_chess_id
+        self.players_scores[participant_id] += 1
         participant.global_score += 1
 
     def add_half_point_to(self, participant):
@@ -181,7 +183,8 @@ class Tournament:
         Ajoute la valeur ci-dessous au score joueur sélectionné dans le cadre du tournoi.
         Ajoute également cette même valeur au score global du joueur (elo).
         """
-        self.players_scores[participant] += 0.5
+        participant_id = participant.national_chess_id
+        self.players_scores[participant_id] += 0.5
         participant.global_score += 0.5
 
     def save_players_score(self):
@@ -218,8 +221,8 @@ class Tournament:
             "winners_list": [participant.to_dict() for participant in self.winners_list] if self.winners_list else [],
             "draw_list": [participant.to_dict() for participant in self.draw_list] if self.draw_list else [],
             "players_scores": [
-                [participant.to_dict(), score]
-                for participant, score in self.players_scores.items()
+                [national_chess_id, score]
+                for national_chess_id, score in self.players_scores.items()
             ] if self.players_scores else [],
         }
         return data

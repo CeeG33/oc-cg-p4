@@ -157,6 +157,10 @@ class TournamentView:
                             elif user_choice == "2":
                                 self.tournament_controller.save_tournament()
                                 break
+                    print()
+                    print("---- MENU TOURNOI----")
+                    print()
+                    self.show_menu_list()
 
                 # continuer ici
                 # continuer ici
