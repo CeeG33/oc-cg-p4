@@ -64,23 +64,12 @@ class Match:
         """
         directory_path = f"data/matches/"
         json_file_name = f"data/matches/{self.player1}_VS_{self.player2}.json"
+
         if not path.exists(directory_path):
             makedirs(directory_path)
-            if path.exists(json_file_name):
-                with open(json_file_name, "r+", encoding="utf-8") as json_file:
-                    match_data = json.load(json_file)
-                    match_data.update(self.to_dict())
-            else:
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
-        else:
-            if path.exists(json_file_name):
-                with open(json_file_name, "r+", encoding="utf-8") as json_file:
-                    match_data = json.load(json_file)
-                    match_data.update(self.to_dict())
-            else:
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
+
+        with open(json_file_name, "w", encoding="utf-8") as json_file:
+            json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
 
     def to_dict(self):
         """Renvoie le dictionnaire du match."""

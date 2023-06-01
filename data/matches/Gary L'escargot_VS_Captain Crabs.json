@@ -1,13 +1,5 @@
 {
     "player1": {
-        "name": "Calamar",
-        "first_name": "Carlo",
-        "birthdate": "04/11/2343",
-        "global_rank": 0,
-        "global_score": 0.5,
-        "national_chess_id": "CC23423"
-    },
-    "player2": {
         "name": "L'escargot",
         "first_name": "Gary",
         "birthdate": "07/06/2005",
@@ -15,16 +7,16 @@
         "global_score": 0.5,
         "national_chess_id": "GE23503"
     },
+    "player2": {
+        "name": "Crabs",
+        "first_name": "Captain",
+        "birthdate": "01/01/1966",
+        "global_rank": 0,
+        "global_score": 0.5,
+        "national_chess_id": "CC19664"
+    },
     "winner": null,
     "draw": [
-        {
-            "name": "Calamar",
-            "first_name": "Carlo",
-            "birthdate": "04/11/2343",
-            "global_rank": 0,
-            "global_score": 0.5,
-            "national_chess_id": "CC23423"
-        },
         {
             "name": "L'escargot",
             "first_name": "Gary",
@@ -32,6 +24,14 @@
             "global_rank": 0,
             "global_score": 0.5,
             "national_chess_id": "GE23503"
+        },
+        {
+            "name": "Crabs",
+            "first_name": "Captain",
+            "birthdate": "01/01/1966",
+            "global_rank": 0,
+            "global_score": 0.5,
+            "national_chess_id": "CC19664"
         }
     ]
 }

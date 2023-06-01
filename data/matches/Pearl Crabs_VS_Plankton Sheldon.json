@@ -1,27 +1,27 @@
 {
     "player1": {
         "name": "Crabs",
-        "first_name": "Captain",
-        "birthdate": "01/01/1966",
+        "first_name": "Pearl",
+        "birthdate": "05/04/2003",
         "global_rank": 0,
-        "global_score": 1,
-        "national_chess_id": "CC19664"
+        "global_score": 0,
+        "national_chess_id": "PC02343"
     },
     "player2": {
         "name": "Sheldon",
         "first_name": "Plankton",
         "birthdate": "06/08/1950",
         "global_rank": 0,
-        "global_score": 0,
+        "global_score": 1,
         "national_chess_id": "PS24098"
     },
     "winner": {
-        "name": "Crabs",
-        "first_name": "Captain",
-        "birthdate": "01/01/1966",
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "06/08/1950",
         "global_rank": 0,
         "global_score": 1,
-        "national_chess_id": "CC19664"
+        "national_chess_id": "PS24098"
     },
     "draw": []
 }

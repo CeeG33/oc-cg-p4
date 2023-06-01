@@ -8,20 +8,20 @@
         "national_chess_id": "MJ23294"
     },
     "player2": {
-        "name": "Calamar",
-        "first_name": "Carlo",
-        "birthdate": "04/11/2343",
+        "name": "Étoile",
+        "first_name": "Patrick",
+        "birthdate": "05/12/2033",
         "global_rank": 0,
         "global_score": 1,
-        "national_chess_id": "CC23423"
+        "national_chess_id": "PE23243"
     },
     "winner": {
-        "name": "Calamar",
-        "first_name": "Carlo",
-        "birthdate": "04/11/2343",
+        "name": "Étoile",
+        "first_name": "Patrick",
+        "birthdate": "05/12/2033",
         "global_rank": 0,
         "global_score": 1,
-        "national_chess_id": "CC23423"
+        "national_chess_id": "PE23243"
     },
     "draw": []
 }

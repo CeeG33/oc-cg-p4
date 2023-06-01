@@ -144,7 +144,10 @@ class Tournament:
 
     def sort_players(self):
         """Trie la liste des scores de façon décroissante."""
-        self.players_scores = dict(sorted(self.players_scores.items(), key=lambda x: x[1], reverse=True))
+        temporary_ranking = [(participant, self.players_scores[participant.national_chess_id]) for participant in
+                             self.players_list]
+        sorted_ranking = sorted(temporary_ranking, key=lambda x: x[1], reverse=True)
+        return sorted_ranking
 
     def save_json_file(self):
         """

@@ -1,0 +1,27 @@
+{
+    "player1": {
+        "name": "Écureuil",
+        "first_name": "Sandy",
+        "birthdate": "23/07/1990",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "SE19823"
+    },
+    "player2": {
+        "name": "Crabs",
+        "first_name": "Pearl",
+        "birthdate": "05/04/2003",
+        "global_rank": 0,
+        "global_score": 0,
+        "national_chess_id": "PC02343"
+    },
+    "winner": {
+        "name": "Écureuil",
+        "first_name": "Sandy",
+        "birthdate": "23/07/1990",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "SE19823"
+    },
+    "draw": []
+}

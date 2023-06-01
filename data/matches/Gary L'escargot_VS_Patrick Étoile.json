@@ -1,27 +1,27 @@
 {
     "player1": {
-        "name": "L'éponge",
-        "first_name": "Bob",
-        "birthdate": "02/03/4233",
+        "name": "L'escargot",
+        "first_name": "Gary",
+        "birthdate": "07/06/2005",
         "global_rank": 0,
-        "global_score": 0,
-        "national_chess_id": "BE02325"
+        "global_score": 1,
+        "national_chess_id": "GE23503"
     },
     "player2": {
         "name": "Étoile",
         "first_name": "Patrick",
         "birthdate": "05/12/2033",
         "global_rank": 0,
-        "global_score": 1,
+        "global_score": 0,
         "national_chess_id": "PE23243"
     },
     "winner": {
-        "name": "Étoile",
-        "first_name": "Patrick",
-        "birthdate": "05/12/2033",
+        "name": "L'escargot",
+        "first_name": "Gary",
+        "birthdate": "07/06/2005",
         "global_rank": 0,
         "global_score": 1,
-        "national_chess_id": "PE23243"
+        "national_chess_id": "GE23503"
     },
     "draw": []
 }

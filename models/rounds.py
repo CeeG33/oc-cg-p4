@@ -56,7 +56,7 @@ class Round:
         self.start_date = str(datetime.datetime.now().replace(microsecond=0))
 
     def set_end_date(self):
-        """Initialise la date et l'heure de fin du tournoi."""
+        """Initialise la date et l'heure de fin du round."""
         self.end_date = str(datetime.datetime.now().replace(microsecond=0))
 
     def add_match(self, match_name):
@@ -66,27 +66,17 @@ class Round:
     def update_json_file(self):
         """
         Crée les dossiers ci-dessous s'ils n'existent pas.
-        Ensuite, crée ou met à jour le fichier JSON.
+        Ensuite, crée le fichier JSON.
         """
         directory_path = f"data/rounds/"
         json_file_name = f"data/rounds/{self.round_name}.json"
+
         if not path.exists(directory_path):
             makedirs(directory_path)
-            if path.exists(json_file_name):
-                with open(json_file_name, "r+", encoding="utf-8") as json_file:
-                    round_data = json.load(json_file)
-                    round_data.update(self.to_dict())
-            else:
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
-        else:
-            if path.exists(json_file_name):
-                with open(json_file_name, "r+", encoding="utf-8") as json_file:
-                    round_data = json.load(json_file)
-                    round_data.update(self.to_dict())
-            else:
-                with open(json_file_name, "w", encoding="utf-8") as json_file:
-                    json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
+
+        with open(json_file_name, "w", encoding="utf-8") as json_file:
+            json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
+
 
     def to_dict(self):
         """Renvoie le dictionnaire du round."""

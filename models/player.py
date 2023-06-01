@@ -81,7 +81,7 @@ class Player:
                 created_player = Player.create_from_json(splitted_player_name[1], splitted_player_name[0])
                 existing_players.append(created_player)
 
-        return sorted(existing_players, key=lambda x: x.first_name)
+        return sorted(existing_players, key=lambda participant: participant.first_name)
 
     def to_dict(self):
         data = {

@@ -1,36 +1,80 @@
 {
     "round_name": "Round 4",
-    "start_date": null,
-    "end_date": null,
+    "start_date": "2023-06-01 11:26:59",
+    "end_date": "2023-06-01 11:27:03",
     "match_list": [
         {
             "player1": {
-                "name": "Crabs",
-                "first_name": "Captain",
-                "birthdate": "01/01/1966",
+                "name": "Sheldon",
+                "first_name": "Plankton",
+                "birthdate": "06/08/1950",
                 "global_rank": 0,
                 "global_score": 0,
-                "national_chess_id": "CC19664"
+                "national_chess_id": "PS24098"
             },
             "player2": {
-                "name": "Étoile",
-                "first_name": "Patrick",
-                "birthdate": "05/12/2033",
+                "name": "Calamar",
+                "first_name": "Carlo",
+                "birthdate": "04/11/2343",
                 "global_rank": 0,
-                "global_score": 0,
-                "national_chess_id": "PE23243"
+                "global_score": 1,
+                "national_chess_id": "CC23423"
             },
-            "winner": null,
+            "winner": {
+                "name": "Calamar",
+                "first_name": "Carlo",
+                "birthdate": "04/11/2343",
+                "global_rank": 0,
+                "global_score": 1,
+                "national_chess_id": "CC23423"
+            },
             "draw": []
         },
         {
             "player1": {
-                "name": "L'éponge",
-                "first_name": "Bob",
-                "birthdate": "02/03/4233",
+                "name": "L'escargot",
+                "first_name": "Gary",
+                "birthdate": "07/06/2005",
                 "global_rank": 0,
-                "global_score": 0,
-                "national_chess_id": "BE02325"
+                "global_score": 0.5,
+                "national_chess_id": "GE23503"
+            },
+            "player2": {
+                "name": "Crabs",
+                "first_name": "Captain",
+                "birthdate": "01/01/1966",
+                "global_rank": 0,
+                "global_score": 0.5,
+                "national_chess_id": "CC19664"
+            },
+            "winner": null,
+            "draw": [
+                {
+                    "name": "L'escargot",
+                    "first_name": "Gary",
+                    "birthdate": "07/06/2005",
+                    "global_rank": 0,
+                    "global_score": 0.5,
+                    "national_chess_id": "GE23503"
+                },
+                {
+                    "name": "Crabs",
+                    "first_name": "Captain",
+                    "birthdate": "01/01/1966",
+                    "global_rank": 0,
+                    "global_score": 0.5,
+                    "national_chess_id": "CC19664"
+                }
+            ]
+        },
+        {
+            "player1": {
+                "name": "Écureuil",
+                "first_name": "Sandy",
+                "birthdate": "23/07/1990",
+                "global_rank": 0,
+                "global_score": 1,
+                "national_chess_id": "SE19823"
             },
             "player2": {
                 "name": "Crabs",
@@ -40,47 +84,41 @@
                 "global_score": 0,
                 "national_chess_id": "PC02343"
             },
-            "winner": null,
+            "winner": {
+                "name": "Écureuil",
+                "first_name": "Sandy",
+                "birthdate": "23/07/1990",
+                "global_rank": 0,
+                "global_score": 1,
+                "national_chess_id": "SE19823"
+            },
             "draw": []
         },
         {
             "player1": {
+                "name": "Étoile",
+                "first_name": "Patrick",
+                "birthdate": "05/12/2033",
+                "global_rank": 0,
+                "global_score": 0,
+                "national_chess_id": "PE23243"
+            },
+            "player2": {
                 "name": "Martin",
                 "first_name": "Jean",
                 "birthdate": "05/04/2393",
                 "global_rank": 0,
-                "global_score": 0,
+                "global_score": 1,
                 "national_chess_id": "MJ23294"
             },
-            "player2": {
-                "name": "L'escargot",
-                "first_name": "Gary",
-                "birthdate": "07/06/2005",
+            "winner": {
+                "name": "Martin",
+                "first_name": "Jean",
+                "birthdate": "05/04/2393",
                 "global_rank": 0,
-                "global_score": 0,
-                "national_chess_id": "GE23503"
+                "global_score": 1,
+                "national_chess_id": "MJ23294"
             },
-            "winner": null,
-            "draw": []
-        },
-        {
-            "player1": {
-                "name": "Calamar",
-                "first_name": "Carlo",
-                "birthdate": "04/11/2343",
-                "global_rank": 0,
-                "global_score": 0,
-                "national_chess_id": "CC23423"
-            },
-            "player2": {
-                "name": "Sheldon",
-                "first_name": "Plankton",
-                "birthdate": "06/08/1950",
-                "global_rank": 0,
-                "global_score": 0,
-                "national_chess_id": "PS24098"
-            },
-            "winner": null,
             "draw": []
         }
     ]

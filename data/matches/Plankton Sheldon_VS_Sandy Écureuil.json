@@ -1,0 +1,27 @@
+{
+    "player1": {
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "06/08/1950",
+        "global_rank": 0,
+        "global_score": 0,
+        "national_chess_id": "PS24098"
+    },
+    "player2": {
+        "name": "Écureuil",
+        "first_name": "Sandy",
+        "birthdate": "23/07/1990",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "SE19823"
+    },
+    "winner": {
+        "name": "Écureuil",
+        "first_name": "Sandy",
+        "birthdate": "23/07/1990",
+        "global_rank": 0,
+        "global_score": 1,
+        "national_chess_id": "SE19823"
+    },
+    "draw": []
+}

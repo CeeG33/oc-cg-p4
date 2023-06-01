@@ -1,11 +1,11 @@
 {
     "player1": {
-        "name": "Martin",
-        "first_name": "Jean",
-        "birthdate": "05/04/2393",
+        "name": "Sheldon",
+        "first_name": "Plankton",
+        "birthdate": "06/08/1950",
         "global_rank": 0,
         "global_score": 0,
-        "national_chess_id": "MJ23294"
+        "national_chess_id": "PS24098"
     },
     "player2": {
         "name": "Calamar",
