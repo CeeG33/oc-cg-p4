@@ -3,13 +3,21 @@ Projet n°4 - Développez un programme logiciel en Python - Auteur : Ciran GÜRB
 Date : Juin 2023
 
 flake8==6.0.0
+
 flake8-html==0.4.3
+
 Jinja2==3.1.2
+
 MarkupSafe==2.1.2
+
 mccabe==0.7.0
+
 pycodestyle==2.10.0
+
 pyflakes==3.0.1
+
 Pygments==2.15.1
+
 
 Après avoir téléchargé le contenu du repository, veuillez l'extraire dans un dossier spécifique sur votre ordinateur. 
 Ensuite, suivez ces étapes dans l'ordre afin de faire fonctionner le programme.
