@@ -11,13 +11,22 @@ class ReportController:
 
     def get_existing_players(self):
         """Retourne la liste des joueurs."""
-        return self.player_model.list_existing_players()
+        if self.player_model.list_existing_players():
+            return self.player_model.list_existing_players()
+        else:
+            return
 
     def get_existing_tournaments(self):
         """Retourne la liste des tournois."""
-        return self.tournament_model.list_existing_tournaments()
+        if self.tournament_model.list_existing_tournaments():
+            return self.tournament_model.list_existing_tournaments()
+        else:
+            return
 
     def load_existing_tournament(self, chosen_tournament):
         """Charge le tournoi sélectionné dans le paramètre selected_tournament."""
-        created_tournament = self.tournament_model.create_from_json(chosen_tournament)
-        self.selected_tournament = created_tournament
+        if self.tournament_model.list_existing_tournaments():
+            created_tournament = self.tournament_model.create_from_json(chosen_tournament)
+            self.selected_tournament = created_tournament
+        else:
+            return

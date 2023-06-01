@@ -45,57 +45,75 @@ class ReportView:
 
     def show_existing_players(self):
         """Affiche la liste des joueurs enregistrés dans la base de données."""
-        existing_players = self.report_controller.get_existing_players()
-        print("Liste des joueurs existants :")
-        print("")
-        for index, player in enumerate(existing_players, 1):
-            player_first_name = player.first_name
-            player_name = player.name
-            player_id = player.national_chess_id
-            print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
-        print("")
-        print("###############")
-        print("Fin de la liste")
-        print("")
-        self.show_menu_list()
+        if self.report_controller.get_existing_players():
+            existing_players = self.report_controller.get_existing_players()
+            print("Liste des joueurs existants :")
+            print("")
+            for index, player in enumerate(existing_players, 1):
+                player_first_name = player.first_name
+                player_name = player.name
+                player_id = player.national_chess_id
+                print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
+            print("")
+            print("###############")
+            print("Fin de la liste")
+            print("")
+            self.show_menu_list()
+        else:
+            print()
+            print("La base de données est vide !")
+            print()
+            self.show_menu_list()
 
     def show_existing_tournaments(self):
         """Affiche la liste des tournois enregistrés dans la base de données."""
-        existing_tournaments = self.report_controller.get_existing_tournaments()
-        print("Liste des tournois existants :")
-        print("")
-        for index, tournament in enumerate(existing_tournaments, 1):
-            print(f"{index} >> {tournament}")
-        print("")
-        print("###############")
-        print("Fin de la liste")
-        print("")
+        if self.report_controller.get_existing_tournaments():
+            existing_tournaments = self.report_controller.get_existing_tournaments()
+            print("Liste des tournois existants :")
+            print("")
+            for index, tournament in enumerate(existing_tournaments, 1):
+                print(f"{index} >> {tournament}")
+            print("")
+            print("###############")
+            print("Fin de la liste")
+            print("")
+        else:
+            print()
+            print("La base de données est vide !")
+            print()
+            self.show_menu_list()
 
     def select_tournament_in_database(self):
         """Sélectionne le tournoi existant."""
-        existing_tournaments = self.report_controller.get_existing_tournaments()
-        print("Quel tournoi souhaitez-vous sélectionner ?")
-        try:
-            user_choice = input("Numéro : ")
-            self.report_controller.load_existing_tournament(existing_tournaments[int(user_choice) - 1])
-        except IndexError:
+        if self.report_controller.get_existing_tournaments():
+            existing_tournaments = self.report_controller.get_existing_tournaments()
+            print("Quel tournoi souhaitez-vous sélectionner ?")
+            try:
+                user_choice = input("Numéro : ")
+                self.report_controller.load_existing_tournament(existing_tournaments[int(user_choice) - 1])
+            except IndexError:
+                print()
+                print("Vous avez choisi un mauvais numéro. Veuillez réessayer.")
+                print()
+                self.show_existing_tournaments()
+            except ValueError:
+                print()
+                print("Vous devez renseigner un chiffre. Veuillez réessayer")
+                print()
+                self.show_existing_tournaments()
             print()
-            print("Vous avez choisi un mauvais numéro. Veuillez réessayer.")
+            self.show_tournament_name_and_dates()
             print()
-            self.show_existing_tournaments()
-        except ValueError:
+            self.show_tournament_players_list()
             print()
-            print("Vous devez renseigner un chiffre. Veuillez réessayer")
+            self.show_tournament_rounds_list()
             print()
-            self.show_existing_tournaments()
-        print()
-        self.show_tournament_name_and_dates()
-        print()
-        self.show_tournament_players_list()
-        print()
-        self.show_tournament_rounds_list()
-        print()
-        self.show_menu_list()
+            self.show_menu_list()
+        else:
+            print()
+            print("La base de données est vide !")
+            print()
+            self.show_menu_list()
 
     def show_tournament_name_and_dates(self):
         """Affiche le nom et les dates du tournoi sélectionné."""
