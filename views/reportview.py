@@ -101,7 +101,11 @@ class ReportView:
         """Affiche le nom et les dates du tournoi sélectionné."""
         tournament_name = self.report_controller.selected_tournament.name
         tournament_start_date = self.report_controller.selected_tournament.start_date
-        tournament_end_date = self.report_controller.selected_tournament.end_date if True else "Non terminé"
+        tournament_end_date = self.report_controller.selected_tournament.end_date
+        if tournament_end_date:
+            tournament_end_date = tournament_end_date
+        else:
+            tournament_end_date = "Non terminé"
         print(f"Nom du tournoi : {tournament_name} -- Début : {tournament_start_date} -- Fin : {tournament_end_date}")
 
     def show_tournament_players_list(self):
