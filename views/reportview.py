@@ -81,7 +81,6 @@ class ReportView:
             print()
             print("La base de données est vide !")
             print()
-            self.show_menu_list()
 
     def select_tournament_in_database(self):
         """Sélectionne le tournoi existant."""
@@ -110,9 +109,6 @@ class ReportView:
             print()
             self.show_menu_list()
         else:
-            print()
-            print("La base de données est vide !")
-            print()
             self.show_menu_list()
 
     def show_tournament_name_and_dates(self):
