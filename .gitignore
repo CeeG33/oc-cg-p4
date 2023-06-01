@@ -1,5 +1,6 @@
 .idea/
 *.ini
+.git/*.ini
 env/
 main.bat
 data/
