@@ -48,6 +48,9 @@ class Player:
         existing_players = []
         directory_path = "data/players/"
 
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+
         for file in os.listdir(directory_path):
             file_name = os.path.join(directory_path, file)
 

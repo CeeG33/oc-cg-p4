@@ -158,6 +158,9 @@ class Tournament:
         existing_tournaments = []
         directory_path = "data/tournaments/"
 
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+
         for tournament in os.listdir(directory_path):
             file_names = os.path.join(directory_path, tournament)
 
