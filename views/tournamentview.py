@@ -1,8 +1,7 @@
 import re
-from controllers import tournamentcontroller
+
 
 class TournamentView:
-
     def __init__(self, tournament_controller):
         self.tournament_controller = tournament_controller
 
@@ -20,7 +19,6 @@ class TournamentView:
 
     def show_menu(self):
         """Affiche le menu principal de la vue à l'utilisateur."""
-
         print("---- MENU TOURNOI----")
         print()
         self.show_selected_tournament()
@@ -29,7 +27,7 @@ class TournamentView:
         self.prompt_user()
 
     def show_menu_list(self):
-        """Affiche le menu selon la liste définie dans l'init."""
+        """Affiche le menu selon la liste définie dans le constructeur."""
         for choice in self.menu_list:
             print(choice)
 
@@ -54,7 +52,6 @@ class TournamentView:
             elif self.user_choice == "3":
                 self.show_tournaments_in_database()
             elif self.user_choice == "4":
-
                 self.show_selected_tournament()
                 if not self.tournament_controller.current_round:
                     print()
@@ -198,6 +195,7 @@ class TournamentView:
                 print()
 
     def create_tournament(self):
+        """Crée un tournoi selon les données de l'utilisateur et le sélectionne."""
         name = self.get_tournament_name()
         location = self.get_tournament_location()
         description = self.get_tournament_description()
@@ -211,7 +209,6 @@ class TournamentView:
     @staticmethod
     def get_tournament_name():
         """Récupère le nom du tournoi auprès de l'utilisateur."""
-
         name = input("Nom du tournoi (Respectez les accents. Exemple : Étoile) : ").capitalize()
         pattern = r"^[a-zA-Z0-9\s]+$"
         if not re.match(pattern, name):
@@ -228,7 +225,6 @@ class TournamentView:
     @staticmethod
     def get_tournament_location():
         """Récupère la localisation du tournoi auprès de l'utilisateur."""
-
         location = input("Localisation du tournoi (Respectez les accents. Exemple : Élancourt) : ").capitalize()
         pattern = r"^[a-zA-Z0-9\s]+$"
         if not re.match(pattern, location):
@@ -245,7 +241,6 @@ class TournamentView:
     @staticmethod
     def get_tournament_description():
         """Récupère la description du tournoi auprès de l'utilisateur."""
-
         description = input("Description du tournoi : ").capitalize()
         if len(description) <= 1:
             print()
@@ -270,7 +265,6 @@ class TournamentView:
         """Sélectionne le tournoi existant."""
         existing_tournaments = self.tournament_controller.get_existing_tournaments()
         print("Quel tournoi souhaitez-vous sélectionner ?")
-
         try:
             user_choice = input("Numéro : ")
             self.selected_tournament = existing_tournaments[int(user_choice) - 1]
@@ -306,7 +300,10 @@ class TournamentView:
             return user_choice
 
     def prompt_user_to_start_round(self):
-        """Demande à l'utilisateur s'il veut démarrer le round."""
+        """
+        Affiche le tournoi, le round et la liste des matchs actuels puis demande à l'utilisateur s'il veut
+        démarrer le round.
+        """
         print(f"Tournoi actuel : {self.tournament_controller.current_tournament}")
         print(f"Round actuel : {self.tournament_controller.current_round}")
         print(f"Liste des matchs : {self.tournament_controller.select_current_match_list()}")
@@ -323,6 +320,7 @@ class TournamentView:
             return user_choice
 
     def show_scores(self):
+        """Affiche le classement des joueurs selon leur score."""
         sorted_scores_list = self.tournament_controller.get_players_scores()
         for index, (participant, score) in enumerate(sorted_scores_list, 1):
             print(f"{index} >> {participant} >> {score} points")

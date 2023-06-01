@@ -1,7 +1,6 @@
 
 
 class ReportView:
-
     def __init__(self, report_controller):
         self.report_controller = report_controller
         self.user_choice = 0
@@ -12,14 +11,13 @@ class ReportView:
 
     def show_menu(self):
         """Affiche le menu principal de la vue à l'utilisateur."""
-
         print("---- MENU RAPPORT----")
         print()
         self.show_menu_list()
         self.prompt_user()
 
     def show_menu_list(self):
-        """Affiche le menu selon la liste définie dans l'init."""
+        """Affiche le menu selon la liste définie dans le constructeur."""
         for choice in self.menu_list:
             print(choice)
 
@@ -46,6 +44,7 @@ class ReportView:
                 print()
 
     def show_existing_players(self):
+        """Affiche la liste des joueurs enregistrés dans la base de données."""
         existing_players = self.report_controller.get_existing_players()
         print("Liste des joueurs existants :")
         print("")
@@ -61,6 +60,7 @@ class ReportView:
         self.show_menu_list()
 
     def show_existing_tournaments(self):
+        """Affiche la liste des tournois enregistrés dans la base de données."""
         existing_tournaments = self.report_controller.get_existing_tournaments()
         print("Liste des tournois existants :")
         print("")
@@ -75,7 +75,6 @@ class ReportView:
         """Sélectionne le tournoi existant."""
         existing_tournaments = self.report_controller.get_existing_tournaments()
         print("Quel tournoi souhaitez-vous sélectionner ?")
-
         try:
             user_choice = input("Numéro : ")
             self.report_controller.load_existing_tournament(existing_tournaments[int(user_choice) - 1])
@@ -99,12 +98,14 @@ class ReportView:
         self.show_menu_list()
 
     def show_tournament_name_and_dates(self):
+        """Affiche le nom et les dates du tournoi sélectionné."""
         tournament_name = self.report_controller.selected_tournament.name
         tournament_start_date = self.report_controller.selected_tournament.start_date
         tournament_end_date = self.report_controller.selected_tournament.end_date if True else "Non terminé"
         print(f"Nom du tournoi : {tournament_name} -- Début : {tournament_start_date} -- Fin : {tournament_end_date}")
 
     def show_tournament_players_list(self):
+        """Affiche la liste des joueurs du tournoi sélectionné."""
         tournament_players_list = self.report_controller.selected_tournament.players_list
         for index, player in enumerate(tournament_players_list, 1):
             player_first_name = player.first_name
@@ -113,6 +114,7 @@ class ReportView:
             print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
 
     def show_tournament_rounds_list(self):
+        """Affiche la liste des rounds et les matchs de chaque round du tournoi sélectionné."""
         tournament_rounds_list = self.report_controller.selected_tournament.rounds_list
         for round_object in tournament_rounds_list:
             round_name = round_object.round_name

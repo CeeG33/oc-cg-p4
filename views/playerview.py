@@ -1,7 +1,7 @@
 import re
 
-class PlayerView:
 
+class PlayerView:
     def __init__(self, player_controller):
         self.player_controller = player_controller
         self.SEATS_NUMBER = 8
@@ -13,7 +13,7 @@ class PlayerView:
                           "[4] > Revenir au menu principal."]
 
     def show_menu(self):
-        """Affiche le menu principal de la vue PlayerController à l'utilisateur."""
+        """Affiche le menu principal de la vue à l'utilisateur."""
         print("---- MENU JOUEUR----")
         print()
         self.show_waiting_room()
@@ -23,7 +23,7 @@ class PlayerView:
         self.prompt_user()
 
     def show_menu_list(self):
-        """Affiche le menu selon la liste définie dans l'init."""
+        """Affiche le menu selon la liste définie dans le constructeur."""
         for choice in self.menu_list:
             print(choice)
 
@@ -35,7 +35,7 @@ class PlayerView:
             print(f"Salle d'attente : {self.player_controller.waiting_room}")
 
     def prompt_user(self):
-        """Affiche l'option sélectionnée par l'utilisateur."""
+        """Demande l'action de l'utilisateur dans le menu."""
         while True:
             print("")
             print("Que souhaitez-vous faire ?")
@@ -152,7 +152,6 @@ class PlayerView:
     def select_player_in_database(self):
         """Sélectionne le joueur existant et l'ajoute à la salle d'attente."""
         print("Quel joueur souhaitez-vous ajouter ?")
-
         try:
             self.user_choice = input("Numéro : ")
             selected_player = self.existing_players[int(self.user_choice) - 1]
@@ -198,10 +197,3 @@ class PlayerView:
             self.update_remaining_seats()
             print()
             self.show_menu_list()
-
-
-
-"""
-
-
-"""

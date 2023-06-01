@@ -1,21 +1,10 @@
 import datetime
 import json
-from os import path, makedirs
+import os
 from models import match
 
 
 class Round:
-    """
-    ● Chaque tour est une liste de matchs.
-
-    En plus de la liste des matchs, chaque instance du tour doit contenir un nom.
-
-    Actuellement, nous appelons nos tours "Round 1", "Round 2", etc. Elle doit également
-    contenir un champ Date et heure de début et un champ Date et heure de fin, qui doivent
-    tous deux être automatiquement remplis lorsque l'utilisateur crée un tour et le marque
-    comme terminé.
-    """
-
     def __init__(self, round_name: str):
         self.round_name = round_name
         self.start_date = None
@@ -28,9 +17,9 @@ class Round:
 
     @classmethod
     def create_from_json(cls, round_name):
-        """Charge un round à partir d'un fichier JSON."""
+        """Charge un objet round à partir d'un fichier JSON existant selon le nom du round."""
         existing_json_file_path = f"data/rounds/{round_name}.json"
-        if path.exists(existing_json_file_path):
+        if os.path.exists(existing_json_file_path):
             with open(existing_json_file_path, "r", encoding="utf-8") as json_file:
                 round_data = json.load(json_file)
                 created_round = cls(round_data["round_name"])
@@ -65,18 +54,17 @@ class Round:
 
     def update_json_file(self):
         """
-        Crée les dossiers ci-dessous s'ils n'existent pas.
-        Ensuite, crée le fichier JSON.
+        Crée le dossier ci-dessous s'ils n'existent pas.
+        Ensuite, crée ou écrase le fichier JSON.
         """
         directory_path = f"data/rounds/"
         json_file_name = f"data/rounds/{self.round_name}.json"
 
-        if not path.exists(directory_path):
-            makedirs(directory_path)
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
 
         with open(json_file_name, "w", encoding="utf-8") as json_file:
             json.dump(self.to_dict(), json_file, indent=4, ensure_ascii=False)
-
 
     def to_dict(self):
         """Renvoie le dictionnaire du round."""
@@ -84,23 +72,6 @@ class Round:
             "round_name": self.round_name,
             "start_date": str(self.start_date) if self.start_date else None,
             "end_date": str(self.end_date) if self.end_date else None,
-            "match_list": [match.to_dict() for match in self.match_list],
+            "match_list": [contest.to_dict() for contest in self.match_list],
         }
         return data
-
-    def get_matches(self):
-        """Retourne la liste des matchs."""
-        return self.match_list
-
-
-"""
-    ">>> A déplacer dans EndContest : 
-    Un match unique doit être stocké sous la forme d'un tuple contenant deux 
-    listes, chacune contenant deux éléments : un joueur et un score. Les matchs doivent être stockés sous
-    forme de liste dans l'instance du tour auquel ils appartiennent.
-    
-    Actuellement, nous appelons nos tours "Round 1", "Round 2", etc. Elle doit également
-    contenir un champ Date et heure de début et un champ Date et heure de fin, qui doivent
-    tous deux être automatiquement remplis lorsque l'utilisateur crée un tour et le marque
-    comme terminé.
-"""
