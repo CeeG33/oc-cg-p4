@@ -119,7 +119,7 @@ class Tournament:
         Crée les dossiers ci-dessous s'ils n'existent pas.
         Ensuite, crée ou met à jour le fichier JSON.
         """
-        directory_path = f"data/tournaments/"
+        directory_path = "data/tournaments/"
         json_file_name = f"data/tournaments/{self.name}.json"
 
         if not os.path.exists(directory_path):

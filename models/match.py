@@ -62,7 +62,7 @@ class Match:
         Crée les dossiers ci-dessous s'ils n'existent pas.
         Ensuite, crée ou met à jour le fichier JSON.
         """
-        directory_path = f"data/matches/"
+        directory_path = "data/matches/"
         json_file_name = f"data/matches/{self.player1}_VS_{self.player2}.json"
 
         if not os.path.exists(directory_path):

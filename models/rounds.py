@@ -57,7 +57,7 @@ class Round:
         Crée le dossier ci-dessous s'ils n'existent pas.
         Ensuite, crée ou écrase le fichier JSON.
         """
-        directory_path = f"data/rounds/"
+        directory_path = "data/rounds/"
         json_file_name = f"data/rounds/{self.round_name}.json"
 
         if not os.path.exists(directory_path):

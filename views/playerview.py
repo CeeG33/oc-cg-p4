@@ -145,7 +145,7 @@ class PlayerView:
         if current_seats > 0:
             print(f"Il manque encore {current_seats} joueurs pour démarrer un tournoi !")
         elif current_seats == 0:
-            print(f"Les joueurs sont au complet. Le tournoi peut commencer !")
+            print("Les joueurs sont au complet. Le tournoi peut commencer !")
         else:
             self.show_menu_list()
 

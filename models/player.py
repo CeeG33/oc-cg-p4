@@ -33,7 +33,7 @@ class Player:
         Crée le dossier ci-dessous s'ils n'existent pas.
         Ensuite, crée ou écrase le fichier JSON.
         """
-        directory_path = f"data/players/"
+        directory_path = "data/players/"
         json_file_name = f"data/players/{self.first_name}_{self.name}.json"
 
         if not os.path.exists(directory_path):
