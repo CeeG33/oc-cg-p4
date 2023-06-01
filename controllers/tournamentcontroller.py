@@ -88,10 +88,10 @@ class TournamentController:
 
     def end_round(self):
         """Termine le round en cours."""
-        self.current_round.set_end_date()
         self.current_tournament.save_json_file()
         self.get_match_result()
         self.current_tournament.save_players_score()
+        self.current_round.set_end_date()
         self.current_round.update_json_file()
         self.current_tournament.save_json_file()
 
@@ -126,8 +126,8 @@ class TournamentController:
         self.tournament_view.show_menu()
 
     def get_players_scores(self):
-        scores_list = self.current_tournament.sort_players()
-        return scores_list
+        sorted_scores_list = self.current_tournament.sort_players()
+        return sorted_scores_list
 
     def save_tournament(self):
         for contest in self.current_round.match_list:

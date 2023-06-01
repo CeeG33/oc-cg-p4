@@ -13,14 +13,13 @@ class TournamentView:
 
         self.user_choice = 0
         self.menu_list = ["[1] > Créer un nouveau tournoi.",
-                          "[2] > Charger un tournoi existant en entrant son nom manuellement.",
-                          "[3] > Charger un tournoi existant en parcourant la base de données.",
-                          "[4] > Afficher les tournois présents dans la base de données.",
-                          "[5] > Commencer / continuer le tournoi sélectionné.",
-                          "[6] > Revenir au menu principal."]
+                          "[2] > Charger un tournoi existant en parcourant la base de données.",
+                          "[3] > Afficher les tournois présents dans la base de données.",
+                          "[4] > Commencer / continuer le tournoi sélectionné.",
+                          "[5] > Revenir au menu principal."]
 
     def show_menu(self):
-        """Affiche le menu principal de la vue TournamentController à l'utilisateur."""
+        """Affiche le menu principal de la vue à l'utilisateur."""
 
         print("---- MENU TOURNOI----")
         print()
@@ -42,7 +41,7 @@ class TournamentView:
             print(f"Tournoi sélectionné : Aucun")
 
     def prompt_user(self):
-        """Affiche l'option sélectionnée par l'utilisateur."""
+        """Demande l'action de l'utilisateur dans le menu."""
         while True:
             print("")
             print("Que souhaitez-vous faire ?")
@@ -50,13 +49,12 @@ class TournamentView:
             if self.user_choice == "1":
                 self.create_tournament()
             elif self.user_choice == "2":
-                self.get_existing_tournament_info_manually()
-            elif self.user_choice == "3":
                 self.show_tournaments_in_database()
                 self.select_tournament_in_database()
-            elif self.user_choice == "4":
+            elif self.user_choice == "3":
                 self.show_tournaments_in_database()
-            elif self.user_choice == "5":
+            elif self.user_choice == "4":
+
                 self.show_selected_tournament()
                 if not self.tournament_controller.current_round:
                     print()
@@ -144,7 +142,6 @@ class TournamentView:
                                     print("Retour au menu principal")
                                     running = False
                                 self.tournament_controller.end_round()
-                                print("Le tournoi est désormais terminé !")
                                 self.tournament_controller.end_tournament()
                                 print()
                                 print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
@@ -157,17 +154,42 @@ class TournamentView:
                             elif user_choice == "2":
                                 self.tournament_controller.save_tournament()
                                 break
+                    if self.tournament_controller.current_tournament.current_round_number == 4 and not \
+                            self.tournament_controller.current_tournament.end_date:
+                        user_choice = self.prompt_user_to_start_round()
+                        if user_choice == "1":
+                            try:
+                                self.tournament_controller.begin_round()
+                            except IndexError:
+                                print("Vous n'avez pas le nombre de joueurs suffisant !")
+                                print("Il faut 8 joueurs pour démarrer un tournoi.")
+                                print("Retour au menu principal")
+                                running = False
+                            self.tournament_controller.end_round()
+                            self.tournament_controller.end_tournament()
+                            print()
+                            print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
+                            self.show_scores()
+                            print()
+                            print("Félicitations à tous les participants !")
+                            print()
+                            print("Retour au menu principal.")
+                            running = False
+                        elif user_choice == "2":
+                            self.tournament_controller.save_tournament()
+                            break
+                    print()
+                    print("Le tournoi est désormais terminé !")
+                    print()
+                    print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
+                    self.show_scores()
+                    print()
+                    print("Félicitations à tous les participants !")
                     print()
                     print("---- MENU TOURNOI----")
                     print()
                     self.show_menu_list()
-
-                # continuer ici
-                # continuer ici
-                # continuer ici
-                # continuer ici
-
-            elif self.user_choice == "6":
+            elif self.user_choice == "5":
                 break
             elif int(self.user_choice) not in range(1, len(self.menu_list)):
                 print()
@@ -231,13 +253,6 @@ class TournamentView:
             print()
         else:
             return description
-
-    def get_existing_tournament_info_manually(self):
-        """Charge un tournoi selon le nom et prénom renseigné par l'utilisateur manuellement."""
-        name = self.get_tournament_name()
-        self.tournament_controller.load_existing_tournament(name)
-        self.show_selected_tournament()
-        self.show_menu_list()
 
     def show_tournaments_in_database(self):
         """Affiche la liste des tournois enregistrés dans la base de données."""
@@ -308,6 +323,6 @@ class TournamentView:
             return user_choice
 
     def show_scores(self):
-        scores_list = self.tournament_controller.get_players_scores
-        for index, player in enumerate(scores_list, 1):
-            print(f"{index} >>> {player}")
+        sorted_scores_list = self.tournament_controller.get_players_scores()
+        for index, (participant, score) in enumerate(sorted_scores_list, 1):
+            print(f"{index} >> {participant} >> {score} points")
