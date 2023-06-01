@@ -28,6 +28,7 @@ Ensuite, suivez ces étapes dans l'ordre afin de faire fonctionner le programme.
 
 Il est impératif d'installer la dernière version de Python que vous pourrez retrouver sur le site officiel de Python : https://www.python.org/downloads/
 
+
 ### 1.2 - Création et activation de l'environnement virtuel
 
 #### a) Ouvrir un terminal de commande et se placer dans le dossier contenant les fichiers du repository.
@@ -36,13 +37,26 @@ Il est impératif d'installer la dernière version de Python que vous pourrez re
 #### c) Activer l'environnement virtuel avec la ligne de commande suivante : 
 ```env/Scripts/activate```
 
+
 ### 1.3 - Installation des packages
 
 #### a) Une fois l'environnement virtuel activé, installer les packages avec la commande suivante : 
 ```pip install -r requirements.txt```
+
 
 ## 2 - Exécution du script
 
 #### a) Veuillez ouvrir votre terminal de commande et exécuter le fichier ```main.py``` avec la commande suivante :
 ```python main.py```
 
+
+## 3 - Notes importantes
+
+#### a) Il est PRIMORDIAL de créer 8 joueurs au préalable avant de créer un tournoi.
+#### b) Pour créer les joueurs, sélectionnez l'option [1] dans le menu principal, puis laissez-vous guider.
+#### c) Une fois les 8 joueurs créés, il faut créer le tournoi.
+#### d) Pour créer un tournoi, revenez dans le menu principal puis sélectionnez l'option [2], puis laissez-vous guider.
+#### e) Une fois le tournoi créé, vous pourrez commencer le tournoi.
+
+
+Have fun & good luck !
