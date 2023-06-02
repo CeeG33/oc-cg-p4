@@ -46,7 +46,7 @@ Il est impératif d'installer la dernière version de Python que vous pourrez re
 
 ## 2 - Exécution du script
 
-#### a) Veuillez ouvrir votre terminal de commande et exécuter le fichier ```main.py``` avec la commande suivante :
+#### a) Toujours dans le dossier contenant les fichiers du repository, veuillez exécuter le fichier ```main.py``` avec la commande suivante :
 ```python main.py```
 
 
@@ -56,7 +56,14 @@ Il est impératif d'installer la dernière version de Python que vous pourrez re
 #### b) Pour créer les joueurs, sélectionnez l'option [1] dans le menu principal, puis laissez-vous guider.
 #### c) Une fois les 8 joueurs créés, il faut créer le tournoi.
 #### d) Pour créer un tournoi, revenez dans le menu principal puis sélectionnez l'option [2], puis laissez-vous guider.
-#### e) Une fois le tournoi créé, vous pourrez commencer le tournoi.
+#### e) Une fois le tournoi créé, vous pourrez commencer le tournoi en sélectionnant l'option dédiée dans le menu Tournoi.
+
+
+## 4 - Génération d'un rapport Flake8 - HTML
+
+a) Dans la racine du dossier, veuillez exécuter la commande suivante dans le terminal :
+```flake8 --format=html --htmldir=flake8_rapport```
+
 
 
 Have fun & good luck !
