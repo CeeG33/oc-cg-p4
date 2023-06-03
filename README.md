@@ -1,6 +1,10 @@
 # Programme de gestion de tournoi d'échecs
-Projet n°4 - Développez un programme logiciel en Python - Auteur : Ciran GÜRBÜZ
+Projet n°4 - Développez un programme logiciel en Python
+
+Auteur : Ciran GÜRBÜZ
+
 Date : Juin 2023
+
 
 Ce programme est destiné à gérer le déroulement d'un tournoi de jeu d'échecs.
 
