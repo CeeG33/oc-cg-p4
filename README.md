@@ -5,8 +5,11 @@ Date : Juin 2023
 Ce programme est destiné à gérer le déroulement d'un tournoi de jeu d'échecs.
 
 Il est doté de plusieurs fonctionnalités et notamment :
+
 -La création de joueurs & de tournois.
+
 -La gestion du déroulé d'un tournoi.
+
 -L'affichage de rapports divers (attention, il faut avoir généré des données au préalable en utilisant le programme).
 
 
