@@ -67,6 +67,8 @@ class TournamentView:
                 existing_tournaments = self.tournament_controller.get_existing_tournaments()
                 if existing_tournaments:
                     self.show_tournaments_in_database()
+                    self.show_menu_list()
+                    print()
                 else:
                     print("La base de données est vide !")
                     print("Retour vers le menu.")
@@ -201,17 +203,11 @@ class TournamentView:
                                 self.tournament_controller.save_tournament()
                                 break
                         print()
-                        print("Le tournoi est désormais terminé !")
-                        print()
-                        print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
-                        self.show_scores()
-                        print()
-                        print("Félicitations à tous les participants !")
-                        print()
                         print("---- MENU TOURNOI----")
                         print()
                         self.show_menu_list()
                 else:
+                    print()
                     print("Attention, vous n'avez pas sélectionné ou créé un tournoi.")
                     print()
                     print("Retour au menu.")
@@ -311,6 +307,8 @@ class TournamentView:
             self.show_tournaments_in_database()
         self.tournament_controller.load_existing_tournament(self.selected_tournament)
         self.tournament_controller.select_current_round()
+        print()
+        print("Le tournoi est chargé avec succès !")
         print()
         self.show_selected_tournament()
         print()

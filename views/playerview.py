@@ -158,9 +158,10 @@ class PlayerView:
 
     def show_players_in_database(self):
         """Affiche la liste des joueurs enregistrés dans la base de données."""
+        existing_players = self.player_controller.get_existing_players()
         print("Liste des joueurs existants :")
         print("")
-        for index, player in enumerate(self.existing_players, 1):
+        for index, player in enumerate(existing_players, 1):
             print(f"{index} >> {player}")
         print("")
         print("###############")
@@ -179,10 +180,11 @@ class PlayerView:
 
     def select_player_in_database(self):
         """Sélectionne le joueur existant et l'ajoute à la salle d'attente."""
+        existing_players = self.player_controller.get_existing_players()
         print("Quel joueur souhaitez-vous ajouter ?")
         try:
             self.user_choice = input("Numéro : ")
-            selected_player = self.existing_players[int(self.user_choice) - 1]
+            selected_player = existing_players[int(self.user_choice) - 1]
         except IndexError:
             print()
             print("Vous avez choisi un mauvais numéro. Veuillez réessayer.")
