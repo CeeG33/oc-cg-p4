@@ -66,19 +66,25 @@ class ReportView:
 
     def show_existing_players(self):
         """Affiche la liste des joueurs enregistrés dans la base de données."""
-        existing_players = self.report_controller.get_existing_players()
-        print("Liste des joueurs existants :")
-        print("")
-        for index, player in enumerate(existing_players, 1):
-            player_first_name = player.first_name
-            player_name = player.name
-            player_id = player.national_chess_id
-            print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
-        print("")
-        print("###############")
-        print("Fin de la liste")
-        print("")
-        self.show_menu_list()
+        if self.report_controller.get_existing_players():
+            existing_players = self.report_controller.get_existing_players()
+            print("Liste des joueurs existants :")
+            print("")
+            for index, player in enumerate(existing_players, 1):
+                player_first_name = player.first_name
+                player_name = player.name
+                player_id = player.national_chess_id
+                print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
+            print("")
+            print("###############")
+            print("Fin de la liste")
+            print("")
+            self.show_menu_list()
+        else:
+            print()
+            print("La base de données est vide !")
+            print()
+            self.show_menu_list()
 
     def show_existing_tournaments(self):
         """Affiche la liste des tournois enregistrés dans la base de données."""
