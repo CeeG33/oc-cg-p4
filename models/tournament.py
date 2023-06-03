@@ -6,10 +6,7 @@ from models import match, rounds, player
 
 
 class Tournament:
-    def __init__(self,
-                 name: str,
-                 location: str,
-                 description: str,):
+    def __init__(self, name, location, description):
         self.name = name
         self.location = location
         self.description = description

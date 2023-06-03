@@ -28,42 +28,57 @@ class ReportView:
             print("Que souhaitez-vous faire ?")
             self.user_choice = input("Numéro : ")
             if self.user_choice == "1":
-                self.show_existing_players()
+                if self.report_controller.get_existing_players():
+                    self.show_existing_players()
+                else:
+                    print()
+                    print("La base de données est vide !")
+                    print()
+                    self.show_menu_list()
+                    print()
             elif self.user_choice == "2":
-                self.show_existing_tournaments()
+                if self.report_controller.get_existing_tournaments():
+                    self.show_existing_tournaments()
+                else:
+                    print()
+                    print("La base de données est vide !")
+                    print()
                 self.show_menu_list()
+                print()
             elif self.user_choice == "3":
-                self.show_existing_tournaments()
-                self.select_tournament_in_database()
+                if self.report_controller.get_existing_tournaments():
+                    self.show_existing_tournaments()
+                    self.select_tournament_in_database()
+                else:
+                    print()
+                    print("La base de données est vide !")
+                    print()
+                    self.show_menu_list()
+                    print()
             elif self.user_choice == "4":
                 break
-            elif int(self.user_choice) not in range(1, len(self.menu_list)):
+            else:
                 print()
                 print("Vous avez choisi un mauvais numéro.")
                 print(f"Veuillez choisir un numéro entre 1 et {len(self.menu_list)}.")
                 print()
+                self.show_menu_list()
 
     def show_existing_players(self):
         """Affiche la liste des joueurs enregistrés dans la base de données."""
-        if self.report_controller.get_existing_players():
-            existing_players = self.report_controller.get_existing_players()
-            print("Liste des joueurs existants :")
-            print("")
-            for index, player in enumerate(existing_players, 1):
-                player_first_name = player.first_name
-                player_name = player.name
-                player_id = player.national_chess_id
-                print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
-            print("")
-            print("###############")
-            print("Fin de la liste")
-            print("")
-            self.show_menu_list()
-        else:
-            print()
-            print("La base de données est vide !")
-            print()
-            self.show_menu_list()
+        existing_players = self.report_controller.get_existing_players()
+        print("Liste des joueurs existants :")
+        print("")
+        for index, player in enumerate(existing_players, 1):
+            player_first_name = player.first_name
+            player_name = player.name
+            player_id = player.national_chess_id
+            print(f"{index} >> {player_first_name} {player_name} -- Identifiant : {player_id}")
+        print("")
+        print("###############")
+        print("Fin de la liste")
+        print("")
+        self.show_menu_list()
 
     def show_existing_tournaments(self):
         """Affiche la liste des tournois enregistrés dans la base de données."""

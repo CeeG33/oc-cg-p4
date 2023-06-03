@@ -3,7 +3,7 @@ import os
 
 
 class Player:
-    def __init__(self, name: str, first_name: str, birthdate: str, national_chess_id: str):
+    def __init__(self, name, first_name, birthdate, national_chess_id):
         self.name = name
         self.first_name = first_name
         self.birthdate = birthdate

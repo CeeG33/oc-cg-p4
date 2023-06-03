@@ -1,3 +1,4 @@
+import os
 from controllers import tournamentcontroller, reportcontroller
 
 NUMBER_OF_PLAYERS_IN_TOURNAMENT = 8
@@ -29,9 +30,14 @@ while running:
     elif user_choice == "2":
         tournament_view.show_menu()
     elif user_choice == "3":
-        report_view.show_menu()
+        if os.path.exists("data/"):
+            report_view.show_menu()
+        else:
+            print("Impossible d'accéder au menu Rapport car la base de données est vide !")
     elif user_choice == "4":
         print("Fermeture du programme !")
         quit()
     else:
-        print("Erreur. Sélectionnez une option valide.")
+        print()
+        print(f"Erreur. Veuillez choisir un numéro entre 1 et {len(main_menu_list)}.")
+        print()

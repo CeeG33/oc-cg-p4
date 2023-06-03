@@ -5,7 +5,7 @@ from models import match
 
 
 class Round:
-    def __init__(self, round_name: str):
+    def __init__(self, round_name):
         self.round_name = round_name
         self.start_date = None
         self.end_date = None

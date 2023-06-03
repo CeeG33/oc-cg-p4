@@ -53,22 +53,50 @@ class PlayerView:
                 print()
                 self.show_menu_list()
             elif self.user_choice == "2":
-                self.show_players_in_database()
-                self.select_player_in_database()
+                if self.existing_players:
+                    self.show_players_in_database()
+                    self.select_player_in_database()
+                else:
+                    print("La base de données est vide. ",
+                          "Il faut d'abord sauvegarder un tournoi avec des joueurs",
+                          "pour pouvoir les retrouver dans la base de données.")
+                    print()
+                    print("Retour au menu.")
+                    print()
+                    self.show_waiting_room()
+                    print()
+                    self.update_remaining_seats()
+                    print()
+                    self.show_menu_list()
             elif self.user_choice == "3":
-                self.show_players_in_database()
-                self.show_waiting_room()
-                print()
-                self.update_remaining_seats()
-                print()
-                self.show_menu_list()
+                if self.existing_players:
+                    self.show_players_in_database()
+                    self.show_waiting_room()
+                    print()
+                    self.update_remaining_seats()
+                    print()
+                    self.show_menu_list()
+                else:
+                    print("La base de données est vide. ",
+                          "Il faut d'abord sauvegarder un tournoi avec des joueurs",
+                          "pour pouvoir les retrouver dans la base de données.")
+                    print()
+                    print("Retour au menu.")
+                    print()
+                    self.show_waiting_room()
+                    print()
+                    self.update_remaining_seats()
+                    print()
+                    self.show_menu_list()
             elif self.user_choice == "4":
                 break
-            elif int(self.user_choice) not in range(1, len(self.menu_list)):
+            else:
                 print()
                 print("Vous avez choisi un mauvais numéro.")
                 print(f"Veuillez choisir un numéro entre 1 et {len(self.menu_list)}.")
+                print("Retour au menu.")
                 print()
+                self.show_menu_list()
 
     def get_player_name(self):
         """Récupère le nom du joueur auprès de l'utilisateur."""
