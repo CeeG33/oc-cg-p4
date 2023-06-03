@@ -2,21 +2,12 @@
 Projet n°4 - Développez un programme logiciel en Python - Auteur : Ciran GÜRBÜZ
 Date : Juin 2023
 
-flake8==6.0.0
+Ce programme est destiné à gérer le déroulement d'un tournoi de jeu d'échecs.
 
-flake8-html==0.4.3
-
-Jinja2==3.1.2
-
-MarkupSafe==2.1.2
-
-mccabe==0.7.0
-
-pycodestyle==2.10.0
-
-pyflakes==3.0.1
-
-Pygments==2.15.1
+Il est doté de plusieurs fonctionnalités et notamment :
+-La création de joueurs & de tournois.
+-La gestion du déroulé d'un tournoi.
+-L'affichage de rapports divers (attention, il faut avoir généré des données au préalable en utilisant le programme).
 
 
 Après avoir téléchargé le contenu du repository, veuillez l'extraire dans un dossier spécifique sur votre ordinateur. 
@@ -26,7 +17,7 @@ Ensuite, suivez ces étapes dans l'ordre afin de faire fonctionner le programme.
 
 ### 1.1 - Python
 
-Il est impératif d'installer la dernière version de Python que vous pourrez retrouver sur le site officiel de Python : https://www.python.org/downloads/
+Ce programme a été développé en utilisant la version 3.11 de Python que vous pourrez retrouver sur le site officiel de Python : https://www.python.org/downloads/
 
 
 ### 1.2 - Création et activation de l'environnement virtuel
