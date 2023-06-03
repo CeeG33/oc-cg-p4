@@ -30,7 +30,7 @@ while running:
     elif user_choice == "2":
         tournament_view.show_menu()
     elif user_choice == "3":
-        if os.path.exists("data/"):
+        if os.path.exists("data/rounds/"):
             report_view.show_menu()
         else:
             print("Impossible d'accéder au menu Rapport car la base de données est vide !")
