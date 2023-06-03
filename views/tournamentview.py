@@ -123,7 +123,8 @@ class TournamentView:
                                 print("Le tournoi est désormais terminé !")
                                 self.tournament_controller.end_tournament()
                                 print()
-                                print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
+                                print("Voici le classement du tournoi",
+                                      f"{self.tournament_controller.current_tournament} :")
                                 self.show_scores()
                                 print()
                                 print("Félicitations à tous les participants !")
@@ -188,7 +189,8 @@ class TournamentView:
                                 self.tournament_controller.end_round()
                                 self.tournament_controller.end_tournament()
                                 print()
-                                print(f"Voici le classement du tournoi {self.tournament_controller.current_tournament} :")
+                                print("Voici le classement du tournoi",
+                                      f"{self.tournament_controller.current_tournament} :")
                                 self.show_scores()
                                 print()
                                 print("Félicitations à tous les participants !")
