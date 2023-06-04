@@ -4,6 +4,13 @@ from views import playerview
 
 class PlayerController:
     def __init__(self):
+        """Initialise un contrôleur gérant les joueurs.
+
+        Attrs:
+        - model (obj): contient un modèle Player.
+        - report_view (obj): contient la vue PlayerView associée au contrôleur.
+        - waiting_room (list): salle d'attente tampon des joueurs créés ou chargés (initialisé en une liste vide).
+        """
         self.model = player.Player
         self.player_view = playerview.PlayerView(self)
         self.waiting_room = []

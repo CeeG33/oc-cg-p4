@@ -3,6 +3,16 @@ import re
 
 class TournamentView:
     def __init__(self, tournament_controller):
+        """Initialise une vue affichant le menu de gestion des tournois.
+        Args:
+        - tournament_controller (obj): contient un contrôleur TournamentController.
+
+        Attrs:
+        - tournament_controller (obj): contient un contrôleur TournamentController.
+        - selected_tournament (obj): contient le tournoi sélectionné ou créé (initialisé en None).
+        - user_choice (int): contient le choix de l'utilisateur dans le menu PlayerView (initialisé sur 0).
+        - menu_list (list): contient les options de navigation de la vue.
+        """
         self.tournament_controller = tournament_controller
 
         try:
@@ -202,10 +212,15 @@ class TournamentView:
                             elif user_choice == "2":
                                 self.tournament_controller.save_tournament()
                                 break
-                        print()
-                        print("---- MENU TOURNOI----")
-                        print()
-                        self.show_menu_list()
+                        if self.tournament_controller.current_tournament.current_round_number == 4 and \
+                                self.tournament_controller.current_tournament.end_date:
+                            print()
+                            print("Ce tournoi est déjà terminé !")
+                            print("Retour vers le menu.")
+                            print()
+                            print("---- MENU TOURNOI----")
+                            print()
+                            self.show_menu_list()
                 else:
                     print()
                     print("Attention, vous n'avez pas sélectionné ou créé un tournoi.")

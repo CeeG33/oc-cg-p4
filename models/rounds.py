@@ -6,6 +6,11 @@ from models import match
 
 class Round:
     def __init__(self, round_name):
+        """
+        Initialise un round avec le nom du round.
+        Les attributs start_date et end_date seront renseignés avec l'horodatage de la date et de l'heure.
+        L'attribut match_list contiendra la liste des matchs.
+        """
         self.round_name = round_name
         self.start_date = None
         self.end_date = None

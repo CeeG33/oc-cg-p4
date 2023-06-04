@@ -7,6 +7,26 @@ from models import match, rounds, player
 
 class Tournament:
     def __init__(self, name, location, description):
+        """Initialise un tournoi.
+
+        Args:
+        - name (str): Nom du tournoi.
+        - location (str): Localisation du tournoi.
+        - description (str): Description du tournoi.
+
+        Attrs:
+        - name (str): Nom du tournoi.
+        - location (str): Localisation du tournoi.
+        - description (str): Description du tournoi.
+        - start_date (None or datetime.datetime): Date de début du tournoi (initialisée à None).
+        - end_date (None or datetime.datetime): Date de fin du tournoi (initialisée à None).
+        - current_round_number (int): Numéro du round actuel (initialisé à 0).
+        - rounds_list (list): Liste des rounds du tournoi (initialisée en une liste vide).
+        - players_list (list): Liste des joueurs inscrits au tournoi (initialisée en une liste vide).
+        - pairs_list (list): Liste des paires de joueurs pour le premier round (initialisée en une liste vide).
+        - players_scores (dict): Dictionnaire contenant le score des joueurs du tournoi (initialisé en un
+        dictionnaire vide).
+        """
         self.name = name
         self.location = location
         self.description = description

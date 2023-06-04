@@ -4,6 +4,7 @@ import os
 
 class Player:
     def __init__(self, name, first_name, birthdate, national_chess_id):
+        """Initialise un joueur avec son nom, prénom, date de naissance et identifiant national d'échec."""
         self.name = name
         self.first_name = first_name
         self.birthdate = birthdate

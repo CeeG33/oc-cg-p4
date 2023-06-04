@@ -5,6 +5,17 @@ from views import tournamentview
 
 class TournamentController:
     def __init__(self):
+        """Initialise un contrôleur gérant les tournois.
+
+        Attrs:
+        - tournament_model (obj): contient un modèle Tournament.
+        - round_model (obj): contient un modèle Round.
+        - match_model (obj): contient un modèle Match.
+        - tournament_view (obj): contient la vue TournamentView associée.
+        - player_controller (obj): contient le contrôleur PlayerController.
+        - current_tournament (obj): contient le tournoi sélectionné ou créé (initialisé en None).
+        - current_round (obj): contient le round en cours du tournoi sélectionné ou créé (initialisé en None).
+        """
         self.tournament_model = tournament.Tournament
         self.round_model = rounds.Round
         self.match_model = match.Match

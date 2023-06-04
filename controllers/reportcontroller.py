@@ -4,6 +4,14 @@ from views import reportview
 
 class ReportController:
     def __init__(self):
+        """Initialise un contrôleur gérant les rapports.
+
+        Attrs:
+        - player_model (obj): contient un modèle Player.
+        - tournament_model (obj): contient un modèle Tournament.
+        - report_view (obj): contient la vue ReportView associée au contrôleur.
+        - selected_tournament (obj): contient le tournoi sélectionné/créé par l'utilisateur (initialisé en None).
+        """
         self.player_model = player.Player
         self.tournament_model = tournament.Tournament
         self.report_view = reportview.ReportView(self)

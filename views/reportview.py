@@ -2,6 +2,15 @@
 
 class ReportView:
     def __init__(self, report_controller):
+        """Initialise une vue affichant le menu de gestion des rapports.
+        Args:
+        - report_controller (obj): contient un contrôleur ReportController.
+
+        Attrs:
+        - report_controller (obj): contient un contrôleur ReportController.
+        - user_choice (int): contient le choix de l'utilisateur dans le menu PlayerView (initialisé sur 0).
+        - menu_list (list): contient les options de navigation de la vue.
+        """
         self.report_controller = report_controller
         self.user_choice = 0
         self.menu_list = ["[1] > Afficher la liste des joueurs.",

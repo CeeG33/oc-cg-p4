@@ -5,6 +5,11 @@ from models import player
 
 class Match:
     def __init__(self, player1, player2):
+        """
+        Initialise un match avec deux joueurs.
+        En fonction de l'issue du match, l'attribut winner contiendra le gagnant du match
+        tandis que l'attribut draw contiendra les deux joueurs.
+        """
         self.player1 = player1
         self.player2 = player2
         self.winner = None
