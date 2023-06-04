@@ -66,8 +66,15 @@ class PlayerView:
                 self.show_menu_list()
             elif self.user_choice == "2":
                 if self.existing_players:
-                    self.show_players_in_database()
-                    self.select_player_in_database()
+                    if len(self.player_controller.waiting_room) == 8:
+                        print()
+                        print("La salle d'attente est au complet déjà !")
+                        print("Retour au menu.")
+                        print()
+                        self.show_menu_list()
+                    else:
+                        self.show_players_in_database()
+                        self.select_player_in_database()
                 else:
                     print("La base de données est vide. ",
                           "Il faut d'abord sauvegarder un tournoi avec des joueurs",
